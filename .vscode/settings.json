@@ -7,5 +7,14 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "cSpell.words": [ "Homerow", "Shottr", "Ticktick" ],
+
+  // tailwind 代码补全
+  "tailwindCSS.experimental.classRegex": [
+    // twJoin
+    [ "twJoin\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]" ],
+    // twMerge
+    [ "(?:twMerge|twJoin)\\(([^;]*)[\\);]", "[`'\"`]([^'\"`;]*)[`'\"`]" ]
+  ]
 }
