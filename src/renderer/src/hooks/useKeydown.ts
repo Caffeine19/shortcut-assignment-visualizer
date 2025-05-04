@@ -1,4 +1,4 @@
-import { createEffect, onCleanup } from 'solid-js';
+import { onCleanup, onMount } from 'solid-js';
 import { match } from 'ts-pattern';
 
 import { KeyCode } from '@renderer/types/keyCode';
@@ -36,7 +36,7 @@ export const useKeyDown = () => {
     keyRowStore.setActivatedModifierList(new Set(keyRowStore.activatedModifierList()));
   };
 
-  createEffect(() => {
+  onMount(() => {
     window.addEventListener('keydown', onKeydown);
   });
   onCleanup(() => {

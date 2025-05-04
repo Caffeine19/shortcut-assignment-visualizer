@@ -1,22 +1,21 @@
-import { JSX, JSXElement, Show, createSignal } from 'solid-js';
+import { Vibrant } from 'node-vibrant/browser';
+import { JSX, Show, createEffect, createMemo, createSignal } from 'solid-js';
+import { twMerge } from 'tailwind-merge';
+import tinycolor2 from 'tinycolor2';
 
 import type { Key } from '@renderer/types/key';
 import { ModifierKeyCode, isModifierKeyCode } from '@renderer/types/modifier';
-import type { Shortcut } from '@renderer/types/shortcut';
 
 import { useKeyRowStore } from '@renderer/stores/key';
+import { useShortcutStore } from '@renderer/stores/shortcut';
 
 interface KeyProps {
-  keyData: Key;
-  // onKeyClick: (key: Key) => void;
-  // getKeyClass: (key: Key) => string;
-  // getKeyStyles: (key: Key) => JSX.CSSProperties;
-  // isShortcutActive: (key: string) => boolean;
-  // getRelativeShortCut: (key: Key) => Shortcut | undefined;
+  key: Key;
 }
 
 const KeyItem = (props: KeyProps) => {
   const keyRowStore = useKeyRowStore();
+  const shortcutStore = useShortcutStore();
 
   const [hovered, setHovered] = createSignal(false);
 
@@ -24,17 +23,61 @@ const KeyItem = (props: KeyProps) => {
     keyRowStore.toggleActivatedModifier(modifierKeyCode);
   };
 
-  const onKeyClick = (key: Key) => {
-    if (isModifierKeyCode(key.keyCode)) {
-      onModifierClick(key.keyCode);
+  const onKeyClick = () => {
+    if (isModifierKeyCode(props.key.keyCode)) {
+      onModifierClick(props.key.keyCode);
     }
   };
 
+  const shortcut = createMemo(() => shortcutStore.getRelativeShortcutByKey(props.key));
+
+  const keyClass = createMemo(() =>
+    twMerge(
+      'relative mx-2 flex items-center justify-center rounded-md border border-zinc-800 bg-zinc-900 text-center font-bold text-zinc-200 transition-all duration-150 hover:border-red-500/60 hover:bg-zinc-800 hover:text-red-400',
+
+      isModifierKeyCode(props.key.keyCode)
+        ? keyRowStore.activatedModifierList().has(props.key.keyCode)
+          ? 'border-red-500 bg-red-500/20'
+          : 'cursor-pointer'
+        : '',
+    ),
+  );
+
+  const keySpanStyle = createMemo(() => {
+    const span = props.key.span || 1;
+    return {
+      width: `${span * 5}rem`,
+      height: '5rem',
+    };
+  });
+
+  const [iconColorStyle, setIconColorStyle] = createSignal<JSX.CSSProperties>({});
+  const updateIconColorStyles = async () => {
+    const toolIcon = shortcut()?.toolIcon;
+    if (!toolIcon) {
+      setIconColorStyle({});
+      return;
+    }
+
+    const palette = await Vibrant.from(toolIcon).getPalette();
+    const primary = palette.LightVibrant?.hex || '#3366FF';
+    const secondary = palette.Vibrant?.hex || '#FFCC00';
+
+    setIconColorStyle({
+      'border-color': primary,
+      background: `radial-gradient(circle, ${tinycolor2(primary).setAlpha(0.3).toRgbString()} 10%, ${tinycolor2(secondary).setAlpha(0.1).toRgbString()} 100%)`,
+    });
+  };
+  createEffect(updateIconColorStyles);
+
   return (
     <div
-      onClick={() => onKeyClick(props.keyData)}
-      // class={props.getKeyClass(props.keyData)}
-      // style={props.getKeyStyles(props.keyData)}
+      onClick={() => onKeyClick()}
+      class={keyClass()}
+      style={{
+        ...keySpanStyle(),
+        ...iconColorStyle(),
+      }}
       onMouseDown={(e) => e.currentTarget.classList.add('translate-y-[1px]', 'shadow-inner')}
       onMouseUp={(e) => {
         e.currentTarget.classList.remove('translate-y-[1px]', 'shadow-inner');
@@ -45,24 +88,23 @@ const KeyItem = (props: KeyProps) => {
         setHovered(false);
       }}
     >
-      {props.isShortcutActive(props.keyData.keyCode) ? (
+      {shortcut() ? (
         <>
           <img
-            src={props.getRelativeShortCut(props.keyData)?.toolIcon || ''}
-            alt={`Icon for ${props.keyData.keyCode}`}
+            src={shortcut()?.toolIcon}
+            alt={`Icon for ${props.key.keyCode}`}
             class="h-12 w-12 object-contain"
           />
           <Show when={hovered()}>
             <div class="absolute -top-12 z-10 flex items-center justify-center rounded-md bg-zinc-800 p-2 text-sm text-zinc-200">
               <span class="break-keep whitespace-nowrap">
-                {props.getRelativeShortCut(props.keyData)?.tool} -{' '}
-                {props.getRelativeShortCut(props.keyData)?.actionName}
+                {shortcut()?.tool} - {shortcut()?.actionName}
               </span>
             </div>
           </Show>
         </>
       ) : (
-        <span class="text-sm sm:text-base">{props.keyData.label || props.keyData.keyCode}</span>
+        <span class="text-sm sm:text-base">{props.key.label || props.key.keyCode}</span>
       )}
     </div>
   );

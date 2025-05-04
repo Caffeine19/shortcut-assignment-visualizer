@@ -1,110 +1,15 @@
-import { Vibrant } from 'node-vibrant/browser';
-import { type Component, For, JSX, createEffect, createMemo, createSignal } from 'solid-js';
-import { twMerge } from 'tailwind-merge';
-import tinycolor2 from 'tinycolor2';
+import { type Component, For } from 'solid-js';
 
 import LogoRed from '@renderer/assets/LogoRed.svg';
-
-import { type Key } from '@renderer/types/key';
-import { Shortcut } from '@renderer/types/shortcut';
 
 import KeyRow from './components/KeyRow';
 import { useKeyDown } from './hooks/useKeydown';
 import { useKeyRowStore } from './stores/key';
-import { useShortcutStore } from './stores/shortcut';
 
 const App: Component = () => {
-  const keyRowStore = useKeyRowStore();
-  const shortcutStore = useShortcutStore();
-
-  const [shortcutColors, setShortcutColors] = createSignal<
-    Record<string, { primary: string; secondary: string }>
-  >({});
-
   useKeyDown();
 
-  // Updated to use direct icon references
-  createEffect(() => {
-    shortcutStore.shortcutList().forEach(async (shortcut) => {
-      try {
-        const iconUrl = shortcut.toolIcon;
-
-        // Extract colors from the image
-        const palette = await Vibrant.from(iconUrl).getPalette();
-        const primary = palette.LightVibrant?.hex || '#3366FF';
-        const secondary = palette.Vibrant?.hex || '#FFCC00';
-
-        setShortcutColors((prev) => ({
-          ...prev,
-          [shortcut.tool]: { primary, secondary },
-        }));
-      } catch (error) {
-        console.error(`Failed to load icon for ${shortcut.keyCode}:`, error);
-      }
-    });
-  });
-
-  const onKeyClick = (key: Key): void => {
-    if (key.isModifier) {
-      onModifierClick(key.keyCode);
-    } else {
-      console.log('Key pressed:', key.keyCode);
-    }
-  };
-
-  const shortcutListFilteredByModifiers = createMemo(() =>
-    shortcutStore.shortcutList().filter((shortcut) => {
-      const modifiers = [
-        !!shortcut.control,
-        !!shortcut.command,
-        !!shortcut.option,
-        !!shortcut.shift,
-      ]; // updated to use new names
-      const activatingModifiers = [
-        activatingModifier().has('control'), // changed from ctrl to control
-        activatingModifier().has('command'), // changed from cmd to command
-        activatingModifier().has('option'),
-        activatingModifier().has('shift'), // added shift
-      ];
-      return modifiers.every((modifier, index) => modifier === activatingModifiers[index]);
-    }),
-  );
-
-  const isShortcutActive = (key: string): boolean => {
-    return shortcutListFilteredByModifiers().some((shortcut) => shortcut.keyCode === key);
-  };
-
-  const getKeyStyles = (key: Key): JSX.CSSProperties => {
-    if (isShortcutActive(key.keyCode)) {
-      const shortcut = getRelativeShortCut(key);
-      const colors = shortcutColors()[shortcut?.tool || ''];
-      if (colors) {
-        return {
-          width: `${key.span * 5}rem`,
-          height: '5rem',
-          'border-color': colors.primary,
-          background: `radial-gradient(circle, ${tinycolor2(colors.primary).setAlpha(0.3).toRgbString()} 10%, ${tinycolor2(colors.secondary).setAlpha(0.1).toRgbString()} 100%)`,
-        };
-      }
-    }
-
-    return {
-      width: `${key.span * 5}rem`,
-      height: '5rem',
-    };
-  };
-
-  const getKeyClass = (key: Key): string => {
-    // const shortcut = getRelativeShortCut(key);
-    // const colors = shortcutColors()[shortcut?.tool || ''];
-    return twMerge(
-      'relative mx-2 flex items-center justify-center rounded-md border border-zinc-800 bg-zinc-900 text-center font-bold text-zinc-200 transition-all duration-150 hover:border-red-500/60 hover:bg-zinc-800 hover:text-red-400',
-
-      key.isModifier ? 'cursor-pointer' : 'cursor-default',
-
-      activatingModifier().has(key.keyCode) ? 'border-red-500 bg-red-500/20' : '',
-    );
-  };
+  const keyRowStore = useKeyRowStore();
 
   return (
     <>
@@ -125,18 +30,7 @@ const App: Component = () => {
               style={{ '-webkit-app-region': 'no-drag' }}
               class="flex flex-col items-stretch justify-center"
             >
-              <For each={keyRowStore.keyRowList()}>
-                {(row) => (
-                  <KeyRow
-                    row={row}
-                    onKeyClick={onKeyClick}
-                    getKeyClass={getKeyClass}
-                    getKeyStyles={getKeyStyles}
-                    isShortcutActive={isShortcutActive}
-                    getRelativeShortCut={getRelativeShortCut}
-                  />
-                )}
-              </For>
+              <For each={keyRowStore.keyRowList()}>{(row) => <KeyRow row={row} />}</For>
             </div>
           </div>
         </div>

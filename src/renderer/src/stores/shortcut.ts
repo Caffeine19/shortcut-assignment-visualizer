@@ -16,13 +16,13 @@ const getRelativeShortcutByKey = (key: Key): Shortcut | undefined =>
   shortcutList().find((shortcut) => {
     if (shortcut.keyCode !== key.keyCode) return;
 
-    const modifiers = [!!shortcut.control, !!shortcut.command, !!shortcut.option, !!shortcut.shift]; // updated to use new names
+    const modifiers = [!!shortcut.control, !!shortcut.command, !!shortcut.option, !!shortcut.shift];
 
     const activatingModifiers = [
-      keyRowStore.activatedModifierList().has(KeyCode.CONTROL), // changed from ctrl to control
-      keyRowStore.activatedModifierList().has(KeyCode.COMMAND), // changed from cmd to command
+      keyRowStore.activatedModifierList().has(KeyCode.CONTROL),
+      keyRowStore.activatedModifierList().has(KeyCode.COMMAND),
       keyRowStore.activatedModifierList().has(KeyCode.OPTION),
-      keyRowStore.activatedModifierList().has(KeyCode.SHIFT), // added shift
+      keyRowStore.activatedModifierList().has(KeyCode.SHIFT),
     ];
 
     return modifiers.every((modifier, index) => modifier === activatingModifiers[index]);
