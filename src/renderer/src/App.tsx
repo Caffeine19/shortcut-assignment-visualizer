@@ -8,47 +8,24 @@ import LogoRed from '@renderer/assets/LogoRed.svg';
 import { type Key } from '@renderer/types/key';
 import { Shortcut } from '@renderer/types/shortcut';
 
-import { keyRows } from '@renderer/data/key';
-import { shortcutList } from '@renderer/data/shortcut';
-
 import KeyRow from './components/KeyRow';
+import { useKeyDown } from './hooks/useKeydown';
+import { useKeyRowStore } from './stores/key';
+import { useShortcutStore } from './stores/shortcut';
 
 const App: Component = () => {
-  const [activatingModifier, setActivatingModifier] = createSignal(new Set<string>());
+  const keyRowStore = useKeyRowStore();
+  const shortcutStore = useShortcutStore();
+
   const [shortcutColors, setShortcutColors] = createSignal<
     Record<string, { primary: string; secondary: string }>
   >({});
 
-  createEffect(() => {
-    // listen for key press , if the modifier is pressed, toggle it in the activatingModifier set
-    window.addEventListener('keydown', (event) => {
-      // alt , control , meta, shift
-      const key = event.key.toLowerCase();
-      if ('escape' === key) {
-        activatingModifier().clear();
-        setActivatingModifier(new Set(activatingModifier()));
-        return;
-      }
-
-      if (!['alt', 'control', 'meta', 'shift'].includes(key)) {
-        return;
-      }
-
-      // alt -> option, meta -> command
-      const modifierKey = key === 'alt' ? 'option' : key === 'meta' ? 'command' : key;
-      if (activatingModifier().has(modifierKey)) {
-        activatingModifier().delete(modifierKey);
-      } else {
-        activatingModifier().add(modifierKey);
-      }
-
-      setActivatingModifier(new Set(activatingModifier()));
-    });
-  });
+  useKeyDown();
 
   // Updated to use direct icon references
   createEffect(() => {
-    shortcutList.forEach(async (shortcut) => {
+    shortcutStore.shortcutList().forEach(async (shortcut) => {
       try {
         const iconUrl = shortcut.toolIcon;
 
@@ -67,15 +44,6 @@ const App: Component = () => {
     });
   });
 
-  const onModifierClick = (key: string): void => {
-    if (activatingModifier().has(key)) {
-      activatingModifier().delete(key);
-    } else {
-      activatingModifier().add(key);
-    }
-    setActivatingModifier(new Set(activatingModifier()));
-  };
-
   const onKeyClick = (key: Key): void => {
     if (key.isModifier) {
       onModifierClick(key.keyCode);
@@ -85,7 +53,7 @@ const App: Component = () => {
   };
 
   const shortcutListFilteredByModifiers = createMemo(() =>
-    shortcutList.filter((shortcut) => {
+    shortcutStore.shortcutList().filter((shortcut) => {
       const modifiers = [
         !!shortcut.control,
         !!shortcut.command,
@@ -104,27 +72,6 @@ const App: Component = () => {
 
   const isShortcutActive = (key: string): boolean => {
     return shortcutListFilteredByModifiers().some((shortcut) => shortcut.keyCode === key);
-  };
-
-  const getRelativeShortCut = (key: Key): Shortcut | undefined => {
-    return shortcutList.find((shortcut) => {
-      const modifiers = [
-        !!shortcut.control,
-        !!shortcut.command,
-        !!shortcut.option,
-        !!shortcut.shift,
-      ]; // updated to use new names
-      const activatingModifiers = [
-        activatingModifier().has('control'), // changed from ctrl to control
-        activatingModifier().has('command'), // changed from cmd to command
-        activatingModifier().has('option'),
-        activatingModifier().has('shift'), // added shift
-      ];
-      return (
-        shortcut.keyCode === key.keyCode &&
-        modifiers.every((modifier, index) => modifier === activatingModifiers[index])
-      );
-    });
   };
 
   const getKeyStyles = (key: Key): JSX.CSSProperties => {
@@ -178,7 +125,7 @@ const App: Component = () => {
               style={{ '-webkit-app-region': 'no-drag' }}
               class="flex flex-col items-stretch justify-center"
             >
-              <For each={keyRows}>
+              <For each={keyRowStore.keyRowList()}>
                 {(row) => (
                   <KeyRow
                     row={row}

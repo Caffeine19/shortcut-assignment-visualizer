@@ -1,7 +1,7 @@
 import { Key } from '@renderer/types/key';
 import { KeyCode } from '@renderer/types/keyCode';
 
-export const keyRows: Key[][] = [
+export const keyRowListData: Key[][] = [
   [
     { keyCode: KeyCode.ESC, span: 1.5, label: 'esc' },
     { keyCode: KeyCode.F1, span: 1, label: 'F1' },

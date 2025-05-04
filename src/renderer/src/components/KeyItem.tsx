@@ -1,25 +1,40 @@
 import { JSX, JSXElement, Show, createSignal } from 'solid-js';
 
 import type { Key } from '@renderer/types/key';
+import { ModifierKeyCode, isModifierKeyCode } from '@renderer/types/modifier';
 import type { Shortcut } from '@renderer/types/shortcut';
+
+import { useKeyRowStore } from '@renderer/stores/key';
 
 interface KeyProps {
   keyData: Key;
-  onKeyClick: (key: Key) => void;
-  getKeyClass: (key: Key) => string;
-  getKeyStyles: (key: Key) => JSX.CSSProperties;
-  isShortcutActive: (key: string) => boolean;
-  getRelativeShortCut: (key: Key) => Shortcut | undefined;
+  // onKeyClick: (key: Key) => void;
+  // getKeyClass: (key: Key) => string;
+  // getKeyStyles: (key: Key) => JSX.CSSProperties;
+  // isShortcutActive: (key: string) => boolean;
+  // getRelativeShortCut: (key: Key) => Shortcut | undefined;
 }
 
-const KeyItem = (props: KeyProps): JSXElement => {
+const KeyItem = (props: KeyProps) => {
+  const keyRowStore = useKeyRowStore();
+
   const [hovered, setHovered] = createSignal(false);
+
+  const onModifierClick = (modifierKeyCode: ModifierKeyCode) => {
+    keyRowStore.toggleActivatedModifier(modifierKeyCode);
+  };
+
+  const onKeyClick = (key: Key) => {
+    if (isModifierKeyCode(key.keyCode)) {
+      onModifierClick(key.keyCode);
+    }
+  };
 
   return (
     <div
-      onClick={() => props.onKeyClick(props.keyData)}
-      class={props.getKeyClass(props.keyData)}
-      style={props.getKeyStyles(props.keyData)}
+      onClick={() => onKeyClick(props.keyData)}
+      // class={props.getKeyClass(props.keyData)}
+      // style={props.getKeyStyles(props.keyData)}
       onMouseDown={(e) => e.currentTarget.classList.add('translate-y-[1px]', 'shadow-inner')}
       onMouseUp={(e) => {
         e.currentTarget.classList.remove('translate-y-[1px]', 'shadow-inner');

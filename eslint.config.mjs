@@ -1,10 +1,16 @@
-import tseslint from '@electron-toolkit/eslint-config-ts'
-import eslintConfigPrettier from '@electron-toolkit/eslint-config-prettier'
-import eslintPluginSolid from 'eslint-plugin-solid'
+import eslintConfigPrettier from '@electron-toolkit/eslint-config-prettier';
+import tseslint from '@electron-toolkit/eslint-config-ts';
+import eslintPluginSolid from 'eslint-plugin-solid';
 
 export default tseslint.config(
   { ignores: ['**/node_modules', '**/dist', '**/out'] },
   tseslint.configs.recommended,
   eslintPluginSolid.configs['flat/typescript'],
-  eslintConfigPrettier
-)
+  eslintConfigPrettier,
+
+  {
+    rules: {
+      '@typescript-eslint/explicit-function-return-type': 'off',
+    },
+  },
+);

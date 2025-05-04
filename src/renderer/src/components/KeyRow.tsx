@@ -1,4 +1,4 @@
-import { For, JSX, JSXElement } from 'solid-js';
+import { For, JSX } from 'solid-js';
 
 import { Key } from '@renderer/types/key';
 import { Shortcut } from '@renderer/types/shortcut';
@@ -14,7 +14,7 @@ interface KeyRowProps {
   getRelativeShortCut: (key: Key) => Shortcut | undefined;
 }
 
-const KeyRow = (props: KeyRowProps): JSXElement => (
+const KeyRow = (props: KeyRowProps) => (
   <div class="mb-4 flex justify-between">
     <For each={props.row}>
       {(key) => (

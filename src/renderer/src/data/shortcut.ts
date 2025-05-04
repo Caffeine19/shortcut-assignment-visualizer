@@ -16,7 +16,7 @@ import { ticktickShortcutList } from './shortcut/ticktick';
 import { vscodeShortcutList } from './shortcut/vscode';
 import { warpShortcutList } from './shortcut/warp';
 
-export const shortcutList: Shortcut[] = [
+export const shortcutListData: Shortcut[] = [
   ...clashShortcutList,
   ...pasteNowShortcutList,
   ...poeShortcutList,
