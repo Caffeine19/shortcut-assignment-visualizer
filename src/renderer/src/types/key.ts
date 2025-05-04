@@ -1,6 +1,10 @@
-export type Key = {
-  key: string;
-  span: number;
+import { KeyCode } from './keyCode';
+
+export interface Key {
+  keyCode: KeyCode;
+
+  label?: string;
   isModifier?: boolean;
-  label?: string; // Added label property
-};
+
+  span: number;
+}

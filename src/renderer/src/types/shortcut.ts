@@ -1,14 +1,28 @@
-export type Shortcut = {
-  key: string;
+import { KeyCode } from './keyCode';
+
+interface BaseShortcut {
+  keyCode: KeyCode;
   control?: boolean;
   command?: boolean;
   option?: boolean;
   shift?: boolean;
-  appIcon: string; // Changed from function to direct string reference
-  tool: string; // Added tool property to identify the application
+  actionName: string;
   colors?: {
     primary: string;
     secondary: string;
   };
-  actionName: string;
-};
+}
+
+interface RegularShortcut extends BaseShortcut {
+  tool: Exclude<string, 'Raycast'>; // Any string except 'Raycast'
+  toolIcon: string;
+}
+
+interface RaycastShortcut extends BaseShortcut {
+  tool: 'Raycast';
+  toolIcon: string;
+  raycastExtension?: string;
+  raycastExtensionIcon?: string;
+}
+
+export type Shortcut = RegularShortcut | RaycastShortcut;

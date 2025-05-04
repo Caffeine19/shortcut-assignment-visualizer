@@ -16,6 +16,7 @@ const sortImportsConfig = {
   importOrder: [
     '<THIRD_PARTY_MODULES>',
 
+    '^@renderer/components/(.*)$',
     '^@renderer/assets/(.*)$',
     '^@renderer/types/(.*)$',
     '^@renderer/data/(.*)$',
