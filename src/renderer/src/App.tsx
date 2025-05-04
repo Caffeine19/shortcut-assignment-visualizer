@@ -102,6 +102,33 @@ const App: Component = () => {
     Record<string, { primary: string; secondary: string }>
   >({});
 
+  createEffect(() => {
+    // listen for key press , if the modifier is pressed, toggle it in the activatingModifier set
+    window.addEventListener('keydown', (event) => {
+      // alt , control , meta, shift
+      const key = event.key.toLowerCase();
+      if ('escape' === key) {
+        activatingModifier().clear();
+        setActivatingModifier(new Set(activatingModifier()));
+        return;
+      }
+
+      if (!['alt', 'control', 'meta', 'shift'].includes(key)) {
+        return;
+      }
+
+      // alt -> option, meta -> command
+      const modifierKey = key === 'alt' ? 'option' : key === 'meta' ? 'command' : key;
+      if (activatingModifier().has(modifierKey)) {
+        activatingModifier().delete(modifierKey);
+      } else {
+        activatingModifier().add(modifierKey);
+      }
+
+      setActivatingModifier(new Set(activatingModifier()));
+    });
+  });
+
   // Updated to use direct icon references
   createEffect(() => {
     shortcutList.forEach(async (shortcut) => {
@@ -111,7 +138,7 @@ const App: Component = () => {
         // Extract colors from the image
         const palette = await Vibrant.from(iconUrl).getPalette();
         const primary = palette.LightVibrant?.hex || '#3366FF';
-        const secondary = palette.LightMuted?.hex || '#FFCC00';
+        const secondary = palette.Vibrant?.hex || '#FFCC00';
 
         setShortcutColors((prev) => ({
           ...prev,
@@ -161,6 +188,7 @@ const App: Component = () => {
   const isShortcutActive = (key: string): boolean => {
     return shortcutListFilteredByModifiers().some((shortcut) => shortcut.key === key);
   };
+
   const getRelativeShortCut = (key: Key): Shortcut | undefined => {
     return shortcutList.find((shortcut) => {
       const modifiers = [
@@ -185,9 +213,7 @@ const App: Component = () => {
   const getKeyStyles = (key: Key): JSX.CSSProperties => {
     if (isShortcutActive(key.key)) {
       const shortcut = getRelativeShortCut(key);
-      console.log('🚀 ~ App.tsx:432 ~ shortcut:', shortcut);
       const colors = shortcutColors()[shortcut?.tool || ''];
-      console.log('🚀 ~ App.tsx:187 ~ getKeyStyles ~ colors:', colors);
       if (colors) {
         return {
           width: `${key.span * 5}rem`,
@@ -233,6 +259,7 @@ const App: Component = () => {
           <img src={LogoRed} class="h-6 w-6" />
           <span class="font-mono text-red-400">Shortcut Assignment Visualizer</span>
         </div>
+
         <div class="flex grow items-center justify-center">
           <div class="rounded-xl bg-black p-8">
             <div
