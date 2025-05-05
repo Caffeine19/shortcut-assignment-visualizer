@@ -107,25 +107,25 @@ const KeyItem = (props: KeyProps) => {
             <RaycastExtensionMark />
           </Show>
           <Show when={hovered()}>
-            <ul class="absolute bottom-[calc(100%+1rem)] z-10 flex flex-col gap-2 rounded-md border border-zinc-600 bg-zinc-700/60 p-4 text-base text-zinc-200 backdrop-blur-2xl">
-              <li class="flex items-center gap-2">
+            <ul class="absolute bottom-[calc(100%+1rem)] z-10 flex min-w-80 flex-col gap-2 rounded-md border border-zinc-600 bg-zinc-700/60 p-4 text-base text-zinc-200 backdrop-blur-2xl">
+              <li class="flex items-center gap-3">
                 <Hammer />
                 <span class="break-keep whitespace-nowrap">{shortcut()?.tool}</span>
               </li>
               <Show when={shortcut()?.raycastExtension}>
-                <li class="flex items-center gap-2">
+                <li class="flex items-center gap-3">
                   <Blocks />
                   <span class="break-keep whitespace-nowrap">{shortcut()?.raycastExtension}</span>
                 </li>
               </Show>
-              <li class="flex items-center gap-2">
+              <li class="flex items-center gap-3">
                 <ArrowBigRightDash />
                 <span class="break-keep whitespace-nowrap">{shortcut()?.actionName}</span>
               </li>
 
               <div class="my-1 h-[1px] w-full border-b border-zinc-600" />
 
-              <li class="flex items-center gap-2">
+              <li class="flex items-center gap-3">
                 <Keyboard />
                 <div class="flex items-center gap-2 font-mono text-sm">
                   <Show when={shortcut()?.command}>
