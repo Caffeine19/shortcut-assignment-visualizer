@@ -1,6 +1,6 @@
 import { Vibrant } from 'node-vibrant/browser';
 import { JSX, Show, createEffect, createMemo, createSignal } from 'solid-js';
-import { twMerge } from 'tailwind-merge';
+import { twJoin, twMerge } from 'tailwind-merge';
 import tinycolor2 from 'tinycolor2';
 
 import type { Key } from '@renderer/types/key';
@@ -55,13 +55,13 @@ const KeyItem = (props: KeyProps) => {
 
   const [iconColorStyle, setIconColorStyle] = createSignal<JSX.CSSProperties>({});
   const updateIconColorStyles = async () => {
-    const toolIcon = shortcut()?.toolIcon;
-    if (!toolIcon) {
+    const src = shortcut()?.raycastExtensionIcon || shortcut()?.toolIcon;
+    if (!src) {
       setIconColorStyle({});
       return;
     }
 
-    const palette = await Vibrant.from(toolIcon).getPalette();
+    const palette = await Vibrant.from(src).getPalette();
     const primary = palette.LightVibrant?.hex || '#3366FF';
     const secondary = palette.Vibrant?.hex || '#FFCC00';
 
@@ -95,9 +95,12 @@ const KeyItem = (props: KeyProps) => {
       {shortcut() ? (
         <>
           <img
-            src={shortcut()?.toolIcon}
+            src={shortcut()?.raycastExtensionIcon || shortcut()?.toolIcon}
             alt={`Icon for ${props.key.keyCode}`}
-            class="h-12 w-12 object-contain"
+            class={twMerge(
+              'h-12 w-12 object-contain',
+              shortcut()?.raycastExtensionIcon && 'h-9.5 w-9.5',
+            )}
           />
           <Show when={shortcut()?.raycastExtension}>
             <RaycastExtensionMark />
@@ -105,7 +108,9 @@ const KeyItem = (props: KeyProps) => {
           <Show when={hovered()}>
             <div class="absolute -top-12 z-10 flex items-center justify-center rounded-md border border-zinc-600 bg-zinc-700/60 p-2 text-base text-zinc-200 backdrop-blur-sm">
               <span class="break-keep whitespace-nowrap">
-                {shortcut()?.tool} / {shortcut()?.actionName}
+                {[shortcut()?.tool, shortcut()?.raycastExtension, shortcut()?.actionName]
+                  .filter((v) => v)
+                  .join(' / ')}
               </span>
             </div>
           </Show>

@@ -1,4 +1,10 @@
 import RaycastIcon from '@renderer/assets/Raycast.png';
+import DateFormatConverterIcon from '@renderer/assets/raycast/DateFormatConverter.png';
+import RemoveWindowFromSetIcon from '@renderer/assets/raycast/RemoveWindowFromSet.png';
+import SetAudioDeviceIcon from '@renderer/assets/raycast/SetAudioDevice.png';
+import ShortcutLibraryIcon from '@renderer/assets/raycast/ShortcutLibrary.png';
+import ToggleKeyboardBrightnessIcon from '@renderer/assets/raycast/ToggleKeyboardBrightness.png';
+import YabaiIcon from '@renderer/assets/raycast/Yabai.png';
 
 import { KeyCode } from '@renderer/types/keyCode';
 import { Shortcut } from '@renderer/types/shortcut';
@@ -23,6 +29,7 @@ export const raycastShortcutList: Shortcut[] = [
     tool,
     actionName: 'Toggle Keyboard Brightness',
     raycastExtension: 'Toggle Keyboard Brightness',
+    raycastExtensionIcon: ToggleKeyboardBrightnessIcon,
   },
   {
     keyCode: KeyCode.T,
@@ -33,16 +40,7 @@ export const raycastShortcutList: Shortcut[] = [
     tool,
     actionName: 'Shortcut Library',
     raycastExtension: 'Shortcut Library',
-  },
-  {
-    keyCode: KeyCode.SPACE,
-    control: false,
-    command: true,
-    option: false,
-    shift: false,
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Raycast Hotkeys',
+    raycastExtensionIcon: ShortcutLibraryIcon,
   },
   {
     keyCode: KeyCode.Y,
@@ -52,7 +50,8 @@ export const raycastShortcutList: Shortcut[] = [
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Restart',
-    raycastExtension: 'Restart',
+    raycastExtension: 'Yabai',
+    raycastExtensionIcon: YabaiIcon,
   },
   {
     keyCode: KeyCode.M,
@@ -83,7 +82,8 @@ export const raycastShortcutList: Shortcut[] = [
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Set Output Device',
-    raycastExtension: 'Set Output Device',
+    raycastExtension: 'Set Audio Device',
+    raycastExtensionIcon: SetAudioDeviceIcon,
   },
   {
     keyCode: KeyCode.R,
@@ -94,6 +94,7 @@ export const raycastShortcutList: Shortcut[] = [
     tool,
     actionName: 'Remove Window From Set',
     raycastExtension: 'Remove Window from Set',
+    raycastExtensionIcon: RemoveWindowFromSetIcon,
   },
   {
     keyCode: KeyCode.PERIOD,
@@ -144,7 +145,8 @@ export const raycastShortcutList: Shortcut[] = [
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Insert Natural Language Date',
-    raycastExtension: 'Insert Natural Language Date',
+    raycastExtension: 'Date Format Converter',
+    raycastExtensionIcon: DateFormatConverterIcon,
   },
   {
     keyCode: KeyCode.F,

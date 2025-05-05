@@ -48,7 +48,7 @@ const App: Component = () => {
               }
             >
               <span class="font-mono text-neutral-500">
-                Use Command + K to toggle listening for modifier
+                Use Command + K to start listening for modifier
               </span>
             </Show>
           </div>

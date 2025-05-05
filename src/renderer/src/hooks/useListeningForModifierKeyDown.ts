@@ -1,5 +1,5 @@
 import { throttle } from 'radash';
-import { createEffect, createSignal, on, onCleanup, onMount } from 'solid-js';
+import { createEffect, createSignal, onCleanup, onMount } from 'solid-js';
 
 import { KeyCode } from '@renderer/types/keyCode';
 
@@ -8,7 +8,7 @@ import { useKeyRowStore } from '@renderer/stores/key';
 export const useListeningForModifierKeyDown = () => {
   const keyRowStore = useKeyRowStore();
 
-  const [isListening, setIsListening] = createSignal(false);
+  const [isListening, setIsListening] = createSignal(true);
 
   const [keydownList, setKeydownList] = createSignal<KeyboardEvent[]>([]);
   const pushKeydownList = throttle(
@@ -32,7 +32,12 @@ export const useListeningForModifierKeyDown = () => {
     pushKeydownList(event);
 
     if (event.metaKey && event.key === 'k') {
-      setIsListening(!isListening());
+      setIsListening(true);
+      return;
+    }
+
+    if (event.key === 'Escape') {
+      setIsListening(false);
       return;
     }
 
