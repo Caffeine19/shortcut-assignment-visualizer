@@ -1,6 +1,7 @@
+import { ArrowBigRightDash, Blocks, Hammer, Keyboard } from 'lucide-solid';
 import { Vibrant } from 'node-vibrant/browser';
 import { JSX, Show, createEffect, createMemo, createSignal } from 'solid-js';
-import { twJoin, twMerge } from 'tailwind-merge';
+import { twMerge } from 'tailwind-merge';
 import tinycolor2 from 'tinycolor2';
 
 import type { Key } from '@renderer/types/key';
@@ -106,13 +107,57 @@ const KeyItem = (props: KeyProps) => {
             <RaycastExtensionMark />
           </Show>
           <Show when={hovered()}>
-            <div class="absolute -top-12 z-10 flex items-center justify-center rounded-md border border-zinc-600 bg-zinc-700/60 p-2 text-base text-zinc-200 backdrop-blur-sm">
-              <span class="break-keep whitespace-nowrap">
-                {[shortcut()?.tool, shortcut()?.raycastExtension, shortcut()?.actionName]
-                  .filter((v) => v)
-                  .join(' / ')}
-              </span>
-            </div>
+            <ul class="absolute bottom-[calc(100%+1rem)] z-10 flex flex-col gap-2 rounded-md border border-zinc-600 bg-zinc-700/60 p-4 text-base text-zinc-200 backdrop-blur-2xl">
+              <li class="flex items-center gap-2">
+                <Hammer />
+                <span class="break-keep whitespace-nowrap">{shortcut()?.tool}</span>
+              </li>
+              <Show when={shortcut()?.raycastExtension}>
+                <li class="flex items-center gap-2">
+                  <Blocks />
+                  <span class="break-keep whitespace-nowrap">{shortcut()?.raycastExtension}</span>
+                </li>
+              </Show>
+              <li class="flex items-center gap-2">
+                <ArrowBigRightDash />
+                <span class="break-keep whitespace-nowrap">{shortcut()?.actionName}</span>
+              </li>
+
+              <div class="my-1 h-[1px] w-full border-b border-zinc-600" />
+
+              <li class="flex items-center gap-2">
+                <Keyboard />
+                <div class="flex items-center gap-2 font-mono text-sm">
+                  <Show when={shortcut()?.command}>
+                    <span class="rounded bg-zinc-50/10 px-2 py-1">
+                      {shortcut()?.command && 'Command'}
+                    </span>
+                  </Show>
+
+                  <Show when={shortcut()?.option}>
+                    <span class="rounded bg-zinc-50/10 px-2 py-1">
+                      {shortcut()?.option && 'Option'}
+                    </span>
+                  </Show>
+
+                  <Show when={shortcut()?.shift}>
+                    <span class="rounded bg-zinc-50/10 px-2 py-1">
+                      {shortcut()?.shift && 'Shift'}
+                    </span>
+                  </Show>
+
+                  <Show when={shortcut()?.control}>
+                    <span class="rounded bg-zinc-50/10 px-2 py-1">
+                      {shortcut()?.control && 'Control'}
+                    </span>
+                  </Show>
+
+                  <span class="rounded bg-zinc-50/10 px-2 py-1">
+                    {shortcut()?.keyCode.toUpperCase()}
+                  </span>
+                </div>
+              </li>
+            </ul>
           </Show>
         </>
       ) : (
