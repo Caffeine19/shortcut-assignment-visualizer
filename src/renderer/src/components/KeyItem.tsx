@@ -9,6 +9,8 @@ import { ModifierKeyCode, isModifierKeyCode } from '@renderer/types/modifier';
 import { useKeyRowStore } from '@renderer/stores/key';
 import { useShortcutStore } from '@renderer/stores/shortcut';
 
+import RaycastExtensionMark from './RaycastExtensionMark';
+
 interface KeyProps {
   key: Key;
 }
@@ -83,8 +85,10 @@ const KeyItem = (props: KeyProps) => {
         e.currentTarget.classList.remove('translate-y-[1px]', 'shadow-inner');
         setHovered(false);
       }}
-      onMouseLeave={(e) => {
-        e.currentTarget.classList.remove('translate-y-[1px]', 'shadow-inner');
+      onMouseEnter={() => {
+        setHovered(true);
+      }}
+      onMouseLeave={() => {
         setHovered(false);
       }}
     >
@@ -95,10 +99,13 @@ const KeyItem = (props: KeyProps) => {
             alt={`Icon for ${props.key.keyCode}`}
             class="h-12 w-12 object-contain"
           />
+          <Show when={shortcut()?.raycastExtension}>
+            <RaycastExtensionMark />
+          </Show>
           <Show when={hovered()}>
-            <div class="absolute -top-12 z-10 flex items-center justify-center rounded-md bg-zinc-800 p-2 text-sm text-zinc-200">
+            <div class="absolute -top-12 z-10 flex items-center justify-center rounded-md border border-zinc-600 bg-zinc-700/60 p-2 text-base text-zinc-200 backdrop-blur-sm">
               <span class="break-keep whitespace-nowrap">
-                {shortcut()?.tool} - {shortcut()?.actionName}
+                {shortcut()?.tool} / {shortcut()?.actionName}
               </span>
             </div>
           </Show>

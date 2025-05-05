@@ -1,28 +1,18 @@
 import { KeyCode } from './keyCode';
 
-interface BaseShortcut {
+export type Shortcut = {
   keyCode: KeyCode;
+
   control?: boolean;
   command?: boolean;
   option?: boolean;
   shift?: boolean;
+
   actionName: string;
-  colors?: {
-    primary: string;
-    secondary: string;
-  };
-}
 
-interface RegularShortcut extends BaseShortcut {
-  tool: Exclude<string, 'Raycast'>; // Any string except 'Raycast'
+  tool: string;
   toolIcon: string;
-}
-
-interface RaycastShortcut extends BaseShortcut {
-  tool: 'Raycast';
-  toolIcon: string;
+} & Partial<{
   raycastExtension?: string;
   raycastExtensionIcon?: string;
-}
-
-export type Shortcut = RegularShortcut | RaycastShortcut;
+}>;
