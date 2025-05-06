@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: shortcut-assignment-visualizer
+productName: Shortcut Assignment Visualizer
 directories:
   buildResources: build
 files:
