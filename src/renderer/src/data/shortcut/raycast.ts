@@ -1,5 +1,6 @@
 import RaycastIcon from '@renderer/assets/Raycast.png';
 import DateFormatConverterIcon from '@renderer/assets/raycast/DateFormatConverter.png';
+import KillProcessIcon from '@renderer/assets/raycast/KillProcess.png';
 import RemoveWindowFromSetIcon from '@renderer/assets/raycast/RemoveWindowFromSet.png';
 import SetAudioDeviceIcon from '@renderer/assets/raycast/SetAudioDevice.png';
 import ShortcutLibraryIcon from '@renderer/assets/raycast/ShortcutLibrary.png';
@@ -157,5 +158,16 @@ export const raycastShortcutList: Shortcut[] = [
     tool,
     actionName: 'Search Files',
     raycastExtension: 'Search Files',
+  },
+  {
+    keyCode: KeyCode.K,
+    control: true,
+    command: false,
+    option: true,
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Kill Process',
+    raycastExtension: 'Kill Process',
+    raycastExtensionIcon: KillProcessIcon,
   },
 ];
