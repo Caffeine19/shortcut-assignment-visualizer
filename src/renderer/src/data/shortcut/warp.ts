@@ -6,7 +6,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Warp';
 export const warpShortcutList: Shortcut[] = [
   {
-    keyCode: KeyCode.W,
+    keyCode: KeyCode.L,
     control: true,
     command: false,
     option: true,

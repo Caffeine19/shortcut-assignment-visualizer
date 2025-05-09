@@ -5,6 +5,7 @@ import RemoveWindowFromSetIcon from '@renderer/assets/raycast/RemoveWindowFromSe
 import SetAudioDeviceIcon from '@renderer/assets/raycast/SetAudioDevice.png';
 import ShortcutLibraryIcon from '@renderer/assets/raycast/ShortcutLibrary.png';
 import ToggleKeyboardBrightnessIcon from '@renderer/assets/raycast/ToggleKeyboardBrightness.png';
+import WeChatIcon from '@renderer/assets/raycast/WeChat.png';
 import YabaiIcon from '@renderer/assets/raycast/Yabai.png';
 
 import { KeyCode } from '@renderer/types/keyCode';
@@ -169,5 +170,16 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Kill Process',
     raycastExtension: 'Kill Process',
     raycastExtensionIcon: KillProcessIcon,
+  },
+  {
+    keyCode: KeyCode.W,
+    control: true,
+    command: false,
+    option: true,
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Search Contacts and Chat',
+    raycastExtension: 'WeChat',
+    raycastExtensionIcon: WeChatIcon,
   },
 ];
