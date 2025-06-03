@@ -1,6 +1,7 @@
 import { Shortcut } from '@renderer/types/shortcut';
 
 import { altTabShortcutList } from './shortcut/altTab';
+import { chatGPTShortcutList } from './shortcut/chatgpt';
 import { clashShortcutList } from './shortcut/clash';
 import { homerowShortcutList } from './shortcut/homerow';
 import { iceShortcutList } from './shortcut/ice';
@@ -32,4 +33,5 @@ export const shortcutListData: Shortcut[] = [
   ...loopShortcutList,
   ...altTabShortcutList,
   ...iceShortcutList,
+  ...chatGPTShortcutList,
 ];

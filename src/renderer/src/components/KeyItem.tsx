@@ -107,7 +107,15 @@ const KeyItem = (props: KeyProps) => {
             <RaycastExtensionMark />
           </Show>
           <Show when={hovered()}>
-            <ul class="absolute bottom-[calc(100%+1rem)] z-10 flex min-w-80 flex-col gap-2 rounded-md border border-zinc-600 bg-zinc-700/60 p-4 text-base text-zinc-200 backdrop-blur-2xl">
+            <ul
+              class="absolute bottom-[calc(100%+1rem)] z-10 flex min-w-80 flex-col gap-2 rounded-md border border-zinc-600 bg-zinc-700/60 p-4 text-base text-zinc-200 backdrop-blur-2xl"
+              style={{
+                'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)',
+                'max-height': 'calc(100vh - 8rem)',
+                overflow: 'auto',
+                'font-size': '0.875rem',
+              }}
+            >
               <li class="flex items-center gap-3">
                 <Hammer />
                 <span class="break-keep whitespace-nowrap">{shortcut()?.tool}</span>

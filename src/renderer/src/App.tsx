@@ -1,9 +1,10 @@
 import { AudioLines } from 'lucide-solid';
 import { type Component, For, Show } from 'solid-js';
 
+import KeyRow from '@renderer/components/KeyRow';
+
 import LogoRed from '@renderer/assets/LogoRed.svg';
 
-import KeyRow from '@renderer/components/KeyRow';
 import { useListeningForModifierKeyDown } from '@renderer/hooks/useListeningForModifierKeyDown';
 import { useKeyRowStore } from '@renderer/stores/key';
 
