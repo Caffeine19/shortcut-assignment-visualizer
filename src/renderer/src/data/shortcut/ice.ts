@@ -8,15 +8,15 @@ export const iceShortcutList: Shortcut[] = [
   {
     keyCode: KeyCode.I,
     control: true,
-    command: false,
-    option: true,
+    command: true,
+    option: false,
     toolIcon: IceIcon,
     tool,
     actionName: 'Enable the Ice Bar',
   },
   {
     keyCode: KeyCode.I,
-    shift: true,
+    shift: false,
     control: true,
     command: false,
     option: true,

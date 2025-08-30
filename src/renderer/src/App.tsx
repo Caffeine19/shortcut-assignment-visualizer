@@ -1,12 +1,17 @@
-import { AudioLines } from 'lucide-solid';
-import { type Component, For, Show } from 'solid-js';
+import { AudioLines, Keyboard, LayoutGrid } from 'lucide-solid';
+import { type Component, For, Show, createSignal } from 'solid-js';
 
 import KeyRow from '@renderer/components/KeyRow';
+import KeyboardView from '@renderer/components/KeyboardView';
 
 import LogoRed from '@renderer/assets/LogoRed.svg';
 
+import { KeyCode } from '@renderer/types/keyCode';
+
 import { useListeningForModifierKeyDown } from '@renderer/hooks/useListeningForModifierKeyDown';
 import { useKeyRowStore } from '@renderer/stores/key';
+
+import { ModifierKeyCode } from './types/modifier';
 
 const TitleBar = () => (
   <div class="flex items-center gap-4 pt-4">
@@ -18,6 +23,26 @@ const TitleBar = () => (
 const App: Component = () => {
   const { isListening } = useListeningForModifierKeyDown();
   const keyRowStore = useKeyRowStore();
+  const [viewMode, setViewMode] = createSignal<'single' | 'multi'>('single');
+
+  const multiViewConfigs = [
+    {
+      title: 'Control + Option View',
+      modifiers: [KeyCode.CONTROL, KeyCode.OPTION] satisfies ModifierKeyCode[],
+    },
+    {
+      title: 'Command + Control View',
+      modifiers: [KeyCode.COMMAND, KeyCode.CONTROL] satisfies ModifierKeyCode[],
+    },
+    {
+      title: 'Command + Shift View',
+      modifiers: [KeyCode.COMMAND, KeyCode.SHIFT] satisfies ModifierKeyCode[],
+    },
+    {
+      title: 'Option View',
+      modifiers: [KeyCode.OPTION] satisfies ModifierKeyCode[],
+    },
+  ];
 
   return (
     <>
@@ -25,34 +50,88 @@ const App: Component = () => {
         style={{
           '-webkit-app-region': 'drag',
         }}
-        class="flex h-screen w-screen flex-col items-center justify-center overflow-hidden"
+        class="flex h-screen w-screen flex-col items-center overflow-hidden"
       >
         <TitleBar />
-        <div class="flex grow flex-col items-center justify-center">
-          <div class="rounded-xl bg-black p-8">
-            <div
+
+        <div class="flex grow flex-col items-center justify-center gap-4 overflow-hidden">
+          <div class="flex items-center justify-center gap-4 pt-4">
+            <button
+              onClick={() => setViewMode('single')}
+              class={`flex items-center gap-2 rounded-lg px-4 py-2 font-mono text-sm transition-all ${
+                viewMode() === 'single'
+                  ? 'border border-red-500/60 bg-red-500/20 text-red-400'
+                  : 'border border-zinc-700 bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
+              }`}
               style={{ '-webkit-app-region': 'no-drag' }}
-              class="flex flex-col items-stretch justify-center"
             >
-              <For each={keyRowStore.keyRowList()}>{(row) => <KeyRow row={row} />}</For>
-            </div>
+              <Keyboard size={16} />
+              Single View
+            </button>
+            <button
+              onClick={() => setViewMode('multi')}
+              class={`flex items-center gap-2 rounded-lg px-4 py-2 font-mono text-sm transition-all ${
+                viewMode() === 'multi'
+                  ? 'border border-red-500/60 bg-red-500/20 text-red-400'
+                  : 'border border-zinc-700 bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
+              }`}
+              style={{ '-webkit-app-region': 'no-drag' }}
+            >
+              <LayoutGrid size={16} />
+              Multi View
+            </button>
           </div>
 
-          <div class="mt-4 flex items-center gap-4">
-            <Show
-              when={!isListening()}
-              fallback={
-                <>
-                  <AudioLines size={24} class="text-red-600" />
-                  <span class="font-mono text-red-600">Listening for modifier key...</span>
-                </>
-              }
-            >
-              <span class="font-mono text-neutral-500">
-                Use Command + K to start listening for modifier
-              </span>
-            </Show>
-          </div>
+          <Show when={viewMode() === 'single'}>
+            <div class="flex flex-col items-center justify-center">
+              <div class="rounded-xl bg-black p-8">
+                <div
+                  style={{ '-webkit-app-region': 'no-drag' }}
+                  class="flex flex-col items-stretch justify-center"
+                >
+                  <For each={keyRowStore.keyRowList()}>
+                    {(row) => (
+                      <KeyRow
+                        last={row === keyRowStore.keyRowList()[keyRowStore.keyRowList().length - 1]}
+                        row={row}
+                      />
+                    )}
+                  </For>
+                </div>
+              </div>
+
+              <div class="mt-4 flex items-center gap-4">
+                <Show
+                  when={!isListening()}
+                  fallback={
+                    <>
+                      <AudioLines size={24} class="text-red-600" />
+                      <span class="font-mono text-red-600">Listening for modifier key...</span>
+                    </>
+                  }
+                >
+                  <span class="font-mono text-neutral-500">
+                    Use Command + K to start listening for modifier
+                  </span>
+                </Show>
+              </div>
+            </div>
+          </Show>
+
+          <Show when={viewMode() === 'multi'}>
+            <div class="flex overflow-hidden p-4 pb-12">
+              <div
+                class="grid w-full grid-cols-2 gap-x-4 gap-y-12 overflow-y-auto"
+                style={{ '-webkit-app-region': 'no-drag' }}
+              >
+                <For each={multiViewConfigs}>
+                  {(config) => (
+                    <KeyboardView size="sm" title={config.title} modifiers={config.modifiers} />
+                  )}
+                </For>
+              </div>
+            </div>
+          </Show>
         </div>
       </div>
     </>

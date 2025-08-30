@@ -3,7 +3,7 @@ import WarpIcon from '@renderer/assets/Warp.png';
 import { KeyCode } from '@renderer/types/keyCode';
 import { Shortcut } from '@renderer/types/shortcut';
 
-const tool = 'Warp';
+const tool = 'Raycast';
 export const warpShortcutList: Shortcut[] = [
   {
     keyCode: KeyCode.L,
@@ -13,5 +13,6 @@ export const warpShortcutList: Shortcut[] = [
     toolIcon: WarpIcon,
     tool,
     actionName: 'Open Warp Terminal',
+    raycastExtension: 'Warp',
   },
 ];

@@ -12,8 +12,11 @@ import { useShortcutStore } from '@renderer/stores/shortcut';
 
 import RaycastExtensionMark from './RaycastExtensionMark';
 
-interface KeyProps {
+export interface KeyProps {
   key: Key;
+  forcedModifiers?: Set<ModifierKeyCode>;
+  isInteractive?: boolean;
+  size?: 'sm' | 'md' | 'lg';
 }
 
 const KeyItem = (props: KeyProps) => {
@@ -27,30 +30,48 @@ const KeyItem = (props: KeyProps) => {
   };
 
   const onKeyClick = () => {
+    const isInteractive = props.isInteractive ?? true;
+    if (!isInteractive) return;
+
     if (isModifierKeyCode(props.key.keyCode)) {
       onModifierClick(props.key.keyCode);
     }
   };
 
-  const shortcut = createMemo(() => shortcutStore.getRelativeShortcutByKey(props.key));
+  const shortcut = createMemo(() => {
+    if (props.forcedModifiers) {
+      return shortcutStore.getShortcutByKeyWithModifiers(props.key, props.forcedModifiers);
+    }
+    return shortcutStore.getRelativeShortcutByKey(props.key);
+  });
 
-  const keyClass = createMemo(() =>
-    twMerge(
-      'relative mx-2 flex items-center justify-center rounded-md border border-zinc-800 bg-zinc-900 text-center font-bold text-zinc-200 transition-all duration-150 hover:border-red-500/60 hover:bg-zinc-800 hover:text-red-400',
+  const keyClass = createMemo(() => {
+    const isInteractive = props.isInteractive ?? true;
+    const activatedModifiers = props.forcedModifiers || keyRowStore.activatedModifierList();
+
+    return twMerge(
+      'relative flex items-center justify-center border border-zinc-800 bg-zinc-900 text-center font-bold text-zinc-200 transition-all duration-150',
+
+      props.size === 'sm'
+        ? 'mx-1 rounded-sm first:ml-0 last:mr-0'
+        : 'mx-2 rounded-md first:ml-0 last:mr-0',
+
+      isInteractive && 'hover:border-red-500/60 hover:bg-zinc-800 hover:text-red-400',
 
       isModifierKeyCode(props.key.keyCode)
-        ? keyRowStore.activatedModifierList().has(props.key.keyCode)
+        ? activatedModifiers.has(props.key.keyCode)
           ? 'border-red-500 bg-red-500/20'
-          : 'cursor-pointer'
+          : isInteractive && 'cursor-pointer'
         : '',
-    ),
-  );
+    );
+  });
 
   const keySpanStyle = createMemo(() => {
     const span = props.key.span || 1;
+    const rem = props.size === 'sm' ? 2.8 : 5;
     return {
-      width: `${span * 5}rem`,
-      height: '5rem',
+      width: `${span * rem}rem`,
+      height: `${rem}rem`,
     };
   });
 
@@ -67,7 +88,7 @@ const KeyItem = (props: KeyProps) => {
     const secondary = palette.Vibrant?.hex || '#FFCC00';
 
     setIconColorStyle({
-      'border-color': primary,
+      'border-color': tinycolor2(primary).setAlpha(0.4).toRgbString(),
       background: `radial-gradient(circle, ${tinycolor2(primary).setAlpha(0.3).toRgbString()} 10%, ${tinycolor2(secondary).setAlpha(0.1).toRgbString()} 100%)`,
     });
   };
@@ -81,13 +102,24 @@ const KeyItem = (props: KeyProps) => {
         ...keySpanStyle(),
         ...iconColorStyle(),
       }}
-      onMouseDown={(e) => e.currentTarget.classList.add('translate-y-[1px]', 'shadow-inner')}
+      onMouseDown={(e) => {
+        const isInteractive = props.isInteractive ?? true;
+        if (isInteractive) {
+          e.currentTarget.classList.add('translate-y-[1px]', 'shadow-inner');
+        }
+      }}
       onMouseUp={(e) => {
-        e.currentTarget.classList.remove('translate-y-[1px]', 'shadow-inner');
+        const isInteractive = props.isInteractive ?? true;
+        if (isInteractive) {
+          e.currentTarget.classList.remove('translate-y-[1px]', 'shadow-inner');
+        }
         setHovered(false);
       }}
       onMouseEnter={() => {
-        setHovered(true);
+        const isInteractive = props.isInteractive ?? true;
+        if (isInteractive) {
+          setHovered(true);
+        }
       }}
       onMouseLeave={() => {
         setHovered(false);
@@ -99,16 +131,22 @@ const KeyItem = (props: KeyProps) => {
             src={shortcut()?.raycastExtensionIcon || shortcut()?.toolIcon}
             alt={`Icon for ${props.key.keyCode}`}
             class={twMerge(
-              'h-12 w-12 object-contain',
-              shortcut()?.raycastExtensionIcon && 'h-9.5 w-9.5',
+              'object-contain',
+              props.size === 'sm' ? 'h-6 w-6' : props.size === 'lg' ? 'h-12 w-12' : 'h-12 w-12',
+              shortcut()?.raycastExtensionIcon &&
+                (props.size === 'sm'
+                  ? 'h-5 w-5'
+                  : props.size === 'lg'
+                    ? 'h-9.5 w-9.5'
+                    : 'h-9.5 w-9.5'),
             )}
           />
           <Show when={shortcut()?.raycastExtension}>
-            <RaycastExtensionMark />
+            <RaycastExtensionMark size={props.size} />
           </Show>
           <Show when={hovered()}>
             <ul
-              class="absolute bottom-[calc(100%+1rem)] z-10 flex min-w-80 flex-col gap-2 rounded-md border border-zinc-600 bg-zinc-700/60 p-4 text-base text-zinc-200 backdrop-blur-2xl"
+              class="absolute bottom-[calc(100%+1rem)] z-10 flex min-w-80 flex-col gap-2 rounded-md border border-zinc-800 bg-zinc-900/40 p-4 text-base text-zinc-200 backdrop-blur-2xl"
               style={{
                 'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)',
                 'max-height': 'calc(100vh - 8rem)',
@@ -131,7 +169,7 @@ const KeyItem = (props: KeyProps) => {
                 <span class="break-keep whitespace-nowrap">{shortcut()?.actionName}</span>
               </li>
 
-              <div class="my-1 h-[1px] w-full border-b border-zinc-600" />
+              <div class="my-1 h-[1px] w-full border-b border-zinc-700" />
 
               <li class="flex items-center gap-3">
                 <Keyboard />
@@ -169,7 +207,9 @@ const KeyItem = (props: KeyProps) => {
           </Show>
         </>
       ) : (
-        <span class="text-sm sm:text-base">{props.key.label || props.key.keyCode}</span>
+        <span class={props.size === 'sm' ? 'text-xs' : props.size === 'lg' ? 'text-lg' : 'text-sm'}>
+          {props.key.label || props.key.keyCode}
+        </span>
       )}
     </div>
   );

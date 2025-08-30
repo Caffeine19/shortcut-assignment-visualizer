@@ -24,4 +24,15 @@ export const notionShortcutList: Shortcut[] = [
     tool,
     actionName: 'Open Notion',
   },
+  {
+    keyCode: KeyCode.N,
+    control: true,
+    command: true,
+    option: false,
+    toolIcon: NotionIcon,
+    shift: false,
+    tool: 'Raycast',
+    actionName: 'Add Text to Page',
+    raycastExtension: 'Notion',
+  },
 ];

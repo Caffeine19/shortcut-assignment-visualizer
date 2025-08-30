@@ -7,8 +7,8 @@ const tool = 'ChatGPT';
 export const chatGPTShortcutList: Shortcut[] = [
   {
     keyCode: KeyCode.SPACE,
-    control: false,
-    command: true,
+    control:true,
+    command:false,
     option: true,
     toolIcon: ChatGPTIcon,
     shift: false,

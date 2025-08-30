@@ -1,4 +1,6 @@
 import RaycastIcon from '@renderer/assets/Raycast.png';
+import SurgeIcon from '@renderer/assets/Surge.png';
+import WarpIcon from '@renderer/assets/Warp.png';
 import DateFormatConverterIcon from '@renderer/assets/raycast/DateFormatConverter.png';
 import KillProcessIcon from '@renderer/assets/raycast/KillProcess.png';
 import RemoveWindowFromSetIcon from '@renderer/assets/raycast/RemoveWindowFromSet.png';
@@ -7,12 +9,28 @@ import ShortcutLibraryIcon from '@renderer/assets/raycast/ShortcutLibrary.png';
 import ToggleKeyboardBrightnessIcon from '@renderer/assets/raycast/ToggleKeyboardBrightness.png';
 import WeChatIcon from '@renderer/assets/raycast/WeChat.png';
 import YabaiIcon from '@renderer/assets/raycast/Yabai.png';
+import OpenWithIcon from '@renderer/assets/raycast/OpenWith.png';
+import JetbrainsIcon from '@renderer/assets/Jetbrains.png';
+import GitlabIcon from '@renderer/assets/Gitlab.png';
+import FigmaIcon from '@renderer/assets/Figma.png';
+import EdgeIcon from '@renderer/assets/MicrosoftEdge.png';
 
 import { KeyCode } from '@renderer/types/keyCode';
 import { Shortcut } from '@renderer/types/shortcut';
 
 const tool = 'Raycast';
 export const raycastShortcutList: Shortcut[] = [
+  {
+    keyCode: KeyCode.O,
+    control:true,
+    command: true,
+    option: false,
+    toolIcon: RaycastIcon,
+    raycastExtension: 'Open With',
+    raycastExtensionIcon: OpenWithIcon,
+    tool,
+    actionName: 'Open Raycast',
+  },
   {
     keyCode: KeyCode.SPACE,
     control: false,
@@ -21,6 +39,16 @@ export const raycastShortcutList: Shortcut[] = [
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Open Raycast',
+  },
+ {
+    keyCode: KeyCode.E,
+    control:true,
+    command: true,
+    option: false,
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Search Emoji & Symbols',
+    raycastExtension: 'Emoji & Symbols',
   },
   {
     keyCode: KeyCode.B,
@@ -88,7 +116,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: SetAudioDeviceIcon,
   },
   {
-    keyCode: KeyCode.R,
+    keyCode: KeyCode.BACKSPACE,
     control: true,
     command: true,
     option: false,
@@ -118,19 +146,18 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Previous Desktop',
     raycastExtension: 'Previous Desktop',
   },
-  // defined in warp
-  //   {
-  //     keyCode: KeyCode.L,
-  //     control: true,
-  //     command: false,
-  //     option: true,
-  //     toolIcon: RaycastIcon,
-  //     tool,
-  //     actionName: 'Open Launch Configuration',
-  //     raycastExtension: 'Open Launch Configuration',
-  //   },
+  // {
+  //   keyCode: KeyCode.L,
+  //   control: true,
+  //   command: false,
+  //   option: true,
+  //   toolIcon: RaycastIcon,
+  //   tool,
+  //   actionName: 'Open Launch Configuration',
+  //   raycastExtension: 'Open Launch Configuration',
+  // },
   {
-    keyCode: KeyCode.S,
+    keyCode: KeyCode.SLASH,
     control: true,
     command: true,
     option: false,
@@ -151,9 +178,9 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: DateFormatConverterIcon,
   },
   {
-    keyCode: KeyCode.F,
-    control: true,
-    command: false,
+    keyCode: KeyCode.SPACE,
+    control: false,
+    command: true,
     option: true,
     toolIcon: RaycastIcon,
     tool,
@@ -182,4 +209,64 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'WeChat',
     raycastExtensionIcon: WeChatIcon,
   },
+  {
+    keyCode: KeyCode.X,
+    control: true,
+    command: false,
+    option: true,
+    toolIcon: SurgeIcon,
+    tool,
+    actionName: 'Toggle Proxy',
+    raycastExtension: 'Surge',
+  },
+  {
+    keyCode: KeyCode.L,
+    control: true,
+    command: false,
+    option: true,
+    toolIcon: WarpIcon,
+    tool,
+    actionName: 'Open Warp Terminal',
+    raycastExtension: 'Warp',
+  },
+ {
+    keyCode: KeyCode.J,
+    control: true,
+    command: false,
+    option: true,
+    toolIcon:JetbrainsIcon,
+    tool,
+    actionName: 'Search Recent Projects',
+    raycastExtension: 'JetBrains Toolbox Recent Projects',
+  },
+  {
+    keyCode: KeyCode.G,
+    control: true,
+    command: false,
+    option: true,
+    toolIcon:GitlabIcon,
+    tool,
+    actionName: 'Search Projects',
+    raycastExtension: 'GitLab',
+  },
+  {
+    keyCode:KeyCode.F,
+    control:true,
+    command:false,
+    option:true,
+    toolIcon:FigmaIcon,
+    tool,
+    actionName: 'Search Files',
+    raycastExtension: 'Figma',
+  },
+  {
+    keyCode:KeyCode.E,
+    control:true,
+    command:false,
+    option:true,
+    toolIcon:EdgeIcon,
+    tool,
+    actionName: 'Search Workspaces',
+    raycastExtension: 'Microsoft Edge',
+  }
 ];

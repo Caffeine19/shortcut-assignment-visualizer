@@ -1,10 +1,20 @@
-const RaycastExtensionMark = () => {
+import { Component } from 'solid-js';
+import { twJoin } from 'tailwind-merge';
+
+interface RaycastExtensionMarkProps {
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const RaycastExtensionMark: Component<RaycastExtensionMarkProps> = (props) => {
   return (
     <svg
       viewBox="0 0 28 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      class="absolute right-1 bottom-1 h-4 w-4 fill-zinc-200"
+      class={twJoin(
+        'absolute right-1 bottom-1 fill-zinc-200',
+        props.size === 'sm' ? 'h-2 w-2' : 'h-4 w-4',
+      )}
     >
       <path
         fill-rule="evenodd"
