@@ -1,8 +1,9 @@
 import { AudioLines, Columns, Columns2, Keyboard, LayoutGrid } from 'lucide-solid';
-import { type Component, For, Show, createSignal } from 'solid-js';
+import { type Component, For, Show, createSignal, onCleanup, onMount } from 'solid-js';
 
 import KeyRow from '@renderer/components/KeyRow';
 import KeyboardView from '@renderer/components/KeyboardView';
+import SearchModal from '@renderer/components/SearchModal';
 
 import LogoRed from '@renderer/assets/LogoRed.svg';
 
@@ -11,6 +12,7 @@ import { KeyCode } from '@renderer/types/keyCode';
 import { useContainerQuery } from '@renderer/hooks/useContainerQuery';
 import { useListeningForModifierKeyDown } from '@renderer/hooks/useListeningForModifierKeyDown';
 import { useKeyRowStore } from '@renderer/stores/key';
+import { useSearchStore } from '@renderer/stores/search';
 
 import { ModifierKeyCode } from './types/modifier';
 
@@ -24,10 +26,22 @@ const TitleBar = () => (
 const App: Component = () => {
   const { isListening } = useListeningForModifierKeyDown();
   const keyRowStore = useKeyRowStore();
+  const searchStore = useSearchStore();
   const [viewMode, setViewMode] = createSignal<'single' | 'multi'>('single');
   const [gridContainer, setGridContainer] = createSignal<HTMLElement>();
   const containerQuery = useContainerQuery(gridContainer);
   const [multiViewCols, setMultiViewCols] = createSignal<1 | 2>(2);
+
+  // Setup global search shortcut listener
+  onMount(() => {
+    const cleanup = window.api?.onToggleSearch(() => {
+      searchStore.toggleSearch();
+    });
+    
+    onCleanup(() => {
+      cleanup?.();
+    });
+  });
 
   const multiViewConfigs = [
     {
@@ -50,6 +64,7 @@ const App: Component = () => {
 
   return (
     <>
+      <SearchModal />
       <div
         style={{
           '-webkit-app-region': 'drag',
@@ -129,7 +144,7 @@ const App: Component = () => {
                   }
                 >
                   <span class="font-mono text-neutral-500">
-                    Use Command + K to start listening for modifier
+                    Use Command + K to start listening for modifier • Ctrl/Cmd + Shift + Space for search
                   </span>
                 </Show>
               </div>
