@@ -1,6 +1,7 @@
 import { ArrowBigRightDash, Blocks, Hammer, Keyboard } from 'lucide-solid';
 import { Vibrant } from 'node-vibrant/browser';
 import { JSX, Show, createEffect, createMemo, createSignal } from 'solid-js';
+import { Portal } from 'solid-js/web';
 import { twMerge } from 'tailwind-merge';
 import tinycolor2 from 'tinycolor2';
 
@@ -24,6 +25,8 @@ const KeyItem = (props: KeyProps) => {
   const shortcutStore = useShortcutStore();
 
   const [hovered, setHovered] = createSignal(false);
+  const [keyElement, setKeyElement] = createSignal<HTMLElement>();
+  const [tooltipPosition, setTooltipPosition] = createSignal({ x: 0, y: 0 });
 
   const onModifierClick = (modifierKeyCode: ModifierKeyCode) => {
     keyRowStore.toggleActivatedModifier(modifierKeyCode);
@@ -94,6 +97,17 @@ const KeyItem = (props: KeyProps) => {
   };
   createEffect(updateIconColorStyles);
 
+  createEffect(() => {
+    const element = keyElement();
+    if (hovered() && element) {
+      const rect = element.getBoundingClientRect();
+      setTooltipPosition({
+        x: rect.left + rect.width / 2,
+        y: rect.top,
+      });
+    }
+  });
+
   return (
     <div
       onClick={() => onKeyClick()}
@@ -103,27 +117,19 @@ const KeyItem = (props: KeyProps) => {
         ...iconColorStyle(),
       }}
       onMouseDown={(e) => {
-        const isInteractive = props.isInteractive ?? true;
-        if (isInteractive) {
-          e.currentTarget.classList.add('translate-y-[1px]', 'shadow-inner');
-        }
+        e.currentTarget.classList.add('translate-y-[1px]', 'shadow-inner');
       }}
       onMouseUp={(e) => {
-        const isInteractive = props.isInteractive ?? true;
-        if (isInteractive) {
-          e.currentTarget.classList.remove('translate-y-[1px]', 'shadow-inner');
-        }
+        e.currentTarget.classList.remove('translate-y-[1px]', 'shadow-inner');
         setHovered(false);
       }}
       onMouseEnter={() => {
-        const isInteractive = props.isInteractive ?? true;
-        if (isInteractive) {
-          setHovered(true);
-        }
+        setHovered(true);
       }}
       onMouseLeave={() => {
         setHovered(false);
       }}
+      ref={setKeyElement}
     >
       {shortcut() ? (
         <>
@@ -145,65 +151,70 @@ const KeyItem = (props: KeyProps) => {
             <RaycastExtensionMark size={props.size} />
           </Show>
           <Show when={hovered()}>
-            <ul
-              class="absolute bottom-[calc(100%+1rem)] z-10 flex min-w-80 flex-col gap-2 rounded-md border border-zinc-800 bg-zinc-900/40 p-4 text-base text-zinc-200 backdrop-blur-2xl"
-              style={{
-                'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)',
-                'max-height': 'calc(100vh - 8rem)',
-                overflow: 'auto',
-                'font-size': '0.875rem',
-              }}
-            >
-              <li class="flex items-center gap-3">
-                <Hammer />
-                <span class="break-keep whitespace-nowrap">{shortcut()?.tool}</span>
-              </li>
-              <Show when={shortcut()?.raycastExtension}>
+            <Portal>
+              <ul
+                class="fixed z-50 flex min-w-80 flex-col gap-2 rounded-md border border-zinc-800 bg-zinc-900/40 p-4 text-base text-zinc-200 backdrop-blur-2xl"
+                style={{
+                  'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  'max-height': 'calc(100vh - 8rem)',
+                  overflow: 'auto',
+                  'font-size': '0.875rem',
+                  left: `${tooltipPosition().x}px`,
+                  top: `${tooltipPosition().y - 16}px`,
+                  transform: 'translateX(-50%) translateY(-100%)',
+                }}
+              >
                 <li class="flex items-center gap-3">
-                  <Blocks />
-                  <span class="break-keep whitespace-nowrap">{shortcut()?.raycastExtension}</span>
+                  <Hammer />
+                  <span class="break-keep whitespace-nowrap">{shortcut()?.tool}</span>
                 </li>
-              </Show>
-              <li class="flex items-center gap-3">
-                <ArrowBigRightDash />
-                <span class="break-keep whitespace-nowrap">{shortcut()?.actionName}</span>
-              </li>
+                <Show when={shortcut()?.raycastExtension}>
+                  <li class="flex items-center gap-3">
+                    <Blocks />
+                    <span class="break-keep whitespace-nowrap">{shortcut()?.raycastExtension}</span>
+                  </li>
+                </Show>
+                <li class="flex items-center gap-3">
+                  <ArrowBigRightDash />
+                  <span class="break-keep whitespace-nowrap">{shortcut()?.actionName}</span>
+                </li>
 
-              <div class="my-1 h-[1px] w-full border-b border-zinc-700" />
+                <div class="my-1 h-[1px] w-full border-b border-zinc-700" />
 
-              <li class="flex items-center gap-3">
-                <Keyboard />
-                <div class="flex items-center gap-2 font-mono text-sm">
-                  <Show when={shortcut()?.command}>
+                <li class="flex items-center gap-3">
+                  <Keyboard />
+                  <div class="flex items-center gap-2 font-mono text-sm">
+                    <Show when={shortcut()?.command}>
+                      <span class="rounded bg-zinc-50/10 px-2 py-1">
+                        {shortcut()?.command && 'Command'}
+                      </span>
+                    </Show>
+
+                    <Show when={shortcut()?.option}>
+                      <span class="rounded bg-zinc-50/10 px-2 py-1">
+                        {shortcut()?.option && 'Option'}
+                      </span>
+                    </Show>
+
+                    <Show when={shortcut()?.shift}>
+                      <span class="rounded bg-zinc-50/10 px-2 py-1">
+                        {shortcut()?.shift && 'Shift'}
+                      </span>
+                    </Show>
+
+                    <Show when={shortcut()?.control}>
+                      <span class="rounded bg-zinc-50/10 px-2 py-1">
+                        {shortcut()?.control && 'Control'}
+                      </span>
+                    </Show>
+
                     <span class="rounded bg-zinc-50/10 px-2 py-1">
-                      {shortcut()?.command && 'Command'}
+                      {shortcut()?.keyCode.toUpperCase()}
                     </span>
-                  </Show>
-
-                  <Show when={shortcut()?.option}>
-                    <span class="rounded bg-zinc-50/10 px-2 py-1">
-                      {shortcut()?.option && 'Option'}
-                    </span>
-                  </Show>
-
-                  <Show when={shortcut()?.shift}>
-                    <span class="rounded bg-zinc-50/10 px-2 py-1">
-                      {shortcut()?.shift && 'Shift'}
-                    </span>
-                  </Show>
-
-                  <Show when={shortcut()?.control}>
-                    <span class="rounded bg-zinc-50/10 px-2 py-1">
-                      {shortcut()?.control && 'Control'}
-                    </span>
-                  </Show>
-
-                  <span class="rounded bg-zinc-50/10 px-2 py-1">
-                    {shortcut()?.keyCode.toUpperCase()}
-                  </span>
-                </div>
-              </li>
-            </ul>
+                  </div>
+                </li>
+              </ul>
+            </Portal>
           </Show>
         </>
       ) : (
