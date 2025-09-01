@@ -1,8 +1,15 @@
-import { contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
-const api = {}
+const api = {
+  // Search functionality
+  onToggleSearch: (callback: () => void) => {
+    const unsubscribe = () => ipcRenderer.removeListener('toggle-search', callback);
+    ipcRenderer.on('toggle-search', callback);
+    return unsubscribe;
+  }
+}
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
