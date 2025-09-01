@@ -1,4 +1,4 @@
-import { AudioLines, Keyboard, LayoutGrid } from 'lucide-solid';
+import { AudioLines, Columns, Columns2, Keyboard, LayoutGrid } from 'lucide-solid';
 import { type Component, For, Show, createSignal } from 'solid-js';
 
 import KeyRow from '@renderer/components/KeyRow';
@@ -8,6 +8,7 @@ import LogoRed from '@renderer/assets/LogoRed.svg';
 
 import { KeyCode } from '@renderer/types/keyCode';
 
+import { useContainerQuery } from '@renderer/hooks/useContainerQuery';
 import { useListeningForModifierKeyDown } from '@renderer/hooks/useListeningForModifierKeyDown';
 import { useKeyRowStore } from '@renderer/stores/key';
 
@@ -24,6 +25,9 @@ const App: Component = () => {
   const { isListening } = useListeningForModifierKeyDown();
   const keyRowStore = useKeyRowStore();
   const [viewMode, setViewMode] = createSignal<'single' | 'multi'>('single');
+  const [gridContainer, setGridContainer] = createSignal<HTMLElement>();
+  const containerQuery = useContainerQuery(gridContainer);
+  const [multiViewCols, setMultiViewCols] = createSignal<1 | 2>(2);
 
   const multiViewConfigs = [
     {
@@ -54,7 +58,10 @@ const App: Component = () => {
       >
         <TitleBar />
 
-        <div class="flex grow flex-col items-center justify-center gap-4 overflow-hidden">
+        <div
+          class="flex w-full grow flex-col items-center justify-center gap-4 overflow-hidden"
+          ref={setGridContainer}
+        >
           <div class="flex items-center justify-center gap-4 pt-4">
             <button
               onClick={() => setViewMode('single')}
@@ -80,6 +87,17 @@ const App: Component = () => {
               <LayoutGrid size={16} />
               Multi View
             </button>
+
+            <Show when={viewMode() === 'multi' && containerQuery.when('10xl')}>
+              <button
+                onClick={() => setMultiViewCols(multiViewCols() === 2 ? 1 : 2)}
+                class="flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 font-mono text-sm text-zinc-400 transition-all hover:bg-zinc-700"
+                style={{ '-webkit-app-region': 'no-drag' }}
+              >
+                {multiViewCols() === 2 ? <Columns size={16} /> : <Columns2 size={16} />}
+                {multiViewCols() === 2 ? '1 Column' : '2 Columns'}
+              </button>
+            </Show>
           </div>
 
           <Show when={viewMode() === 'single'}>
@@ -121,12 +139,20 @@ const App: Component = () => {
           <Show when={viewMode() === 'multi'}>
             <div class="flex overflow-hidden p-4 pb-12">
               <div
-                class="grid w-full grid-cols-2 gap-x-4 gap-y-12 overflow-y-auto"
+                class={`grid w-full gap-x-4 gap-y-12 overflow-y-auto ${
+                  containerQuery.when('10xl') && multiViewCols() === 2
+                    ? 'grid-cols-2'
+                    : 'grid-cols-1'
+                }`}
                 style={{ '-webkit-app-region': 'no-drag' }}
               >
                 <For each={multiViewConfigs}>
                   {(config) => (
-                    <KeyboardView size="sm" title={config.title} modifiers={config.modifiers} />
+                    <KeyboardView
+                      size={containerQuery.when('10xl') && multiViewCols() === 2 ? 'sm' : 'md'}
+                      title={config.title}
+                      modifiers={config.modifiers}
+                    />
                   )}
                 </For>
               </div>

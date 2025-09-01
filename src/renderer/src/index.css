@@ -1,1 +1,32 @@
 @import 'tailwindcss';
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  @apply h-2 w-4;
+}
+
+::-webkit-scrollbar-track {
+  @apply rounded bg-zinc-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded bg-zinc-700 transition-colors duration-200;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-600;
+}
+
+::-webkit-scrollbar-thumb:active {
+  @apply bg-zinc-500;
+}
+
+::-webkit-scrollbar-corner {
+  @apply bg-zinc-900;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.zinc.700') theme('colors.zinc.900');
+}

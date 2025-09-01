@@ -68,6 +68,61 @@ pnpm build:linux        # Linux
 - Uses Vite's `?asset` suffix for proper bundling
 
 ## Code Conventions
+### JSDoc Documentation Standards
+Always use proper JSDoc comments for exported functions, types, and constants:
+
+```typescript
+/**
+ * Hook that provides reactive container query functionality
+ * @param element - Accessor that returns the HTML element to observe
+ * @returns Object with boolean accessors for each breakpoint
+ * 
+ * @example
+ * ```typescript
+ * const [container, setContainer] = createSignal<HTMLElement>();
+ * const query = useContainerQuery(container);
+ * 
+ * return (
+ *   <div ref={setContainer}>
+ *     <div class={query.md() ? "grid-cols-3" : "grid-cols-1"}>
+ *       Content adapts to container size
+ *     </div>
+ *   </div>
+ * );
+ * ```
+ */
+export function useContainerQuery(element: Accessor<HTMLElement | undefined>) {
+  /**
+   * Regular comments for internal implementation details
+   * @param width - Container width in pixels
+   */
+  const updateBreakpoints = (width: number) => {
+    // Implementation logic here
+  };
+}
+
+/**
+ * Tailwind container query breakpoints
+ * 
+ * These breakpoints match Tailwind's @container query system:
+ * - sm: 24rem (384px) - Small containers
+ * - md: 28rem (448px) - Medium containers  
+ * - lg: 32rem (512px) - Large containers
+ */
+export const containerBreakpoints = {
+  sm: '24rem',
+  md: '28rem', 
+  lg: '32rem',
+} as const;
+```
+
+**JSDoc Usage Rules:**
+- **Use JSDoc (`/** */`)** for: exported functions, classes, types, constants, public APIs
+- **Use regular comments (`//`)** for: implementation details, code logic, temporary notes
+- **Always include** `@param` and `@returns` for functions
+- **Add `@example`** blocks for complex APIs with real usage patterns
+- **Document type parameters** with generic functions using `@template`
+
 ### File Organization
 - **Components**: Single-purpose, use PascalCase filenames
 - **Data**: Separate files per application in `data/shortcut/`
