@@ -8,18 +8,13 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": [
-    "Homerow",
-    "radash",
-    "Shottr",
-    "Ticktick"
-  ],
+  "cSpell.words": ["Bitwarden", "Hammerspoon", "Homerow", "radash", "Shottr", "Ticktick"],
 
   // tailwind 代码补全
   "tailwindCSS.experimental.classRegex": [
     // twJoin
-    [ "twJoin\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]" ],
+    ["twJoin\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"],
     // twMerge
-    [ "(?:twMerge|twJoin)\\(([^;]*)[\\);]", "[`'\"`]([^'\"`;]*)[`'\"`]" ]
+    ["(?:twMerge|twJoin)\\(([^;]*)[\\);]", "[`'\"`]([^'\"`;]*)[`'\"`]"]
   ]
 }

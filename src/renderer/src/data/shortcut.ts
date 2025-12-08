@@ -9,6 +9,7 @@ import { notionShortcutList } from './shortcut/notion';
 import { pasteNowShortcutList } from './shortcut/pasteNow';
 import { quickRecordShortcutList } from './shortcut/quickRecord';
 import { raycastShortcutList } from './shortcut/raycast';
+import { shortcutsShortcutList } from './shortcut/shortcuts';
 import { shottrShortcutList } from './shortcut/shottr';
 import { snippetsLabShortcutList } from './shortcut/snippetsLab';
 import { systemShortcutList } from './shortcut/system';
@@ -19,6 +20,7 @@ import { warpShortcutList } from './shortcut/warp';
 export const shortcutListData: Shortcut[] = [
   ...pasteNowShortcutList,
   ...raycastShortcutList,
+  ...shortcutsShortcutList,
   ...snippetsLabShortcutList,
   ...vscodeShortcutList,
   ...notionShortcutList,
