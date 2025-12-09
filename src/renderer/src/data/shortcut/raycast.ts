@@ -16,11 +16,35 @@ import ShortcutLibraryIcon from '@renderer/assets/raycast/ShortcutLibrary.png';
 import ToggleKeyboardBrightnessIcon from '@renderer/assets/raycast/ToggleKeyboardBrightness.png';
 import WeChatIcon from '@renderer/assets/raycast/WeChat.png';
 import YabaiIcon from '@renderer/assets/raycast/Yabai.png';
+import MirrorScreenIcon from '@renderer/assets/raycast/custom/MirrorScreen.png';
 
 import { KeyCode } from '@renderer/types/keyCode';
 import { Shortcut } from '@renderer/types/shortcut';
 
+/**
+ * RaycastExtensionIcon or ToolIcon?
+ *
+ * ToolIcon has padding. RaycastExtensionIcon's padding is complex - sometimes it has padding,
+ * sometimes not, and size varies. So if the icon is from a Raycast extension, open Figma, remove
+ * the padding there, and export it again.
+ */
+
 const tool = 'Raycast';
+
+export const customExtensionShortcuts: Shortcut[] = [
+  {
+    keyCode: KeyCode.M,
+    control: true,
+    command: false,
+    option: true,
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Mirror Screen',
+    raycastExtension: 'Mirror Screen',
+    raycastExtensionIcon: MirrorScreenIcon,
+  },
+];
+
 export const raycastShortcutList: Shortcut[] = [
   {
     keyCode: KeyCode.O,
@@ -276,19 +300,22 @@ export const raycastShortcutList: Shortcut[] = [
     control: true,
     command: true,
     option: false,
-    toolIcon: ColorPickerIcon,
+    toolIcon: RaycastIcon,
     tool,
     actionName: 'Pick Color',
     raycastExtension: 'Color Picker',
+    raycastExtensionIcon: ColorPickerIcon,
   },
   {
     keyCode: KeyCode.B,
     control: true,
     command: true,
     option: false,
-    toolIcon: BitwardenIcon,
+    toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Vault',
     raycastExtension: 'Bitwarden',
+    raycastExtensionIcon: BitwardenIcon,
   },
+  ...customExtensionShortcuts,
 ];
