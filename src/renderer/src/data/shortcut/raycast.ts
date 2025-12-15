@@ -17,6 +17,7 @@ import ToggleKeyboardBrightnessIcon from '@renderer/assets/raycast/ToggleKeyboar
 import WeChatIcon from '@renderer/assets/raycast/WeChat.png';
 import YabaiIcon from '@renderer/assets/raycast/Yabai.png';
 import MirrorScreenIcon from '@renderer/assets/raycast/custom/MirrorScreen.png';
+import ZentaoIcon from '@renderer/assets/raycast/custom/Zentao.png';
 
 import { KeyCode } from '@renderer/types/keyCode';
 import { Shortcut } from '@renderer/types/shortcut';
@@ -42,6 +43,28 @@ export const customExtensionShortcuts: Shortcut[] = [
     actionName: 'Mirror Screen',
     raycastExtension: 'Mirror Screen',
     raycastExtensionIcon: MirrorScreenIcon,
+  },
+  {
+    keyCode: KeyCode.Z,
+    control: true,
+    command: false,
+    option: true,
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Search My Tasks',
+    raycastExtension: 'Zentao',
+    raycastExtensionIcon: ZentaoIcon,
+  },
+  {
+    keyCode: KeyCode.Z,
+    control: true,
+    command: true,
+    option: false,
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Search My Bugs',
+    raycastExtension: 'Zentao',
+    raycastExtensionIcon: ZentaoIcon,
   },
 ];
 
