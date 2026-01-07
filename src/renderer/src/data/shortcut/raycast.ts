@@ -321,8 +321,8 @@ export const raycastShortcutList: Shortcut[] = [
   {
     keyCode: KeyCode.C,
     control: true,
-    command: true,
-    option: false,
+    command: false,
+    option: true,
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Pick Color',

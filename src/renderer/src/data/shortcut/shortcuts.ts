@@ -46,8 +46,8 @@ export const shortcutsShortcutList: Shortcut[] = [
   {
     keyCode: KeyCode.C,
     control: true,
-    command: false,
-    option: true,
+    command: true,
+    option: false,
     toolIcon: WindIcon,
     tool,
     actionName: 'Clear Notifications',
