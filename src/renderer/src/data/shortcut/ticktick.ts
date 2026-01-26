@@ -6,19 +6,13 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Ticktick';
 export const ticktickShortcutList: Shortcut[] = [
   {
-    keyCode: KeyCode.A,
-    control: true,
-    command: false,
-    option: true,
+    keys: [KeyCode.A, 'control', 'option'],
     toolIcon: TicktickIcon,
     tool,
     actionName: 'Quick Add',
   },
   {
-    keyCode: KeyCode.P,
-    control: true,
-    command: false,
-    option: true,
+    keys: [KeyCode.P, 'control', 'option'],
     toolIcon: TicktickIcon,
     tool,
     actionName: 'Start/Abandon Promo',

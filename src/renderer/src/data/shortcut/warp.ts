@@ -6,10 +6,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Raycast';
 export const warpShortcutList: Shortcut[] = [
   {
-    keyCode: KeyCode.L,
-    control: true,
-    command: false,
-    option: true,
+    keys: [KeyCode.L, 'control', 'option'],
     toolIcon: WarpIcon,
     tool,
     actionName: 'Open Warp Terminal',

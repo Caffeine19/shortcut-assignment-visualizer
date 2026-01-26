@@ -6,20 +6,13 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Ice';
 export const iceShortcutList: Shortcut[] = [
   {
-    keyCode: KeyCode.I,
-    control: true,
-    command: true,
-    option: false,
+    keys: [KeyCode.I, 'control', 'command'],
     toolIcon: IceIcon,
     tool,
     actionName: 'Enable the Ice Bar',
   },
   {
-    keyCode: KeyCode.I,
-    shift: false,
-    control: true,
-    command: false,
-    option: true,
+    keys: [KeyCode.I, 'control', 'option'],
     toolIcon: IceIcon,
     tool,
     actionName: 'Search menu bar items',

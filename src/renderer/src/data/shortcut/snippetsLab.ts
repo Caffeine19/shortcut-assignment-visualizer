@@ -6,10 +6,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'SnippetsLab';
 export const snippetsLabShortcutList: Shortcut[] = [
   {
-    keyCode: KeyCode.S,
-    control: true,
-    command: false,
-    option: true,
+    keys: [KeyCode.S, 'control', 'option'],
     toolIcon: SnippetsLabIcon,
     tool,
     actionName: 'Toggle Assistant',

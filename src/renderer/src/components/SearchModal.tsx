@@ -1,14 +1,17 @@
 import { Search, X } from 'lucide-solid';
 import { type Component, For, Show, createEffect, createMemo, onCleanup, onMount } from 'solid-js';
 
+import { type Shortcut, normalizeShortcut } from '@renderer/types/shortcut';
+
 import { shortcutListData } from '@renderer/data/shortcut';
+
 import { useSearchStore } from '@renderer/stores/search';
-import { type Shortcut } from '@renderer/types/shortcut';
 
 /**
  * Search modal component for finding shortcuts globally
- * 
+ *
  * Features:
+ *
  * - Full-text search across action names, tools, and key combinations
  * - Keyboard navigation support (Escape to close)
  * - Visual representation of shortcuts with icons
@@ -18,42 +21,44 @@ const SearchModal: Component = () => {
   let searchInputRef: HTMLInputElement | undefined;
 
   /**
-   * Filter shortcuts based on search term
-   * Searches through action name, tool name, and generates key combination string
+   * Filter shortcuts based on search term Searches through action name, tool name, and generates
+   * key combination string
    */
   const filteredShortcuts = createMemo(() => {
     const term = searchStore.searchTerm().toLowerCase().trim();
     if (!term) return shortcutListData.slice(0, 50); // Show first 50 when no search
 
-    return shortcutListData.filter((shortcut) => {
-      // Build searchable key combination string
-      const modifiers = [];
-      if (shortcut.command) modifiers.push('cmd', 'command');
-      if (shortcut.control) modifiers.push('ctrl', 'control');
-      if (shortcut.option) modifiers.push('opt', 'option', 'alt');
-      if (shortcut.shift) modifiers.push('shift');
-      
-      const keyCombo = [...modifiers, shortcut.keyCode].join(' ').toLowerCase();
-      
-      return (
-        shortcut.actionName.toLowerCase().includes(term) ||
-        shortcut.tool.toLowerCase().includes(term) ||
-        keyCombo.includes(term) ||
-        (shortcut.raycastExtension && shortcut.raycastExtension.toLowerCase().includes(term))
-      );
-    }).slice(0, 50); // Limit results for performance
+    return shortcutListData
+      .filter((shortcut) => {
+        const normalized = normalizeShortcut(shortcut);
+        // Build searchable key combination string
+        const modifiers: string[] = [];
+        if (normalized.command) modifiers.push('cmd', 'command');
+        if (normalized.control) modifiers.push('ctrl', 'control');
+        if (normalized.option) modifiers.push('opt', 'option', 'alt');
+        if (normalized.shift) modifiers.push('shift');
+
+        const keyCombo = [...modifiers, normalized.keyCode].join(' ').toLowerCase();
+
+        return (
+          shortcut.actionName.toLowerCase().includes(term) ||
+          shortcut.tool.toLowerCase().includes(term) ||
+          keyCombo.includes(term) ||
+          (shortcut.raycastExtension && shortcut.raycastExtension.toLowerCase().includes(term))
+        );
+      })
+      .slice(0, 50); // Limit results for performance
   });
 
-  /**
-   * Generate human-readable key combination string for display
-   */
+  /** Generate human-readable key combination string for display */
   const formatKeyCombo = (shortcut: Shortcut) => {
-    const parts = [];
-    if (shortcut.command) parts.push('⌘');
-    if (shortcut.control) parts.push('⌃');
-    if (shortcut.option) parts.push('⌥');
-    if (shortcut.shift) parts.push('⇧');
-    parts.push(shortcut.keyCode.toUpperCase());
+    const normalized = normalizeShortcut(shortcut);
+    const parts: string[] = [];
+    if (normalized.command) parts.push('⌘');
+    if (normalized.control) parts.push('⌃');
+    if (normalized.option) parts.push('⌥');
+    if (normalized.shift) parts.push('⇧');
+    parts.push(normalized.keyCode.toUpperCase());
     return parts.join(' + ');
   };
 
@@ -64,9 +69,9 @@ const SearchModal: Component = () => {
         searchStore.closeSearch();
       }
     };
-    
+
     document.addEventListener('keydown', handleGlobalKeyDown);
-    
+
     onCleanup(() => {
       document.removeEventListener('keydown', handleGlobalKeyDown);
     });
@@ -84,7 +89,7 @@ const SearchModal: Component = () => {
 
   return (
     <Show when={searchStore.isSearchOpen()}>
-      <div 
+      <div
         class="fixed inset-0 z-50 flex items-start justify-center bg-black/60 backdrop-blur-sm"
         onClick={(e) => {
           if (e.target === e.currentTarget) {
@@ -115,7 +120,7 @@ const SearchModal: Component = () => {
 
           {/* Results */}
           <div class="mt-4 max-h-96 overflow-y-auto">
-            <Show 
+            <Show
               when={filteredShortcuts().length > 0}
               fallback={
                 <div class="py-8 text-center text-zinc-500">
@@ -128,24 +133,22 @@ const SearchModal: Component = () => {
                   {(shortcut) => (
                     <div class="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-800/50 p-3 hover:bg-zinc-700/50">
                       {/* Tool Icon */}
-                      <img 
-                        src={shortcut.raycastExtensionIcon || shortcut.toolIcon} 
+                      <img
+                        src={shortcut.raycastExtensionIcon || shortcut.toolIcon}
                         alt={shortcut.tool}
                         class="h-6 w-6 rounded"
                       />
-                      
+
                       {/* Shortcut Info */}
-                      <div class="flex-1 min-w-0">
-                        <div class="font-medium text-zinc-100 truncate">
-                          {shortcut.actionName}
-                        </div>
+                      <div class="min-w-0 flex-1">
+                        <div class="truncate font-medium text-zinc-100">{shortcut.actionName}</div>
                         <div class="text-sm text-zinc-400">
                           {shortcut.raycastExtension || shortcut.tool}
                         </div>
                       </div>
-                      
+
                       {/* Key Combination */}
-                      <div class="font-mono text-sm text-zinc-300 bg-zinc-800 px-2 py-1 rounded border border-zinc-700">
+                      <div class="rounded border border-zinc-700 bg-zinc-800 px-2 py-1 font-mono text-sm text-zinc-300">
                         {formatKeyCombo(shortcut)}
                       </div>
                     </div>

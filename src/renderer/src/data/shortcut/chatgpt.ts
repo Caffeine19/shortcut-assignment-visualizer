@@ -6,12 +6,8 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'ChatGPT';
 export const chatGPTShortcutList: Shortcut[] = [
   {
-    keyCode: KeyCode.SPACE,
-    control:true,
-    command:false,
-    option: true,
+    keys: [KeyCode.SPACE, 'control', 'option'],
     toolIcon: ChatGPTIcon,
-    shift: false,
     tool,
     actionName: 'Chat bar',
   },

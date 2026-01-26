@@ -6,10 +6,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Clash';
 export const clashShortcutList: Shortcut[] = [
   {
-    keyCode: KeyCode.X,
-    control: true,
-    command: false,
-    option: true,
+    keys: [KeyCode.X, 'control', 'option'],
     toolIcon: ClashIcon,
     tool,
     actionName: 'Open Clash',
