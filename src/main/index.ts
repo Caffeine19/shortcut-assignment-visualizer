@@ -72,7 +72,7 @@ app.whenReady().then(() => {
   ipcMain.on('ping', () => console.log('pong'));
 
   // Register global shortcut for search
-  globalShortcut.register('CommandOrControl+Shift+Space', () => {
+  globalShortcut.register('CommandOrControl+Shift+F', () => {
     const focusedWindow = BrowserWindow.getFocusedWindow();
     if (focusedWindow) {
       focusedWindow.webContents.send('toggle-search');
@@ -94,7 +94,7 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
   // Unregister all global shortcuts when app is closing
   globalShortcut.unregisterAll();
-  
+
   if (process.platform !== 'darwin') {
     app.quit();
   }
