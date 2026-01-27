@@ -1,5 +1,6 @@
 import FigmaIcon from '@renderer/assets/Figma.png';
 import GitlabIcon from '@renderer/assets/Gitlab.png';
+import HammerspoonIcon from '@renderer/assets/Hammerspoon.png';
 import JetbrainsIcon from '@renderer/assets/Jetbrains.png';
 import EdgeIcon from '@renderer/assets/MicrosoftEdge.png';
 import RaycastIcon from '@renderer/assets/Raycast.png';
@@ -14,6 +15,7 @@ import RemoveWindowFromSetIcon from '@renderer/assets/raycast/RemoveWindowFromSe
 import SetAudioDeviceIcon from '@renderer/assets/raycast/SetAudioDevice.png';
 import ShortcutLibraryIcon from '@renderer/assets/raycast/ShortcutLibrary.png';
 import ToggleKeyboardBrightnessIcon from '@renderer/assets/raycast/ToggleKeyboardBrightness.png';
+import ToothpickIcon from '@renderer/assets/raycast/Toothpick.png';
 import WeChatIcon from '@renderer/assets/raycast/WeChat.png';
 import YabaiIcon from '@renderer/assets/raycast/Yabai.png';
 import MirrorScreenIcon from '@renderer/assets/raycast/custom/MirrorScreen.png';
@@ -60,6 +62,14 @@ export const customExtensionShortcuts: Shortcut[] = [
 ];
 
 export const raycastShortcutList: Shortcut[] = [
+  {
+    keys: [KeyCode.T, 'control', 'command'],
+    toolIcon: RaycastIcon,
+    raycastExtension: 'Toothpick',
+    raycastExtensionIcon: ToothpickIcon,
+    tool,
+    actionName: 'Manage Bluetooth Connections',
+  },
   {
     keys: [KeyCode.O, 'control', 'command'],
     toolIcon: RaycastIcon,
@@ -208,6 +218,13 @@ export const raycastShortcutList: Shortcut[] = [
     tool,
     actionName: 'Switch Proxy',
     raycastExtension: 'Surge',
+  },
+  {
+    keys: [KeyCode.R, 'control', 'command'],
+    toolIcon: HammerspoonIcon,
+    tool,
+    actionName: 'Reload Configuration FilOh my God. e',
+    raycastExtension: 'Hammerspoon',
   },
   {
     keys: [KeyCode.L, 'control', 'option'],
