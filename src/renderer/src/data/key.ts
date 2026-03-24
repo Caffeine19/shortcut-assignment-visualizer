@@ -3,21 +3,6 @@ import { KeyCode } from '@renderer/types/keyCode';
 
 export const keyRowListData: Key[][] = [
   [
-    { keyCode: KeyCode.ESC, span: 1.5, label: 'esc' },
-    { keyCode: KeyCode.F1, span: 1, label: 'F1' },
-    { keyCode: KeyCode.F2, span: 1, label: 'F2' },
-    { keyCode: KeyCode.F3, span: 1, label: 'F3' },
-    { keyCode: KeyCode.F4, span: 1, label: 'F4' },
-    { keyCode: KeyCode.F5, span: 1, label: 'F5' },
-    { keyCode: KeyCode.F6, span: 1, label: 'F6' },
-    { keyCode: KeyCode.F7, span: 1, label: 'F7' },
-    { keyCode: KeyCode.F8, span: 1, label: 'F8' },
-    { keyCode: KeyCode.F9, span: 1, label: 'F9' },
-    { keyCode: KeyCode.F10, span: 1, label: 'F10' },
-    { keyCode: KeyCode.F11, span: 1, label: 'F11' },
-    { keyCode: KeyCode.F12, span: 1, label: 'F12' },
-  ],
-  [
     { keyCode: KeyCode.TILDE, span: 1, label: '~' },
     { keyCode: KeyCode.ONE, span: 1, label: '1' },
     { keyCode: KeyCode.TWO, span: 1, label: '2' },
