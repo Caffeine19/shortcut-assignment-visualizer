@@ -52,7 +52,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: ZentaoIcon,
   },
   {
-    keys: [KeyCode.Z, 'control', 'command'],
+    keys: [KeyCode.Z, 'command', 'control'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search My Bugs',
@@ -63,7 +63,7 @@ export const customExtensionShortcuts: Shortcut[] = [
 
 export const raycastShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.T, 'control', 'command'],
+    keys: [KeyCode.T, 'control', 'option'],
     toolIcon: RaycastIcon,
     raycastExtension: 'Toothpick',
     raycastExtensionIcon: ToothpickIcon,
@@ -71,7 +71,7 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Manage Bluetooth Connections',
   },
   {
-    keys: [KeyCode.O, 'control', 'command'],
+    keys: [KeyCode.O, 'command', 'control'],
     toolIcon: RaycastIcon,
     raycastExtension: 'Open With',
     raycastExtensionIcon: OpenWithIcon,
@@ -85,7 +85,7 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Open Raycast',
   },
   {
-    keys: [KeyCode.E, 'control', 'command'],
+    keys: [KeyCode.E, 'command', 'control'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Emoji & Symbols',
@@ -100,7 +100,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: ToggleKeyboardBrightnessIcon,
   },
   {
-    keys: [KeyCode.T, 'control', 'option'],
+    keys: [KeyCode.PERIOD, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Shortcut Library',
@@ -116,7 +116,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: YabaiIcon,
   },
   {
-    keys: [KeyCode.M, 'control', 'command'],
+    keys: [KeyCode.M, 'command', 'control'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Menu Item',
@@ -139,7 +139,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: SetAudioDeviceIcon,
   },
   {
-    keys: [KeyCode.BACKSPACE, 'control', 'command'],
+    keys: [KeyCode.BACKSPACE, 'command', 'control'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Remove Window From Set',
@@ -147,14 +147,14 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: RemoveWindowFromSetIcon,
   },
   {
-    keys: [KeyCode.PERIOD, 'control', 'command'],
+    keys: [KeyCode.PERIOD, 'command', 'control'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Next Desktop',
     raycastExtension: 'Next Desktop',
   },
   {
-    keys: [KeyCode.COMMA, 'control', 'command'],
+    keys: [KeyCode.COMMA, 'command', 'control'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Previous Desktop',
@@ -168,7 +168,7 @@ export const raycastShortcutList: Shortcut[] = [
   //   raycastExtension: 'Open Launch Configuration',
   // },
   {
-    keys: [KeyCode.SLASH, 'control', 'command'],
+    keys: [KeyCode.SLASH, 'command', 'control'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Toggle Stage Manager',
@@ -213,14 +213,14 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Surge',
   },
   {
-    keys: [KeyCode.X, 'control', 'command'],
+    keys: [KeyCode.X, 'command', 'control'],
     toolIcon: SurgeIcon,
     tool,
     actionName: 'Switch Proxy',
     raycastExtension: 'Surge',
   },
   {
-    keys: [KeyCode.R, 'control', 'command'],
+    keys: [KeyCode.R, 'command', 'control'],
     toolIcon: HammerspoonIcon,
     tool,
     actionName: 'Reload Configuration FilOh my God. e',
@@ -262,7 +262,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Microsoft Edge',
   },
   {
-    keys: [KeyCode.C, 'control', 'command'],
+    keys: [KeyCode.C, 'command', 'control'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Pick Color',
@@ -270,7 +270,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: ColorPickerIcon,
   },
   {
-    keys: [KeyCode.B, 'control', 'command'],
+    keys: [KeyCode.B, 'command', 'control'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Vault',

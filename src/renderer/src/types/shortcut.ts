@@ -3,6 +3,34 @@ import { KeyCode } from './keyCode';
 /** Modifier key string literals for shortcut definition */
 export type ModifierKey = 'control' | 'command' | 'option' | 'shift';
 
+/**
+ * All valid ordered modifier key combinations.
+ *
+ * Enforced order: `command` → `control` → `option` → `shift`
+ *
+ * @example
+ *   `['command', 'option']` ✓
+ *   `['command', 'control', 'option', 'shift']` ✓
+ *   `['control', 'command']` ✗ (wrong order)
+ */
+type OrderedModifiers =
+  | []
+  | ['command']
+  | ['control']
+  | ['option']
+  | ['shift']
+  | ['command', 'control']
+  | ['command', 'option']
+  | ['command', 'shift']
+  | ['control', 'option']
+  | ['control', 'shift']
+  | ['option', 'shift']
+  | ['command', 'control', 'option']
+  | ['command', 'control', 'shift']
+  | ['command', 'option', 'shift']
+  | ['control', 'option', 'shift']
+  | ['command', 'control', 'option', 'shift'];
+
 /** Base properties shared by all shortcut definitions */
 type ShortcutBase = {
   actionName: string;
@@ -27,7 +55,7 @@ type ShortcutBase = {
  *   ```;
  */
 export type Shortcut = ShortcutBase & {
-  keys: [KeyCode, ...ModifierKey[]];
+  keys: [KeyCode, ...OrderedModifiers];
 };
 
 /** Normalized shortcut with consistent keyCode and modifier booleans */
@@ -46,13 +74,13 @@ export type NormalizedShortcut = ShortcutBase & {
  * @returns Normalized shortcut with boolean modifiers
  */
 export function normalizeShortcut(shortcut: Shortcut): NormalizedShortcut {
-  const [keyCode, ...modifiers] = shortcut.keys;
+  const [keyCode, ...modifiers] = shortcut.keys as [KeyCode, ...ModifierKey[]];
   return {
     ...shortcut,
 
     keyCode,
-    control: modifiers.includes('control'),
     command: modifiers.includes('command'),
+    control: modifiers.includes('control'),
     option: modifiers.includes('option'),
     shift: modifiers.includes('shift'),
   };

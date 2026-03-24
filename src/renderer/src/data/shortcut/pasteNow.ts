@@ -6,7 +6,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'PasteNow';
 export const pasteNowShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.P, 'control', 'command'],
+    keys: [KeyCode.P, 'command', 'control'],
     toolIcon: PasteNowIcon,
     tool,
     actionName: 'Paste Clipboard',

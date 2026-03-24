@@ -12,7 +12,7 @@ export const iceShortcutList: Shortcut[] = [
     actionName: 'Enable the Ice Bar',
   },
   {
-    keys: [KeyCode.I, 'control', 'command'],
+    keys: [KeyCode.I, 'command', 'control'],
     toolIcon: IceIcon,
     tool,
     actionName: 'Search menu bar items',

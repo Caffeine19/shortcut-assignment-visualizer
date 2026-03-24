@@ -6,49 +6,49 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Loop';
 export const loopShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.H, 'control', 'command'],
+    keys: [KeyCode.H, 'command', 'control'],
     toolIcon: LoopIcon,
     tool,
     actionName: 'Move Left',
   },
   {
-    keys: [KeyCode.J, 'control', 'command'],
+    keys: [KeyCode.J, 'command', 'control'],
     toolIcon: LoopIcon,
     tool,
     actionName: 'Move Down',
   },
   {
-    keys: [KeyCode.K, 'control', 'command'],
+    keys: [KeyCode.K, 'command', 'control'],
     toolIcon: LoopIcon,
     tool,
     actionName: 'Move Up',
   },
   {
-    keys: [KeyCode.L, 'control', 'command'],
+    keys: [KeyCode.L, 'command', 'control'],
     toolIcon: LoopIcon,
     tool,
     actionName: 'Move Right',
   },
   {
-    keys: [KeyCode.SPACE, 'control', 'command'],
+    keys: [KeyCode.SPACE, 'command', 'control'],
     toolIcon: LoopIcon,
     tool,
     actionName: 'Cycle Windows',
   },
   {
-    keys: [KeyCode.ENTER, 'control', 'command'],
+    keys: [KeyCode.ENTER, 'command', 'control'],
     toolIcon: LoopIcon,
     tool,
     actionName: 'Center Window',
   },
   {
-    keys: [KeyCode.LEFT_BRACKET, 'control', 'command'],
+    keys: [KeyCode.LEFT_BRACKET, 'command', 'control'],
     toolIcon: LoopIcon,
     tool,
     actionName: 'Previous Desktop',
   },
   {
-    keys: [KeyCode.RIGHT_BRACKET, 'control', 'command'],
+    keys: [KeyCode.RIGHT_BRACKET, 'command', 'control'],
     toolIcon: LoopIcon,
     tool,
     actionName: 'Next Desktop',
