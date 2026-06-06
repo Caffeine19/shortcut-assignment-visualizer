@@ -94,7 +94,7 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Open Raycast',
   },
   {
-    keys: [KeyCode.E, 'command', 'control'],
+    keys: [KeyCode.SEMICOLON, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Emoji & Symbols',
