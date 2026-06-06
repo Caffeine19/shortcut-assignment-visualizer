@@ -30,3 +30,7 @@
   scrollbar-width: thin;
   scrollbar-color: theme('colors.zinc.700') theme('colors.zinc.900');
 }
+
+body {
+  @apply bg-zinc-950/40;
+}

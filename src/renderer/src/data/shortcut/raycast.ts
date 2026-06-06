@@ -19,6 +19,7 @@ import ToothpickIcon from '@renderer/assets/raycast/Toothpick.png';
 import WeChatIcon from '@renderer/assets/raycast/WeChat.png';
 import YabaiIcon from '@renderer/assets/raycast/Yabai.png';
 import MirrorScreenIcon from '@renderer/assets/raycast/custom/MirrorScreen.png';
+import RestartWithoutReopenIcon from '@renderer/assets/raycast/custom/RestartWithoutReopen.png';
 import ZentaoIcon from '@renderer/assets/raycast/custom/Zentao.png';
 
 import { KeyCode } from '@renderer/types/keyCode';
@@ -58,6 +59,14 @@ export const customExtensionShortcuts: Shortcut[] = [
     actionName: 'Search My Bugs',
     raycastExtension: 'Zentao',
     raycastExtensionIcon: ZentaoIcon,
+  },
+  {
+    keys: [KeyCode.Q, 'control', 'option'],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Restart Without Reopen',
+    raycastExtension: 'Restart Without Reopen',
+    raycastExtensionIcon: RestartWithoutReopenIcon,
   },
 ];
 
@@ -108,7 +117,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: ShortcutLibraryIcon,
   },
   {
-    keys: [KeyCode.Y, 'control', 'option'],
+    keys: [KeyCode.Y, 'command', 'control'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Restart',
@@ -220,10 +229,10 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Surge',
   },
   {
-    keys: [KeyCode.R, 'command', 'control'],
+    keys: [KeyCode.R, 'control', 'option'],
     toolIcon: HammerspoonIcon,
     tool,
-    actionName: 'Reload Configuration FilOh my God. e',
+    actionName: 'Reload Configuration File',
     raycastExtension: 'Hammerspoon',
   },
   {
@@ -262,7 +271,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Microsoft Edge',
   },
   {
-    keys: [KeyCode.C, 'command', 'control'],
+    keys: [KeyCode.C, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Pick Color',

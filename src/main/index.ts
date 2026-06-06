@@ -7,7 +7,7 @@ import icon from '../../resources/icon.png?asset';
 function createWindow(): void {
   const vibrancyOptions: Electron.BrowserWindowConstructorOptions = {
     vibrancy: 'under-window',
-    backgroundColor: '#00000000', // transparent hexadecimal or anything with transparency,
+    backgroundColor: '#00000080', // transparent hexadecimal or anything with transparency,
     visualEffectState: 'followWindow',
   };
 
@@ -22,6 +22,7 @@ function createWindow(): void {
 
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    title: 'Shortcut Assignment Visualizer',
     width: 1600,
     height: 800,
     show: false,
@@ -70,14 +71,6 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on('ping', () => console.log('pong'));
-
-  // Register global shortcut for search
-  globalShortcut.register('CommandOrControl+Shift+F', () => {
-    const focusedWindow = BrowserWindow.getFocusedWindow();
-    if (focusedWindow) {
-      focusedWindow.webContents.send('toggle-search');
-    }
-  });
 
   createWindow();
 

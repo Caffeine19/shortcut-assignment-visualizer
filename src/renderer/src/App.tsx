@@ -17,7 +17,10 @@ import { useSearchStore } from '@renderer/stores/search';
 import { ModifierKeyCode } from './types/modifier';
 
 const TitleBar = () => (
-  <div class="flex items-center gap-4 pt-4">
+  <div
+    style={{ '-webkit-app-region': 'drag' }}
+    class="flex w-full items-center justify-center gap-4 pt-4 pb-2"
+  >
     <img src={LogoRed} class="h-6 w-6" />
     <span class="font-mono text-red-400">Shortcut Assignment Visualizer</span>
   </div>
@@ -37,9 +40,41 @@ const App: Component = () => {
     const cleanup = window.api?.onToggleSearch(() => {
       searchStore.toggleSearch();
     });
-    
+
+    const mapKeyToCode = (key: string): string | null => {
+      switch (key) {
+        case ' ': return 'space';
+        case 'Tab': return 'tab';
+        case 'Backspace': return 'backspace';
+        case 'Enter': return 'enter';
+        case 'Escape': return 'esc';
+        case 'Control': return 'control';
+        case 'Shift': return 'shift';
+        case 'Alt': return 'option';
+        case 'Meta': return 'command';
+        case '`': return '~';
+        default: return key.length === 1 ? key.toLowerCase() : null;
+      }
+    };
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (viewMode() !== 'single') return;
+      const code = mapKeyToCode(e.key);
+      if (code) keyRowStore.pressKey(code);
+    };
+    const onKeyUp = (e: KeyboardEvent) => {
+      if (viewMode() !== 'single') return;
+      const code = mapKeyToCode(e.key);
+      if (code) keyRowStore.releaseKey(code);
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keyup', onKeyUp);
+
     onCleanup(() => {
       cleanup?.();
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keyup', onKeyUp);
     });
   });
 
@@ -66,9 +101,6 @@ const App: Component = () => {
     <>
       <SearchModal />
       <div
-        style={{
-          '-webkit-app-region': 'drag',
-        }}
         class="flex h-screen w-screen flex-col items-center overflow-hidden"
       >
         <TitleBar />
@@ -85,7 +117,6 @@ const App: Component = () => {
                   ? 'border border-red-500/60 bg-red-500/20 text-red-400'
                   : 'border border-zinc-700 bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
               }`}
-              style={{ '-webkit-app-region': 'no-drag' }}
             >
               <Keyboard size={16} />
               Single View
@@ -97,7 +128,6 @@ const App: Component = () => {
                   ? 'border border-red-500/60 bg-red-500/20 text-red-400'
                   : 'border border-zinc-700 bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
               }`}
-              style={{ '-webkit-app-region': 'no-drag' }}
             >
               <LayoutGrid size={16} />
               Multi View
@@ -107,7 +137,6 @@ const App: Component = () => {
               <button
                 onClick={() => setMultiViewCols(multiViewCols() === 2 ? 1 : 2)}
                 class="flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800 px-4 py-2 font-mono text-sm text-zinc-400 transition-all hover:bg-zinc-700"
-                style={{ '-webkit-app-region': 'no-drag' }}
               >
                 {multiViewCols() === 2 ? <Columns size={16} /> : <Columns2 size={16} />}
                 {multiViewCols() === 2 ? '1 Column' : '2 Columns'}
@@ -119,7 +148,6 @@ const App: Component = () => {
             <div class="flex flex-col items-center justify-center">
               <div class="rounded-xl bg-black p-8">
                 <div
-                  style={{ '-webkit-app-region': 'no-drag' }}
                   class="flex flex-col items-stretch justify-center"
                 >
                   <For each={keyRowStore.keyRowList()}>
@@ -159,7 +187,6 @@ const App: Component = () => {
                     ? 'grid-cols-2'
                     : 'grid-cols-1'
                 }`}
-                style={{ '-webkit-app-region': 'no-drag' }}
               >
                 <For each={multiViewConfigs}>
                   {(config) => (

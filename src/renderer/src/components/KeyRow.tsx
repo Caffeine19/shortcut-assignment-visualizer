@@ -17,7 +17,7 @@ interface KeyRowProps {
 const KeyRow = (props: KeyRowProps) => (
   <div
     class={twJoin(
-      'flex justify-between',
+      props.last ? 'flex justify-center' : 'flex justify-between',
       props.last ? '' : props.keySize === 'sm' ? 'mb-2' : 'mb-4',
     )}
   >

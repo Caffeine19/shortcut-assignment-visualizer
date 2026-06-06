@@ -1,7 +1,5 @@
-import { ArrowBigRightDash, Blocks, Hammer, Keyboard } from 'lucide-solid';
 import { Vibrant } from 'node-vibrant/browser';
 import { JSX, Show, createEffect, createMemo, createSignal } from 'solid-js';
-import { Portal } from 'solid-js/web';
 import { twMerge } from 'tailwind-merge';
 import tinycolor2 from 'tinycolor2';
 
@@ -11,6 +9,7 @@ import { ModifierKeyCode, isModifierKeyCode } from '@renderer/types/modifier';
 import { useKeyRowStore } from '@renderer/stores/key';
 import { useShortcutStore } from '@renderer/stores/shortcut';
 
+import KeyTooltip from './KeyTooltip';
 import RaycastExtensionMark from './RaycastExtensionMark';
 
 export interface KeyProps {
@@ -79,10 +78,12 @@ const KeyItem = (props: KeyProps) => {
   });
 
   const [iconColorStyle, setIconColorStyle] = createSignal<JSX.CSSProperties>({});
+  const [iconColorHoverStyle, setIconColorHoverStyle] = createSignal<JSX.CSSProperties>({});
   const updateIconColorStyles = async () => {
     const src = shortcut()?.raycastExtensionIcon || shortcut()?.toolIcon;
     if (!src) {
       setIconColorStyle({});
+      setIconColorHoverStyle({});
       return;
     }
 
@@ -91,11 +92,35 @@ const KeyItem = (props: KeyProps) => {
     const secondary = palette.Vibrant?.hex || '#FFCC00';
 
     setIconColorStyle({
-      'border-color': tinycolor2(primary).setAlpha(0.4).toRgbString(),
+      'border-color': tinycolor2(primary).setAlpha(0.2).toRgbString(),
       background: `radial-gradient(circle, ${tinycolor2(primary).setAlpha(0.3).toRgbString()} 10%, ${tinycolor2(secondary).setAlpha(0.1).toRgbString()} 100%)`,
+    });
+    setIconColorHoverStyle({
+      'border-color': tinycolor2(primary).setAlpha(0.7).toRgbString(),
+      background: `radial-gradient(circle, ${tinycolor2(primary).setAlpha(0.6).toRgbString()} 10%, ${tinycolor2(secondary).setAlpha(0.3).toRgbString()} 100%)`,
     });
   };
   createEffect(updateIconColorStyles);
+
+  const isKeyboardPressed = createMemo(() => {
+    const isInteractive = props.isInteractive ?? true;
+    return isInteractive && keyRowStore.pressedKeyCodes().has(props.key.keyCode);
+  });
+
+  createEffect(() => {
+    const el = keyElement();
+    if (!el) return;
+    if (isKeyboardPressed()) {
+      el.classList.add('translate-y-[1px]', 'shadow-inner');
+      setHovered(true);
+    } else {
+      el.classList.remove('translate-y-[1px]', 'shadow-inner');
+      // Only clear hovered if mouse isn't actually over the element
+      if (!el.matches(':hover')) {
+        setHovered(false);
+      }
+    }
+  });
 
   createEffect(() => {
     const element = keyElement();
@@ -114,7 +139,7 @@ const KeyItem = (props: KeyProps) => {
       class={keyClass()}
       style={{
         ...keySpanStyle(),
-        ...iconColorStyle(),
+        ...(hovered() && shortcut() ? iconColorHoverStyle() : iconColorStyle()),
       }}
       onMouseDown={(e) => {
         e.currentTarget.classList.add('translate-y-[1px]', 'shadow-inner');
@@ -150,71 +175,8 @@ const KeyItem = (props: KeyProps) => {
           <Show when={shortcut()?.raycastExtension}>
             <RaycastExtensionMark size={props.size} />
           </Show>
-          <Show when={hovered()}>
-            <Portal>
-              <ul
-                class="fixed z-50 flex min-w-80 flex-col gap-2 rounded-md border border-zinc-800 bg-zinc-900/40 p-4 text-base text-zinc-200 backdrop-blur-2xl"
-                style={{
-                  'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)',
-                  'max-height': 'calc(100vh - 8rem)',
-                  overflow: 'auto',
-                  'font-size': '0.875rem',
-                  left: `${tooltipPosition().x}px`,
-                  top: `${tooltipPosition().y - 16}px`,
-                  transform: 'translateX(-50%) translateY(-100%)',
-                }}
-              >
-                <li class="flex items-center gap-3">
-                  <Hammer />
-                  <span class="break-keep whitespace-nowrap">{shortcut()?.tool}</span>
-                </li>
-                <Show when={shortcut()?.raycastExtension}>
-                  <li class="flex items-center gap-3">
-                    <Blocks />
-                    <span class="break-keep whitespace-nowrap">{shortcut()?.raycastExtension}</span>
-                  </li>
-                </Show>
-                <li class="flex items-center gap-3">
-                  <ArrowBigRightDash />
-                  <span class="break-keep whitespace-nowrap">{shortcut()?.actionName}</span>
-                </li>
-
-                <div class="my-1 h-[1px] w-full border-b border-zinc-700" />
-
-                <li class="flex items-center gap-3">
-                  <Keyboard />
-                  <div class="flex items-center gap-2 font-mono text-sm">
-                    <Show when={shortcut()?.command}>
-                      <span class="rounded bg-zinc-50/10 px-2 py-1">
-                        {shortcut()?.command && 'Command'}
-                      </span>
-                    </Show>
-
-                    <Show when={shortcut()?.option}>
-                      <span class="rounded bg-zinc-50/10 px-2 py-1">
-                        {shortcut()?.option && 'Option'}
-                      </span>
-                    </Show>
-
-                    <Show when={shortcut()?.shift}>
-                      <span class="rounded bg-zinc-50/10 px-2 py-1">
-                        {shortcut()?.shift && 'Shift'}
-                      </span>
-                    </Show>
-
-                    <Show when={shortcut()?.control}>
-                      <span class="rounded bg-zinc-50/10 px-2 py-1">
-                        {shortcut()?.control && 'Control'}
-                      </span>
-                    </Show>
-
-                    <span class="rounded bg-zinc-50/10 px-2 py-1">
-                      {shortcut()?.keyCode.toUpperCase()}
-                    </span>
-                  </div>
-                </li>
-              </ul>
-            </Portal>
+          <Show when={hovered() && shortcut()}>
+            <KeyTooltip shortcut={shortcut()!} position={tooltipPosition()} />
           </Show>
         </>
       ) : (

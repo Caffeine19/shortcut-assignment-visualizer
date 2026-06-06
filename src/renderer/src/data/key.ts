@@ -35,7 +35,7 @@ export const keyRowListData: Key[][] = [
     { keyCode: KeyCode.BACKSLASH, span: 1.25, label: '\\' },
   ],
   [
-    { keyCode: KeyCode.CONTROL, span: 1.75, label: 'Caps' },
+    { keyCode: KeyCode.CONTROL, span: 1.75, label: 'control' },
     { keyCode: KeyCode.A, span: 1, label: 'A' },
     { keyCode: KeyCode.S, span: 1, label: 'S' },
     { keyCode: KeyCode.D, span: 1, label: 'D' },
@@ -64,13 +64,10 @@ export const keyRowListData: Key[][] = [
     { keyCode: KeyCode.SHIFT, span: 2.75, label: '⇧' },
   ],
   [
-    { keyCode: KeyCode.CONTROL, span: 1.25, label: 'ctrl' },
     { keyCode: KeyCode.OPTION, span: 1.25, label: 'opt' },
     { keyCode: KeyCode.COMMAND, span: 1.25, label: 'cmd' },
-    { keyCode: KeyCode.SPACE, span: 6.25, label: 'space' },
+    { keyCode: KeyCode.SPACE, span: 8.75, label: 'space' },
     { keyCode: KeyCode.COMMAND, span: 1.25, label: 'cmd' },
     { keyCode: KeyCode.OPTION, span: 1.25, label: 'opt' },
-    { keyCode: KeyCode.CONTROL, span: 1.25, label: 'ctrl' },
-    { keyCode: KeyCode.MENU, span: 1.25, label: 'menu' },
   ],
 ];

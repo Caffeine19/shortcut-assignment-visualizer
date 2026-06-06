@@ -35,4 +35,10 @@ export const shottrShortcutList: Shortcut[] = [
     tool,
     actionName: 'Instant Text/QR Recognition',
   },
+  {
+    keys: [KeyCode.SIX, 'command', 'shift'],
+    toolIcon: ShottrIcon,
+    tool,
+    actionName: 'Show Shottr',
+  },
 ];

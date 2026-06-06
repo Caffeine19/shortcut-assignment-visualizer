@@ -32,7 +32,7 @@ export const shortcutsShortcutList: Shortcut[] = [
     actionName: 'Mess Up All Spaces',
   },
   {
-    keys: [KeyCode.C, 'control', 'option'],
+    keys: [KeyCode.C, 'command', 'control'],
     toolIcon: WindIcon,
     tool,
     actionName: 'Clear Notifications',

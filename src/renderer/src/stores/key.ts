@@ -8,6 +8,18 @@ const [keyRowList, setKeyRowList] = createSignal(keyRowListData);
 
 const [activatedModifierList, setActivatedModifierList] = createSignal(new Set<ModifierKeyCode>());
 
+const [pressedKeyCodes, setPressedKeyCodes] = createSignal(new Set<string>());
+
+const pressKey = (keyCode: string) => {
+  setPressedKeyCodes(new Set([...pressedKeyCodes(), keyCode]));
+};
+
+const releaseKey = (keyCode: string) => {
+  const next = new Set(pressedKeyCodes());
+  next.delete(keyCode);
+  setPressedKeyCodes(next);
+};
+
 const toggleActivatedModifier = (key: ModifierKeyCode) => {
   if (activatedModifierList().has(key)) {
     activatedModifierList().delete(key);
@@ -23,4 +35,7 @@ export const useKeyRowStore = () => ({
   activatedModifierList,
   setActivatedModifierList,
   toggleActivatedModifier,
+  pressedKeyCodes,
+  pressKey,
+  releaseKey,
 });
