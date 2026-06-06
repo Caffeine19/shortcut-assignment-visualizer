@@ -31,6 +31,14 @@ type OrderedModifiers =
   | ['control', 'option', 'shift']
   | ['command', 'control', 'option', 'shift'];
 
+/** Hardcoded icon color pair for apps where Vibrant extraction doesn't work well */
+export interface IconColors {
+  /** Primary color (used for border and main gradient stop) */
+  primary: string;
+  /** Secondary color (used for secondary gradient stop) */
+  secondary: string;
+}
+
 /** Base properties shared by all shortcut definitions */
 type ShortcutBase = {
   actionName: string;
@@ -39,6 +47,8 @@ type ShortcutBase = {
 } & Partial<{
   raycastExtension?: string;
   raycastExtensionIcon?: string;
+  /** Override Vibrant-extracted colors with hardcoded values */
+  iconColors?: IconColors;
 }>;
 
 /**

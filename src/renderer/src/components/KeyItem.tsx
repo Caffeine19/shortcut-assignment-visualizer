@@ -80,16 +80,26 @@ const KeyItem = (props: KeyProps) => {
   const [iconColorStyle, setIconColorStyle] = createSignal<JSX.CSSProperties>({});
   const [iconColorHoverStyle, setIconColorHoverStyle] = createSignal<JSX.CSSProperties>({});
   const updateIconColorStyles = async () => {
-    const src = shortcut()?.raycastExtensionIcon || shortcut()?.toolIcon;
+    const currentShortcut = shortcut();
+    const src = currentShortcut?.raycastExtensionIcon || currentShortcut?.toolIcon;
     if (!src) {
       setIconColorStyle({});
       setIconColorHoverStyle({});
       return;
     }
 
-    const palette = await Vibrant.from(src).getPalette();
-    const primary = palette.LightVibrant?.hex || '#3366FF';
-    const secondary = palette.Vibrant?.hex || '#FFCC00';
+    let primary: string;
+    let secondary: string;
+
+    // Use hardcoded colors if provided, otherwise extract via Vibrant
+    if (currentShortcut?.iconColors) {
+      primary = currentShortcut.iconColors.primary;
+      secondary = currentShortcut.iconColors.secondary;
+    } else {
+      const palette = await Vibrant.from(src).getPalette();
+      primary = palette.LightVibrant?.hex || 'transparent';
+      secondary = palette.Vibrant?.hex || 'transparent';
+    }
 
     setIconColorStyle({
       'border-color': tinycolor2(primary).setAlpha(0.2).toRgbString(),
