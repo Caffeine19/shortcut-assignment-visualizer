@@ -6,6 +6,7 @@ import tinycolor2 from 'tinycolor2';
 import type { Key } from '@renderer/types/key';
 import { ModifierKeyCode, isModifierKeyCode } from '@renderer/types/modifier';
 
+import { useTooltipPosition } from '@renderer/hooks/useTooltipPosition';
 import { useKeyRowStore } from '@renderer/stores/key';
 import { useShortcutStore } from '@renderer/stores/shortcut';
 
@@ -25,7 +26,7 @@ const KeyItem = (props: KeyProps) => {
 
   const [hovered, setHovered] = createSignal(false);
   const [keyElement, setKeyElement] = createSignal<HTMLElement>();
-  const [tooltipPosition, setTooltipPosition] = createSignal({ x: 0, y: 0 });
+  const tooltipPosition = useTooltipPosition(keyElement, hovered);
 
   const onModifierClick = (modifierKeyCode: ModifierKeyCode) => {
     keyRowStore.toggleActivatedModifier(modifierKeyCode);
@@ -41,10 +42,15 @@ const KeyItem = (props: KeyProps) => {
   };
 
   const shortcut = createMemo(() => {
-    if (props.forcedModifiers) {
-      return shortcutStore.getShortcutByKeyWithModifiers(props.key, props.forcedModifiers);
-    }
-    return shortcutStore.getRelativeShortcutByKey(props.key);
+    const shortcuts = props.forcedModifiers
+      ? shortcutStore.getShortcutByKeyWithModifiers(props.key, props.forcedModifiers)
+      : shortcutStore.getRelativeShortcutByKey(props.key);
+
+    if (shortcuts.length === 0) return undefined;
+
+    // Priority: non built-in shortcuts over built-in shortcuts
+    const nonBuiltIn = shortcuts.find((s) => !s.builtIn);
+    return nonBuiltIn || shortcuts[0];
   });
 
   const keyClass = createMemo(() => {
@@ -129,17 +135,6 @@ const KeyItem = (props: KeyProps) => {
       if (!el.matches(':hover')) {
         setHovered(false);
       }
-    }
-  });
-
-  createEffect(() => {
-    const element = keyElement();
-    if (hovered() && element) {
-      const rect = element.getBoundingClientRect();
-      setTooltipPosition({
-        x: rect.left + rect.width / 2,
-        y: rect.top,
-      });
     }
   });
 

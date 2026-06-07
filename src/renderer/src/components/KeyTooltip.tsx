@@ -33,9 +33,8 @@ const KeyTooltip = (props: KeyTooltipProps) => {
     <Portal>
       <ul
         ref={setTooltipEl}
-        class="fixed z-50 flex min-w-80 flex-col gap-2 rounded-md border border-zinc-800 bg-zinc-950 p-4 text-base text-zinc-200"
+        class="fixed z-50 flex min-w-80 flex-col gap-2 rounded-md border border-zinc-800 bg-zinc-950 p-4 text-base text-zinc-200 shadow-2xl"
         style={{
-          'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.3)',
           'max-height': 'calc(100vh - 8rem)',
           overflow: 'auto',
           'font-size': '0.875rem',

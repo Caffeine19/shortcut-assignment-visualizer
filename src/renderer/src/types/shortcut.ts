@@ -49,6 +49,8 @@ type ShortcutBase = {
   raycastExtensionIcon?: string;
   /** Override Vibrant-extracted colors with hardcoded values */
   iconColors?: IconColors;
+  /** Whether this is a built-in system shortcut (lower priority) */
+  builtIn?: boolean;
 }>;
 
 /**

@@ -16,40 +16,35 @@ const [shortcutList, setShortcutList] = createSignal(shortcutListData);
 /** Memoized normalized shortcut list for consistent internal usage */
 const normalizedShortcutList = createMemo(() => shortcutList().map(normalizeShortcut));
 
-const getRelativeShortcutByKey = (key: Key): NormalizedShortcut | undefined =>
-  normalizedShortcutList().find((shortcut) => {
-    if (shortcut.keyCode !== key.keyCode) return;
+/** Check if a shortcut matches the given key and modifier state */
+const matchesShortcut = (
+  shortcut: NormalizedShortcut,
+  key: Key,
+  activeModifiers: Set<ModifierKeyCode>,
+): boolean => {
+  if (shortcut.keyCode !== key.keyCode) return false;
 
-    const modifiers = [shortcut.control, shortcut.command, shortcut.option, shortcut.shift];
+  const modifiers = [shortcut.control, shortcut.command, shortcut.option, shortcut.shift];
+  const activatingModifiers = [
+    activeModifiers.has(KeyCode.CONTROL),
+    activeModifiers.has(KeyCode.COMMAND),
+    activeModifiers.has(KeyCode.OPTION),
+    activeModifiers.has(KeyCode.SHIFT),
+  ];
 
-    const activatingModifiers = [
-      keyRowStore.activatedModifierList().has(KeyCode.CONTROL),
-      keyRowStore.activatedModifierList().has(KeyCode.COMMAND),
-      keyRowStore.activatedModifierList().has(KeyCode.OPTION),
-      keyRowStore.activatedModifierList().has(KeyCode.SHIFT),
-    ];
+  return modifiers.every((modifier, index) => modifier === activatingModifiers[index]);
+};
 
-    return modifiers.every((modifier, index) => modifier === activatingModifiers[index]);
-  });
+const getRelativeShortcutByKey = (key: Key): NormalizedShortcut[] =>
+  normalizedShortcutList().filter((shortcut) =>
+    matchesShortcut(shortcut, key, keyRowStore.activatedModifierList()),
+  );
 
 const getShortcutByKeyWithModifiers = (
   key: Key,
   forcedModifiers: Set<ModifierKeyCode>,
-): NormalizedShortcut | undefined =>
-  normalizedShortcutList().find((shortcut) => {
-    if (shortcut.keyCode !== key.keyCode) return;
-
-    const modifiers = [shortcut.control, shortcut.command, shortcut.option, shortcut.shift];
-
-    const activatingModifiers = [
-      forcedModifiers.has(KeyCode.CONTROL),
-      forcedModifiers.has(KeyCode.COMMAND),
-      forcedModifiers.has(KeyCode.OPTION),
-      forcedModifiers.has(KeyCode.SHIFT),
-    ];
-
-    return modifiers.every((modifier, index) => modifier === activatingModifiers[index]);
-  });
+): NormalizedShortcut[] =>
+  normalizedShortcutList().filter((shortcut) => matchesShortcut(shortcut, key, forcedModifiers));
 
 export const useShortcutStore = () => ({
   shortcutList,

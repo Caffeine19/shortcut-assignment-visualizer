@@ -1,6 +1,7 @@
 import { Shortcut } from '@renderer/types/shortcut';
 
 import { altTabShortcutList } from './shortcut/altTab';
+import { builtInShortcutList } from './shortcut/builtIn';
 import { chatGPTShortcutList } from './shortcut/chatgpt';
 import { homerowShortcutList } from './shortcut/homerow';
 import { iceShortcutList } from './shortcut/ice';
@@ -18,6 +19,7 @@ import { vscodeShortcutList } from './shortcut/vscode';
 import { warpShortcutList } from './shortcut/warp';
 
 export const shortcutListData: Shortcut[] = [
+  ...builtInShortcutList,
   ...pasteNowShortcutList,
   ...raycastShortcutList,
   ...shortcutsShortcutList,
