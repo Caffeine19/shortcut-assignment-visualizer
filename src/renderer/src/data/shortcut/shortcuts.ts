@@ -1,6 +1,5 @@
 import GhostIcon from '@renderer/assets/shortcuts/Ghost.png';
 import ShortcutsIcon from '@renderer/assets/shortcuts/Space.png';
-import WindIcon from '@renderer/assets/shortcuts/Wind.png';
 
 import { KeyCode } from '@renderer/types/keyCode';
 import { Shortcut } from '@renderer/types/shortcut';
@@ -30,11 +29,5 @@ export const shortcutsShortcutList: Shortcut[] = [
     toolIcon: GhostIcon,
     tool,
     actionName: 'Mess Up All Spaces',
-  },
-  {
-    keys: [KeyCode.C, 'command', 'control'],
-    toolIcon: WindIcon,
-    tool,
-    actionName: 'Clear Notifications',
   },
 ];

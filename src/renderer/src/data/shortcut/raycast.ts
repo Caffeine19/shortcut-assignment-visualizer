@@ -17,7 +17,6 @@ import ShortcutLibraryIcon from '@renderer/assets/raycast/ShortcutLibrary.png';
 import ToggleKeyboardBrightnessIcon from '@renderer/assets/raycast/ToggleKeyboardBrightness.png';
 import ToothpickIcon from '@renderer/assets/raycast/Toothpick.png';
 import WeChatIcon from '@renderer/assets/raycast/WeChat.png';
-import YabaiIcon from '@renderer/assets/raycast/Yabai.png';
 import MirrorScreenIcon from '@renderer/assets/raycast/custom/MirrorScreen.png';
 import RestartWithoutReopenIcon from '@renderer/assets/raycast/custom/RestartWithoutReopen.png';
 import ZentaoIcon from '@renderer/assets/raycast/custom/Zentao.png';
@@ -37,7 +36,7 @@ const tool = 'Raycast';
 
 export const customExtensionShortcuts: Shortcut[] = [
   {
-    keys: [KeyCode.M, 'control', 'option'],
+    keys: [KeyCode.M, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Mirror Screen',
@@ -45,7 +44,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: MirrorScreenIcon,
   },
   {
-    keys: [KeyCode.Z, 'control', 'option'],
+    keys: [KeyCode.Z, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search My Tasks',
@@ -53,7 +52,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: ZentaoIcon,
   },
   {
-    keys: [KeyCode.Z, 'command', 'control'],
+    keys: [KeyCode.Z, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search My Bugs',
@@ -61,7 +60,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: ZentaoIcon,
   },
   {
-    keys: [KeyCode.Q, 'control', 'option'],
+    keys: [KeyCode.Q, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Restart Without Reopen',
@@ -72,7 +71,7 @@ export const customExtensionShortcuts: Shortcut[] = [
 
 export const raycastShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.T, 'control', 'option'],
+    keys: [KeyCode.T, 'option'],
     toolIcon: RaycastIcon,
     raycastExtension: 'Toothpick',
     raycastExtensionIcon: ToothpickIcon,
@@ -80,7 +79,7 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Manage Bluetooth Connections',
   },
   {
-    keys: [KeyCode.O, 'command', 'control'],
+    keys: [KeyCode.O, 'control', 'option'],
     toolIcon: RaycastIcon,
     raycastExtension: 'Open With',
     raycastExtensionIcon: OpenWithIcon,
@@ -94,7 +93,7 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Open Raycast',
   },
   {
-    keys: [KeyCode.SEMICOLON, 'control', 'option'],
+    keys: [KeyCode.SEMICOLON, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Emoji & Symbols',
@@ -109,7 +108,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: ToggleKeyboardBrightnessIcon,
   },
   {
-    keys: [KeyCode.PERIOD, 'control', 'option'],
+    keys: [KeyCode.PERIOD, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Shortcut Library',
@@ -117,15 +116,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: ShortcutLibraryIcon,
   },
   {
-    keys: [KeyCode.Y, 'command', 'control'],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Restart',
-    raycastExtension: 'Yabai',
-    raycastExtensionIcon: YabaiIcon,
-  },
-  {
-    keys: [KeyCode.M, 'command', 'control'],
+    keys: [KeyCode.M, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Menu Item',
@@ -140,7 +131,7 @@ export const raycastShortcutList: Shortcut[] = [
   //     raycastExtension: 'Search Recent Projects',
   //   },
   {
-    keys: [KeyCode.O, 'control', 'option'],
+    keys: [KeyCode.O, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Set Output Device',
@@ -184,7 +175,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Toggle Stage Manager',
   },
   {
-    keys: [KeyCode.D, 'control', 'option'],
+    keys: [KeyCode.D, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Insert Natural Language Date',
@@ -199,7 +190,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Search Files',
   },
   {
-    keys: [KeyCode.K, 'control', 'option'],
+    keys: [KeyCode.K, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Kill Process',
@@ -207,7 +198,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: KillProcessIcon,
   },
   {
-    keys: [KeyCode.W, 'control', 'option'],
+    keys: [KeyCode.W, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Contacts and Chat',
@@ -215,56 +206,56 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: WeChatIcon,
   },
   {
-    keys: [KeyCode.X, 'control', 'option'],
+    keys: [KeyCode.X, 'option'],
     toolIcon: SurgeIcon,
     tool,
     actionName: 'Toggle Proxy',
     raycastExtension: 'Surge',
   },
   {
-    keys: [KeyCode.X, 'command', 'control'],
+    keys: [KeyCode.X, 'control', 'option'],
     toolIcon: SurgeIcon,
     tool,
     actionName: 'Switch Proxy',
     raycastExtension: 'Surge',
   },
   {
-    keys: [KeyCode.R, 'control', 'option'],
+    keys: [KeyCode.R, 'option'],
     toolIcon: HammerspoonIcon,
     tool,
     actionName: 'Reload Configuration File',
     raycastExtension: 'Hammerspoon',
   },
   {
-    keys: [KeyCode.L, 'control', 'option'],
+    keys: [KeyCode.L, 'option'],
     toolIcon: WarpIcon,
     tool,
     actionName: 'Open Warp Terminal',
     raycastExtension: 'Warp',
   },
   {
-    keys: [KeyCode.J, 'control', 'option'],
+    keys: [KeyCode.J, 'option'],
     toolIcon: JetbrainsIcon,
     tool,
     actionName: 'Search Recent Projects',
     raycastExtension: 'JetBrains Toolbox Recent Projects',
   },
   {
-    keys: [KeyCode.G, 'control', 'option'],
+    keys: [KeyCode.G, 'option'],
     toolIcon: GitlabIcon,
     tool,
     actionName: 'Search Projects',
     raycastExtension: 'GitLab',
   },
   {
-    keys: [KeyCode.F, 'control', 'option'],
+    keys: [KeyCode.F, 'option'],
     toolIcon: FigmaIcon,
     tool,
     actionName: 'Search Files',
     raycastExtension: 'Figma',
   },
   {
-    keys: [KeyCode.E, 'control', 'option'],
+    keys: [KeyCode.E, 'option'],
     toolIcon: EdgeIcon,
     tool,
     actionName: 'Search Workspaces',
@@ -279,7 +270,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: ColorPickerIcon,
   },
   {
-    keys: [KeyCode.B, 'command', 'control'],
+    keys: [KeyCode.B, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Vault',

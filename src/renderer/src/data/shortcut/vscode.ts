@@ -6,7 +6,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Raycast';
 export const vscodeShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.V, 'control', 'option'],
+    keys: [KeyCode.C, 'option'],
     toolIcon: VSCodeIcon,
     tool,
     actionName: 'Paste in VSCode',

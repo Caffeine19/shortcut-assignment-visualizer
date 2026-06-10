@@ -43,17 +43,28 @@ const App: Component = () => {
 
     const mapKeyToCode = (key: string): string | null => {
       switch (key) {
-        case ' ': return 'space';
-        case 'Tab': return 'tab';
-        case 'Backspace': return 'backspace';
-        case 'Enter': return 'enter';
-        case 'Escape': return 'esc';
-        case 'Control': return 'control';
-        case 'Shift': return 'shift';
-        case 'Alt': return 'option';
-        case 'Meta': return 'command';
-        case '`': return '~';
-        default: return key.length === 1 ? key.toLowerCase() : null;
+        case ' ':
+          return 'space';
+        case 'Tab':
+          return 'tab';
+        case 'Backspace':
+          return 'backspace';
+        case 'Enter':
+          return 'enter';
+        case 'Escape':
+          return 'esc';
+        case 'Control':
+          return 'control';
+        case 'Shift':
+          return 'shift';
+        case 'Alt':
+          return 'option';
+        case 'Meta':
+          return 'command';
+        case '`':
+          return '~';
+        default:
+          return key.length === 1 ? key.toLowerCase() : null;
       }
     };
 
@@ -80,6 +91,10 @@ const App: Component = () => {
 
   const multiViewConfigs = [
     {
+      title: 'Option View',
+      modifiers: [KeyCode.OPTION] satisfies ModifierKeyCode[],
+    },
+    {
       title: 'Control + Option View',
       modifiers: [KeyCode.CONTROL, KeyCode.OPTION] satisfies ModifierKeyCode[],
     },
@@ -91,18 +106,12 @@ const App: Component = () => {
       title: 'Command + Shift View',
       modifiers: [KeyCode.COMMAND, KeyCode.SHIFT] satisfies ModifierKeyCode[],
     },
-    {
-      title: 'Option View',
-      modifiers: [KeyCode.OPTION] satisfies ModifierKeyCode[],
-    },
   ];
 
   return (
     <>
       <SearchModal />
-      <div
-        class="flex h-screen w-screen flex-col items-center overflow-hidden"
-      >
+      <div class="flex h-screen w-screen flex-col items-center overflow-hidden">
         <TitleBar />
 
         <div
@@ -147,9 +156,7 @@ const App: Component = () => {
           <Show when={viewMode() === 'single'}>
             <div class="flex flex-col items-center justify-center">
               <div class="rounded-xl bg-black p-8">
-                <div
-                  class="flex flex-col items-stretch justify-center"
-                >
+                <div class="flex flex-col items-stretch justify-center">
                   <For each={keyRowStore.keyRowList()}>
                     {(row) => (
                       <KeyRow
@@ -172,7 +179,8 @@ const App: Component = () => {
                   }
                 >
                   <span class="font-mono text-neutral-500">
-                    Use Command + K to start listening for modifier • Ctrl/Cmd + Shift + Space for search
+                    Use Command + K to start listening for modifier • Ctrl/Cmd + Shift + Space for
+                    search
                   </span>
                 </Show>
               </div>
