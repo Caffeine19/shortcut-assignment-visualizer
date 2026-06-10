@@ -36,7 +36,7 @@ const tool = 'Raycast';
 
 export const customExtensionShortcuts: Shortcut[] = [
   {
-    keys: [KeyCode.M, 'option'],
+    keys: [KeyCode.M, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Mirror Screen',
@@ -116,7 +116,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: ShortcutLibraryIcon,
   },
   {
-    keys: [KeyCode.M, 'control', 'option'],
+    keys: [KeyCode.M, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Menu Item',
