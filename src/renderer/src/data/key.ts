@@ -65,13 +65,18 @@ export const keyRowListData: Key[][] = [
     { keyCode: KeyCode.SHIFT, span: 1.75, label: '⇧' },
   ],
   [
+    { keyCode: KeyCode.EMPTY, span: 1.75, label: '' },
     { keyCode: KeyCode.OPTION, span: 1.25, label: '⌥' },
     { keyCode: KeyCode.COMMAND, span: 1.25, label: '⌘' },
-    { keyCode: KeyCode.SPACE, span: 8.75, label: 'space' },
+    { keyCode: KeyCode.SPACE, span: 6, label: 'space' },
     { keyCode: KeyCode.COMMAND, span: 1.25, label: '⌘' },
-    { keyCode: KeyCode.OPTION, span: 1.25, label: '⌥' },
+    // { keyCode: KeyCode.OPTION, span: 1.25, label: '⌥' },
+
+    { keyCode: KeyCode.EMPTY, span: 1, label: '' },
+
     { keyCode: KeyCode.ARROW_LEFT, span: 1, label: '←' },
     { keyCode: KeyCode.ARROW_DOWN, span: 1, label: '↓' },
     { keyCode: KeyCode.ARROW_RIGHT, span: 1, label: '→' },
+    { keyCode: KeyCode.EMPTY, span: 0.675, label: '' },
   ],
 ];
