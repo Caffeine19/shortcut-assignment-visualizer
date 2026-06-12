@@ -5,6 +5,7 @@ import { builtInShortcutList } from './shortcut/builtIn';
 import { chatGPTShortcutList } from './shortcut/chatgpt';
 import { homerowShortcutList } from './shortcut/homerow';
 import { iceShortcutList } from './shortcut/ice';
+import { keycastrShortcutList } from './shortcut/keycastr';
 import { loopShortcutList } from './shortcut/loop';
 import { notionShortcutList } from './shortcut/notion';
 import { pasteNowShortcutList } from './shortcut/pasteNow';
@@ -16,6 +17,7 @@ import { snippetsLabShortcutList } from './shortcut/snippetsLab';
 import { systemShortcutList } from './shortcut/system';
 import { ticktickShortcutList } from './shortcut/ticktick';
 import { vscodeShortcutList } from './shortcut/vscode';
+import { systemSettingsShortcutList } from './shortcut/systemSettings';
 import { warpShortcutList } from './shortcut/warp';
 
 export const shortcutListData: Shortcut[] = [
@@ -35,5 +37,7 @@ export const shortcutListData: Shortcut[] = [
   ...iceShortcutList,
   ...chatGPTShortcutList,
   ...systemShortcutList,
+  ...systemSettingsShortcutList,
+  ...keycastrShortcutList,
   ...warpShortcutList,
 ];

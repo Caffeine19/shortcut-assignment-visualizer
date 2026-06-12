@@ -4,12 +4,14 @@ import { twMerge } from 'tailwind-merge';
 import tinycolor2 from 'tinycolor2';
 
 import type { Key } from '@renderer/types/key';
-import { ModifierKeyCode, isModifierKeyCode } from '@renderer/types/modifier';
+import { KeyCode } from '@renderer/types/keyCode';
+import { ModifierKeyCode, isModifierKeyCode, modifierUnicodeMap } from '@renderer/types/modifier';
 
 import { useTooltipPosition } from '@renderer/hooks/useTooltipPosition';
 import { useKeyRowStore } from '@renderer/stores/key';
 import { useShortcutStore } from '@renderer/stores/shortcut';
 
+import BuiltInMark from './BuiltInMark';
 import KeyTooltip from './KeyTooltip';
 import RaycastExtensionMark from './RaycastExtensionMark';
 
@@ -138,7 +140,9 @@ const KeyItem = (props: KeyProps) => {
     }
   });
 
-  return (
+  return props.key.keyCode === KeyCode.EMPTY ? (
+    <div style={keySpanStyle()} />
+  ) : (
     <div
       onClick={() => onKeyClick()}
       class={keyClass()}
@@ -163,30 +167,40 @@ const KeyItem = (props: KeyProps) => {
     >
       {shortcut() ? (
         <>
-          <img
-            src={shortcut()?.raycastExtensionIcon || shortcut()?.toolIcon}
-            alt={`Icon for ${props.key.keyCode}`}
-            class={twMerge(
-              'object-contain',
-              props.size === 'sm' ? 'h-6 w-6' : props.size === 'lg' ? 'h-12 w-12' : 'h-12 w-12',
-              shortcut()?.raycastExtensionIcon &&
-                (props.size === 'sm'
-                  ? 'h-5 w-5'
-                  : props.size === 'lg'
-                    ? 'h-9.5 w-9.5'
-                    : 'h-9.5 w-9.5'),
-            )}
-          />
-          <Show when={shortcut()?.raycastExtension}>
-            <RaycastExtensionMark size={props.size} />
+          <Show when={shortcut()?.builtIn}>
+            <span
+              class={props.size === 'sm' ? 'text-xs' : props.size === 'lg' ? 'text-xl' : 'text-lg'}
+            >
+              {props.key.label || modifierUnicodeMap[props.key.keyCode] || props.key.keyCode}
+            </span>
+            <BuiltInMark size={props.size} />
+          </Show>
+          <Show when={!shortcut()?.builtIn}>
+            <img
+              src={shortcut()?.raycastExtensionIcon || shortcut()?.toolIcon}
+              alt={`Icon for ${props.key.keyCode}`}
+              class={twMerge(
+                'object-contain',
+                props.size === 'sm' ? 'h-6 w-6' : props.size === 'lg' ? 'h-12 w-12' : 'h-12 w-12',
+                shortcut()?.raycastExtensionIcon &&
+                  (props.size === 'sm'
+                    ? 'h-5 w-5'
+                    : props.size === 'lg'
+                      ? 'h-9.5 w-9.5'
+                      : 'h-9.5 w-9.5'),
+              )}
+            />
+            <Show when={shortcut()?.raycastExtension}>
+              <RaycastExtensionMark size={props.size} />
+            </Show>
           </Show>
           <Show when={hovered() && shortcut()}>
             <KeyTooltip shortcut={shortcut()!} position={tooltipPosition()} />
           </Show>
         </>
       ) : (
-        <span class={props.size === 'sm' ? 'text-xs' : props.size === 'lg' ? 'text-lg' : 'text-sm'}>
-          {props.key.label || props.key.keyCode}
+        <span class={props.size === 'sm' ? 'text-xs' : props.size === 'lg' ? 'text-xl' : 'text-lg'}>
+          {props.key.label || modifierUnicodeMap[props.key.keyCode] || props.key.keyCode}
         </span>
       )}
     </div>

@@ -10,11 +10,4 @@ export const warpShortcutList: Shortcut[] = [
     tool: 'Warp',
     actionName: 'Warp Global Hotkey',
   },
-  {
-    keys: [KeyCode.L, 'option'],
-    toolIcon: WarpIcon,
-    tool: 'Raycast',
-    actionName: 'Open Warp Terminal',
-    raycastExtension: 'Warp',
-  },
 ];

@@ -1,7 +1,8 @@
 import FigmaIcon from '@renderer/assets/Figma.png';
+import FinderColorfulIcon from '@renderer/assets/Finder.Colorful.png';
 import GitlabIcon from '@renderer/assets/Gitlab.png';
 import HammerspoonIcon from '@renderer/assets/Hammerspoon.png';
-import JetbrainsIcon from '@renderer/assets/Jetbrains.png';
+import JetbrainsIcon from '@renderer/assets/JetBrains.png';
 import EdgeIcon from '@renderer/assets/MicrosoftEdge.png';
 import RaycastIcon from '@renderer/assets/Raycast.png';
 import SurgeIcon from '@renderer/assets/Surge.png';
@@ -60,12 +61,59 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: ZentaoIcon,
   },
   {
-    keys: [KeyCode.Q, 'option'],
+    keys: [KeyCode.Q, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Restart Without Reopen',
     raycastExtension: 'Restart Without Reopen',
     raycastExtensionIcon: RestartWithoutReopenIcon,
+  },
+  {
+    keys: [KeyCode.T, 'control', 'option'],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'View 2FA Codes',
+    raycastExtension: '2FA Code Finder',
+    raycastExtensionIcon: FinderColorfulIcon,
+  },
+  {
+    keys: [KeyCode.S, 'control', 'option'],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Search Snippet',
+    raycastExtension: 'Search Snippet',
+    raycastExtensionIcon: FinderColorfulIcon,
+  },
+  {
+    keys: [KeyCode.W, 'command', 'control'],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Switch Window',
+    raycastExtension: 'HammerWM',
+    raycastExtensionIcon: FinderColorfulIcon,
+  },
+  {
+    keys: [KeyCode.E, 'control', 'option'],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'New Window',
+    raycastExtension: 'Edge',
+    raycastExtensionIcon: FinderColorfulIcon,
+  },
+  {
+    keys: [KeyCode.M, 'option'],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Search Inbox',
+    raycastExtension: 'Spark',
+    raycastExtensionIcon: FinderColorfulIcon,
+  },
+  {
+    keys: [KeyCode.R, 'option'],
+    toolIcon: FinderColorfulIcon,
+    tool,
+    actionName: 'Quick Note',
+    raycastExtension: 'Notes',
   },
 ];
 
@@ -116,7 +164,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: ShortcutLibraryIcon,
   },
   {
-    keys: [KeyCode.M, 'option'],
+    keys: [KeyCode.M, 'command', 'control'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Menu Item',
@@ -220,7 +268,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Surge',
   },
   {
-    keys: [KeyCode.R, 'option'],
+    keys: [KeyCode.H, 'control', 'option'],
     toolIcon: HammerspoonIcon,
     tool,
     actionName: 'Reload Configuration File',
@@ -230,7 +278,7 @@ export const raycastShortcutList: Shortcut[] = [
     keys: [KeyCode.L, 'option'],
     toolIcon: WarpIcon,
     tool,
-    actionName: 'Open Warp Terminal',
+    actionName: 'Open Tab Config',
     raycastExtension: 'Warp',
   },
   {

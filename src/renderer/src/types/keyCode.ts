@@ -85,4 +85,7 @@ export enum KeyCode {
   ARROW_DOWN = 'arrow_down',
   ARROW_LEFT = 'arrow_left',
   ARROW_RIGHT = 'arrow_right',
+
+  // Placeholder
+  EMPTY = 'empty',
 }
