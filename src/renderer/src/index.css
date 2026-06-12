@@ -32,5 +32,5 @@
 }
 
 body {
-  @apply bg-zinc-950/40;
+  @apply bg-zinc-950/40 select-none;
 }
