@@ -1,10 +1,11 @@
-import { ElectronAPI } from '@electron-toolkit/preload'
+import { ElectronAPI } from '@electron-toolkit/preload';
 
 declare global {
   interface Window {
-    electron: ElectronAPI
+    electron: ElectronAPI;
     api: {
-      onToggleSearch: (callback: () => void) => () => void
-    }
+      onToggleSearch: (callback: () => void) => () => void;
+      createWindow: () => void;
+    };
   }
 }
