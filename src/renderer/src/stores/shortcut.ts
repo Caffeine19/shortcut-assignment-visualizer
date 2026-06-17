@@ -24,12 +24,13 @@ const matchesShortcut = (
 ): boolean => {
   if (shortcut.keyCode !== key.keyCode) return false;
 
-  const modifiers = [shortcut.control, shortcut.command, shortcut.option, shortcut.shift];
+  // Apple HIG order: Control → Option → Shift → Command
+  const modifiers = [shortcut.control, shortcut.option, shortcut.shift, shortcut.command];
   const activatingModifiers = [
     activeModifiers.has(KeyCode.CONTROL),
-    activeModifiers.has(KeyCode.COMMAND),
     activeModifiers.has(KeyCode.OPTION),
     activeModifiers.has(KeyCode.SHIFT),
+    activeModifiers.has(KeyCode.COMMAND),
   ];
 
   return modifiers.every((modifier, index) => modifier === activatingModifiers[index]);
@@ -46,9 +47,21 @@ const getShortcutByKeyWithModifiers = (
 ): NormalizedShortcut[] =>
   normalizedShortcutList().filter((shortcut) => matchesShortcut(shortcut, key, forcedModifiers));
 
+/**
+ * Count non-built-in shortcuts matching a given modifier combination. Iterates all keys to find how
+ * many unique shortcuts exist for these modifiers.
+ */
+const getShortcutCountByModifiers = (forcedModifiers: Set<ModifierKeyCode>): number =>
+  normalizedShortcutList().filter(
+    (shortcut) =>
+      !shortcut.builtIn &&
+      matchesShortcut(shortcut, { keyCode: shortcut.keyCode, span: 1, label: '' }, forcedModifiers),
+  ).length;
+
 export const useShortcutStore = () => ({
   shortcutList,
   setShortcutList,
   getRelativeShortcutByKey,
   getShortcutByKeyWithModifiers,
+  getShortcutCountByModifiers,
 });

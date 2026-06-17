@@ -6,37 +6,37 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Shottr';
 export const shottrShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.ONE, 'command', 'shift'],
+    keys: [KeyCode.ONE, 'shift', 'command'],
     toolIcon: ShottrIcon,
     tool,
     actionName: 'Fullscreen Screenshot',
   },
   {
-    keys: [KeyCode.TWO, 'command', 'shift'],
+    keys: [KeyCode.TWO, 'shift', 'command'],
     toolIcon: ShottrIcon,
     tool,
     actionName: 'Area Screenshot',
   },
   {
-    keys: [KeyCode.THREE, 'command', 'shift'],
+    keys: [KeyCode.THREE, 'shift', 'command'],
     toolIcon: ShottrIcon,
     tool,
     actionName: 'Any Window Screenshot',
   },
   {
-    keys: [KeyCode.FOUR, 'command', 'shift'],
+    keys: [KeyCode.FOUR, 'shift', 'command'],
     toolIcon: ShottrIcon,
     tool,
     actionName: 'Scrolling Screenshot',
   },
   {
-    keys: [KeyCode.FIVE, 'command', 'shift'],
+    keys: [KeyCode.FIVE, 'shift', 'command'],
     toolIcon: ShottrIcon,
     tool,
     actionName: 'Instant Text/QR Recognition',
   },
   {
-    keys: [KeyCode.SIX, 'command', 'shift'],
+    keys: [KeyCode.SIX, 'shift', 'command'],
     toolIcon: ShottrIcon,
     tool,
     actionName: 'Show Shottr',

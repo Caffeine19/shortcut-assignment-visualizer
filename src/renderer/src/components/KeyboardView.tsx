@@ -1,10 +1,11 @@
-import { type Component, For } from 'solid-js';
+import { type Component, For, createMemo } from 'solid-js';
 
 import KeyRow from '@renderer/components/KeyRow';
 
 import { ModifierKeyCode } from '@renderer/types/modifier';
 
 import { useKeyRowStore } from '@renderer/stores/key';
+import { useShortcutStore } from '@renderer/stores/shortcut';
 
 interface KeyboardViewProps {
   title: string;
@@ -14,10 +15,17 @@ interface KeyboardViewProps {
 
 const KeyboardView: Component<KeyboardViewProps> = (props) => {
   const keyRowStore = useKeyRowStore();
+  const shortcutStore = useShortcutStore();
+
+  const count = createMemo(() =>
+    shortcutStore.getShortcutCountByModifiers(new Set(props.modifiers)),
+  );
 
   return (
     <div class="flex flex-col items-center justify-center gap-4">
-      <h3 class="font-mono text-sm text-neutral-300">{props.title}</h3>
+      <h3 class="font-mono text-sm text-neutral-300">
+        {props.title} <span class="text-xs text-neutral-500">({count()})</span>
+      </h3>
       <div class="rounded-lg bg-black p-4">
         <div class="flex flex-col items-stretch justify-center">
           <For each={keyRowStore.keyRowList()}>

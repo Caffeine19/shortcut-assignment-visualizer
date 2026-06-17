@@ -6,30 +6,30 @@ export type ModifierKey = 'control' | 'command' | 'option' | 'shift';
 /**
  * All valid ordered modifier key combinations.
  *
- * Enforced order: `command` → `control` → `option` → `shift`
+ * Enforced order (Apple HIG): `control` → `option` → `shift` → `command`
  *
  * @example
- *   `['command', 'option']` ✓
- *   `['command', 'control', 'option', 'shift']` ✓
- *   `['control', 'command']` ✗ (wrong order)
+ *   `['control', 'option']` ✓
+ *   `['control', 'option', 'shift', 'command']` ✓
+ *   `['command', 'control']` ✗ (wrong order)
  */
 type OrderedModifiers =
   | []
-  | ['command']
   | ['control']
   | ['option']
   | ['shift']
-  | ['command', 'control']
-  | ['command', 'option']
-  | ['command', 'shift']
+  | ['command']
   | ['control', 'option']
   | ['control', 'shift']
+  | ['control', 'command']
   | ['option', 'shift']
-  | ['command', 'control', 'option']
-  | ['command', 'control', 'shift']
-  | ['command', 'option', 'shift']
+  | ['option', 'command']
+  | ['shift', 'command']
   | ['control', 'option', 'shift']
-  | ['command', 'control', 'option', 'shift'];
+  | ['control', 'option', 'command']
+  | ['control', 'shift', 'command']
+  | ['option', 'shift', 'command']
+  | ['control', 'option', 'shift', 'command'];
 
 /** Hardcoded icon color pair for apps where Vibrant extraction doesn't work well */
 export interface IconColors {
@@ -70,13 +70,16 @@ export type Shortcut = ShortcutBase & {
   keys: [KeyCode, ...OrderedModifiers];
 };
 
-/** Normalized shortcut with consistent keyCode and modifier booleans */
+/**
+ * Normalized shortcut with consistent keyCode and modifier booleans (Apple HIG order: control →
+ * option → shift → command)
+ */
 export type NormalizedShortcut = ShortcutBase & {
   keyCode: KeyCode;
   control: boolean;
-  command: boolean;
   option: boolean;
   shift: boolean;
+  command: boolean;
 };
 
 /**
@@ -91,9 +94,9 @@ export function normalizeShortcut(shortcut: Shortcut): NormalizedShortcut {
     ...shortcut,
 
     keyCode,
-    command: modifiers.includes('command'),
     control: modifiers.includes('control'),
     option: modifiers.includes('option'),
     shift: modifiers.includes('shift'),
+    command: modifiers.includes('command'),
   };
 }

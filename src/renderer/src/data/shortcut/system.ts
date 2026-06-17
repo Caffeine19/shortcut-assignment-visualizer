@@ -6,13 +6,13 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'System';
 export const systemShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.SEMICOLON, 'command', 'control'],
+    keys: [KeyCode.SEMICOLON, 'control', 'command'],
     toolIcon: FinderIcon,
     tool,
     actionName: 'Arrange Left and Right',
   },
   {
-    keys: [KeyCode.QUOTE, 'command', 'control'],
+    keys: [KeyCode.QUOTE, 'control', 'command'],
     toolIcon: FinderIcon,
     tool,
     actionName: 'Arrange Right and Left',

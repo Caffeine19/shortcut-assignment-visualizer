@@ -3,16 +3,17 @@ import { KeyCode } from './keyCode';
 export type ModifierKeyCode = KeyCode.CONTROL | KeyCode.SHIFT | KeyCode.OPTION | KeyCode.COMMAND;
 
 export const modifierUnicodeMap: Record<ModifierKeyCode, string> = {
-  [KeyCode.COMMAND]: '⌘',
-  [KeyCode.OPTION]: '⌥',
   [KeyCode.CONTROL]: '⌃',
+  [KeyCode.OPTION]: '⌥',
   [KeyCode.SHIFT]: '⇧',
+  [KeyCode.COMMAND]: '⌘',
 };
 
+/** Canonical modifier key order per Apple HIG: Control → Option → Shift → Command */
 export const modifierKeyCodeList: ModifierKeyCode[] = [
   KeyCode.CONTROL,
-  KeyCode.SHIFT,
   KeyCode.OPTION,
+  KeyCode.SHIFT,
   KeyCode.COMMAND,
 ];
 

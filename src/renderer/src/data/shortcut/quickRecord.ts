@@ -6,13 +6,13 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'QuickRecord';
 export const quickRecordShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.SEVEN, 'command', 'shift'],
+    keys: [KeyCode.SEVEN, 'shift', 'command'],
     toolIcon: QuickRecordIcon,
     tool,
     actionName: 'Start Recording',
   },
   {
-    keys: [KeyCode.EIGHT, 'command', 'shift'],
+    keys: [KeyCode.EIGHT, 'shift', 'command'],
     toolIcon: QuickRecordIcon,
     tool,
     actionName: 'Stop Recording',

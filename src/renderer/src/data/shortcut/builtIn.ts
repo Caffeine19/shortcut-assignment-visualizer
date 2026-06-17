@@ -25,7 +25,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Control-F: Use or stop using the app in full screen
   {
-    keys: [KeyCode.F, 'command', 'control'],
+    keys: [KeyCode.F, 'control', 'command'],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Toggle Full Screen',
@@ -33,7 +33,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Option-Esc: Force quit an app
   {
-    keys: [KeyCode.ESC, 'command', 'option'],
+    keys: [KeyCode.ESC, 'option', 'command'],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Force Quit',
@@ -49,7 +49,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Control-Space bar: Show the Character Viewer
   {
-    keys: [KeyCode.SPACE, 'command', 'control'],
+    keys: [KeyCode.SPACE, 'control', 'command'],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Character Viewer',
@@ -57,7 +57,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Control-Q: Lock your screen
   {
-    keys: [KeyCode.Q, 'command', 'control'],
+    keys: [KeyCode.Q, 'control', 'command'],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Lock Screen',
@@ -65,7 +65,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Option-D: Show or hide the Dock
   {
-    keys: [KeyCode.D, 'command', 'option'],
+    keys: [KeyCode.D, 'option', 'command'],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Toggle Dock',
@@ -74,7 +74,7 @@ export const builtInShortcutList: Shortcut[] = [
 
   // Command-Shift-3: Take a screenshot of the entire screen
   {
-    keys: [KeyCode.THREE, 'command', 'shift'],
+    keys: [KeyCode.THREE, 'shift', 'command'],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Screenshot Entire Screen',
@@ -82,7 +82,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Shift-4: Take a screenshot of a selected area
   {
-    keys: [KeyCode.FOUR, 'command', 'shift'],
+    keys: [KeyCode.FOUR, 'shift', 'command'],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Screenshot Selected Area',
@@ -90,7 +90,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Shift-5: Take a screenshot or make a screen recording (macOS Mojave+)
   {
-    keys: [KeyCode.FIVE, 'command', 'shift'],
+    keys: [KeyCode.FIVE, 'shift', 'command'],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Screenshot & Recording',
@@ -98,7 +98,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Shift-6: Capture the Touch Bar
   {
-    keys: [KeyCode.SIX, 'command', 'shift'],
+    keys: [KeyCode.SIX, 'shift', 'command'],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Capture Touch Bar',

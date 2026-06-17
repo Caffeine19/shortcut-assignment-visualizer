@@ -85,7 +85,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: FinderColorfulIcon,
   },
   {
-    keys: [KeyCode.W, 'command', 'control'],
+    keys: [KeyCode.W, 'control', 'command'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Switch Window',
@@ -164,7 +164,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: ShortcutLibraryIcon,
   },
   {
-    keys: [KeyCode.M, 'command', 'control'],
+    keys: [KeyCode.M, 'control', 'command'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Menu Item',
@@ -187,7 +187,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: SetAudioDeviceIcon,
   },
   {
-    keys: [KeyCode.BACKSPACE, 'command', 'control'],
+    keys: [KeyCode.BACKSPACE, 'control', 'command'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Remove Window From Set',
@@ -195,14 +195,14 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: RemoveWindowFromSetIcon,
   },
   {
-    keys: [KeyCode.PERIOD, 'command', 'control'],
+    keys: [KeyCode.PERIOD, 'control', 'command'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Next Desktop',
     raycastExtension: 'Next Desktop',
   },
   {
-    keys: [KeyCode.COMMA, 'command', 'control'],
+    keys: [KeyCode.COMMA, 'control', 'command'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Previous Desktop',
@@ -216,7 +216,7 @@ export const raycastShortcutList: Shortcut[] = [
   //   raycastExtension: 'Open Launch Configuration',
   // },
   {
-    keys: [KeyCode.SLASH, 'command', 'control'],
+    keys: [KeyCode.SLASH, 'control', 'command'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Toggle Stage Manager',
@@ -231,7 +231,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: DateFormatConverterIcon,
   },
   {
-    keys: [KeyCode.SPACE, 'command', 'option'],
+    keys: [KeyCode.SPACE, 'option', 'command'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Files',

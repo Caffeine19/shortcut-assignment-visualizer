@@ -8,14 +8,14 @@ const ticktickColors = { primary: '#4672FB', secondary: '#92acfa' };
 
 export const ticktickShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.A, 'control', 'option'],
+    keys: [KeyCode.A, 'option'],
     toolIcon: TicktickIcon,
     tool,
     actionName: 'Quick Add',
     iconColors: ticktickColors,
   },
   {
-    keys: [KeyCode.P, 'control', 'option'],
+    keys: [KeyCode.P, 'option'],
     toolIcon: TicktickIcon,
     tool,
     actionName: 'Start/Abandon Promo',

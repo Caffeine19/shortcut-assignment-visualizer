@@ -7,25 +7,25 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Shortcuts';
 export const shortcutsShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.ONE, 'command', 'control'],
+    keys: [KeyCode.ONE, 'control', 'command'],
     toolIcon: ShortcutsIcon,
     tool,
     actionName: 'Tidy Main Screen By Hammerspoon',
   },
   {
-    keys: [KeyCode.TWO, 'command', 'control'],
+    keys: [KeyCode.TWO, 'control', 'command'],
     toolIcon: ShortcutsIcon,
     tool,
     actionName: 'Tidy All Screens By Hammerspoon',
   },
   {
-    keys: [KeyCode.THREE, 'command', 'control'],
+    keys: [KeyCode.THREE, 'control', 'command'],
     toolIcon: ShortcutsIcon,
     tool,
     actionName: 'Tidy All Spaces By Hammerspoon',
   },
   {
-    keys: [KeyCode.FOUR, 'command', 'control'],
+    keys: [KeyCode.FOUR, 'control', 'command'],
     toolIcon: GhostIcon,
     tool,
     actionName: 'Mess Up All Spaces',
