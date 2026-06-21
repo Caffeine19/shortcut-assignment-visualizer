@@ -6,40 +6,40 @@
 
 Changed all shortcuts using `Ctrl+Option` modifier to use `Option` only (except ChatGPT).
 
-| App                                  | Action                       | Before                | After            |
-| ------------------------------------ | ---------------------------- | --------------------- | ---------------- |
-| Raycast                              | Mirror Screen                | `Ctrl+Option+M`       | `Option+M`       |
-| Raycast (Zentao)                     | Search My Tasks              | `Ctrl+Option+Z`       | `Option+Z`       |
-| Raycast (Restart Without Reopen)     | Restart Without Reopen       | `Ctrl+Option+Q`       | `Option+Q`       |
-| Raycast (Toothpick)                  | Manage Bluetooth Connections | `Ctrl+Option+T`       | `Option+T`       |
-| Raycast (Emoji & Symbols)            | Search Emoji & Symbols       | `Ctrl+Option+;`       | `Option+;`       |
-| Raycast (Toggle Keyboard Brightness) | Toggle Keyboard Brightness   | `Ctrl+Option+B`       | `Option+B`       |
-| Raycast (Shortcut Library)           | Shortcut Library             | `Ctrl+Option+.`       | `Option+.`       |
-| Raycast (Set Audio Device)           | Set Output Device            | `Ctrl+Option+O`       | `Option+O`       |
-| Raycast (Date Format Converter)      | Insert Natural Language Date | `Ctrl+Option+D`       | `Option+D`       |
-| Raycast (Kill Process)               | Kill Process                 | `Ctrl+Option+K`       | `Option+K`       |
-| Raycast (WeChat)                     | Search Contacts and Chat     | `Ctrl+Option+W`       | `Option+W`       |
-| Raycast (Surge)                      | Toggle Proxy                 | `Ctrl+Option+X`       | `Option+X`       |
-| Raycast (Hammerspoon)                | Reload Configuration File    | `Ctrl+Option+R`       | `Option+R`       |
-| Raycast (Warp)                       | Open Warp Terminal           | `Ctrl+Option+L`       | `Option+L`       |
-| Raycast (JetBrains)                  | Search Recent Projects       | `Ctrl+Option+J`       | `Option+J`       |
-| Raycast (GitLab)                     | Search Projects              | `Ctrl+Option+G`       | `Option+G`       |
-| Raycast (Figma)                      | Search Files                 | `Ctrl+Option+F`       | `Option+F`       |
-| Raycast (Microsoft Edge)             | Search Workspaces            | `Ctrl+Option+E`       | `Option+E`       |
-| Raycast (Color Picker)               | Pick Color                   | `Option+C`            | `Ctrl+Option+C`  |
-| Clash                                | Open Clash                   | `Ctrl+Option+X`       | `Option+X`       |
-| SnippetsLab                          | Toggle Assistant             | `Ctrl+Option+S`       | `Option+S`       |
-| Notion                               | Notion AI Shortcut           | `Ctrl+Option+Shift+N` | `Option+Shift+N` |
-| Notion                               | Open Notion                  | `Ctrl+Option+N`       | `Option+N`       |
-| Warp                                 | Warp Global Hotkey           | `Ctrl+Option+~`       | `Option+~`       |
-| Warp (Raycast)                       | Open Warp Terminal           | `Ctrl+Option+L`       | `Option+L`       |
-| Ice                                  | Enable the Ice Bar           | `Ctrl+Option+I`       | `Option+I`       |
+| App                                  | Action                       | Before                | After                                    |
+| ------------------------------------ | ---------------------------- | --------------------- | ---------------------------------------- |
+| Raycast                              | Mirror Screen                | `Ctrl+Option+M`       | `Option+M`                               |
+| Raycast (Zentao)                     | Search My Tasks              | `Ctrl+Option+Z`       | `Option+Z`                               |
+| Raycast (Restart Without Reopen)     | Restart Without Reopen       | `Ctrl+Option+Q`       | `Option+Q`                               |
+| Raycast (Toothpick)                  | Manage Bluetooth Connections | `Ctrl+Option+T`       | `Option+T`                               |
+| Raycast (Emoji & Symbols)            | Search Emoji & Symbols       | `Ctrl+Option+;`       | `Option+;`                               |
+| Raycast (Toggle Keyboard Brightness) | Toggle Keyboard Brightness   | `Ctrl+Option+B`       | `Option+B`                               |
+| Raycast (Shortcut Library)           | Shortcut Library             | `Ctrl+Option+.`       | `Option+.`                               |
+| Raycast (Set Audio Device)           | Set Output Device            | `Ctrl+Option+O`       | `Option+O`                               |
+| Raycast (Date Format Converter)      | Insert Natural Language Date | `Ctrl+Option+D`       | `Option+D`                               |
+| Raycast (Kill Process)               | Kill Process                 | `Ctrl+Option+K`       | `Option+K`                               |
+| Raycast (WeChat)                     | Search Contacts and Chat     | `Ctrl+Option+W`       | `Option+W`                               |
+| Raycast (Surge)                      | Toggle Proxy                 | `Ctrl+Option+X`       | `Option+X`                               |
+| Raycast (Hammerspoon)                | Reload Configuration File    | `Ctrl+Option+R`       | `Option+R`                               |
+| Raycast (Warp)                       | Open Warp Terminal           | `Ctrl+Option+L`       | `Option+L`                               |
+| Raycast (JetBrains)                  | Search Recent Projects       | `Ctrl+Option+J`       | `Option+J`                               |
+| Raycast (GitLab)                     | Search Projects              | `Ctrl+Option+G`       | `Option+G`                               |
+| Raycast (Figma)                      | Search Files                 | `Ctrl+Option+F`       | `Option+F`                               |
+| Raycast (Microsoft Edge)             | Search Workspaces            | `Ctrl+Option+E`       | `Option+E`                               |
+| Raycast (Color Picker)               | Pick Color                   | `Option+C`            | `Ctrl+Option+C`                          |
+| Clash                                | Open Clash                   | `Ctrl+Option+X`       | `Option+X`                               |
+| SnippetsLab                          | Toggle Assistant             | `Ctrl+Option+S`       | `Option+S`                               |
+| Notion                               | Notion AI Shortcut           | `Ctrl+Option+Shift+N` | `Option+Shift+N`                         |
+| Notion                               | Open Notion                  | `Ctrl+Option+N`       | `Option+N`                               |
+| Warp                                 | Warp Global Hotkey           | `Ctrl+Option+~`       | `Option+~`                               |
+| Warp (Raycast)                       | Open Warp Terminal           | `Ctrl+Option+L`       | `Option+L`                               |
+| Ice                                  | Enable the Ice Bar           | `Ctrl+Option+I`       | `Option+I`                               |
 | TickTick                             | Quick Add                    | `Ctrl+Option+A`       | `Option+A` (reverted to `Ctrl+Option+A`) |
 | TickTick                             | Start/Abandon Promo          | `Ctrl+Option+P`       | `Option+P` (reverted to `Ctrl+Option+P`) |
-| VSCode (Raycast)                     | Paste in VSCode              | `Option+V`            | `Option+C`       |
-| Raycast (Bitwarden)                  | Search Vault                 | `Cmd+Ctrl+B`          | `Option+B`       |
-| Raycast (Toggle Keyboard Brightness) | Toggle Keyboard Brightness   | `Option+B`            | `Ctrl+Option+B`  |
-| ChatGPT                              | Chat bar                     | `Ctrl+Option+Space`   | _(unchanged)_    |
+| VSCode (Raycast)                     | Paste in VSCode              | `Option+V`            | `Option+C`                               |
+| Raycast (Bitwarden)                  | Search Vault                 | `Cmd+Ctrl+B`          | `Option+B`                               |
+| Raycast (Toggle Keyboard Brightness) | Toggle Keyboard Brightness   | `Option+B`            | `Ctrl+Option+B`                          |
+| ChatGPT                              | Chat bar                     | `Ctrl+Option+Space`   | _(unchanged)_                            |
 
 ### 2. `Cmd+Ctrl` (z/x/c/b/n/m/i/o/p) → `Ctrl+Option`
 
@@ -79,53 +79,53 @@ Moved "Option View" to the first position in multi view layout.
 
 #### 5.1 New Raycast Extensions
 
-| App                      | Action           | Shortcut          |
-| ------------------------ | ---------------- | ----------------- |
-| Raycast (2FA Code Finder) | View 2FA Codes  | `Ctrl+Option+T`   |
-| Raycast (Search Snippet)  | Search Snippet  | `Ctrl+Option+S`   |
-| Raycast (HammerWM)        | Switch Window   | `Cmd+Ctrl+W`      |
-| Raycast (Edge)            | New Window       | `Ctrl+Option+E`   |
-| Raycast (Spark)           | Search Inbox     | `Option+M`        |
+| App                       | Action         | Shortcut        |
+| ------------------------- | -------------- | --------------- |
+| Raycast (2FA Code Finder) | View 2FA Codes | `Ctrl+Option+T` |
+| Raycast (Search Snippet)  | Search Snippet | `Ctrl+Option+S` |
+| Raycast (HammerWM)        | Switch Window  | `Cmd+Ctrl+W`    |
+| Raycast (Edge)            | New Window     | `Ctrl+Option+E` |
+| Raycast (Spark)           | Search Inbox   | `Option+M`      |
 
 #### 5.2 Shortcut Reassignments
 
-| App                          | Action                    | Before          | After            |
-| ---------------------------- | ------------------------- | --------------- | ---------------- |
-| Raycast (Restart Without Reopen) | Restart Without Reopen | `Option+Q`      | `Ctrl+Option+Q`  |
-| Raycast (Hammerspoon)        | Reload Configuration File | `Option+R`      | `Ctrl+Option+H`  |
-| Raycast (Search Menu Item)   | Search Menu Item          | `Option+M`      | `Cmd+Ctrl+M`     |
-| Ice                          | Enable the Ice Bar        | `Option+I`      | `Ctrl+Option+I`  |
-| Ice                          | Search menu bar items     | `Ctrl+Option+I` | `Option+I`       |
+| App                              | Action                    | Before          | After           |
+| -------------------------------- | ------------------------- | --------------- | --------------- |
+| Raycast (Restart Without Reopen) | Restart Without Reopen    | `Option+Q`      | `Ctrl+Option+Q` |
+| Raycast (Hammerspoon)            | Reload Configuration File | `Option+R`      | `Ctrl+Option+H` |
+| Raycast (Search Menu Item)       | Search Menu Item          | `Option+M`      | `Cmd+Ctrl+M`    |
+| Ice                              | Enable the Ice Bar        | `Option+I`      | `Ctrl+Option+I` |
+| Ice                              | Search menu bar items     | `Ctrl+Option+I` | `Option+I`      |
 
 #### 5.3 Changed Action Name
 
-| App            | Before             | After            | Shortcut   |
-| -------------- | ------------------ | ---------------- | ---------- |
-| Raycast (Warp) | Open Warp Terminal | Open Tab Config  | `Option+L` |
+| App            | Before             | After           | Shortcut   |
+| -------------- | ------------------ | --------------- | ---------- |
+| Raycast (Warp) | Open Warp Terminal | Open Tab Config | `Option+L` |
 
 #### 5.4 New System Settings Shortcut
 
-| App             | Action                 | Shortcut    |
-| --------------- | ---------------------- | ----------- |
-| System Settings | App System Settings    | `Option+,`  |
+| App             | Action              | Shortcut   |
+| --------------- | ------------------- | ---------- |
+| System Settings | App System Settings | `Option+,` |
 
 #### 5.5 Built-in Shortcut Changes
 
 **Removed:**
 
-| Shortcut               | Action              |
-| ---------------------- | ------------------- |
-| `Cmd+Ctrl+Shift+T`     | Add to Dock         |
-| `Option+Cmd+P`         | Toggle Path Bar     |
-| `Option+Cmd+S`         | Toggle Sidebar      |
-| `Cmd+/`                | Toggle Status Bar   |
-| `Cmd+J`                | View Options        |
+| Shortcut           | Action            |
+| ------------------ | ----------------- |
+| `Cmd+Ctrl+Shift+T` | Add to Dock       |
+| `Option+Cmd+P`     | Toggle Path Bar   |
+| `Option+Cmd+S`     | Toggle Sidebar    |
+| `Cmd+/`            | Toggle Status Bar |
+| `Cmd+J`            | View Options      |
 
 **Added:**
 
-| Shortcut       | Action                  |
-| -------------- | ----------------------- |
-| `Cmd+Shift+6`  | Capture Touch Bar       |
+| Shortcut      | Action            |
+| ------------- | ----------------- |
+| `Cmd+Shift+6` | Capture Touch Bar |
 
 #### 5.6 Removed Duplicate
 
@@ -141,12 +141,12 @@ Removed the Warp Raycast extension duplicate entry (`Option+L` → "Open Warp Te
 
 ### Summary of Active Modifier Layers (Updated)
 
-| Layer       | Keys                                                           |
-| ----------- | -------------------------------------------------------------- |
-| Option      | `A B C D E F G I J K L M N O P R S T V W X Z , ; . ~`         |
-| Ctrl+Option | `A B C E H I K N O P Q S T X Z`                               |
-| Cmd+Ctrl    | `1 2 3 4 H J K L M W [ ] Space Enter Backspace . , / ; '`     |
-| Cmd+Shift   | `7 8`                                                          |
+| Layer       | Keys                                                      |
+| ----------- | --------------------------------------------------------- |
+| Option      | `A B C D E F G I J K L M N O P R S T V W X Z , ; . ~`     |
+| Ctrl+Option | `A B C E H I K N O P Q S T X Z`                           |
+| Cmd+Ctrl    | `1 2 3 4 H J K L M W [ ] Space Enter Backspace . , / ; '` |
+| Cmd+Shift   | `7 8`                                                     |
 
 ---
 
@@ -154,29 +154,159 @@ Removed the Warp Raycast extension duplicate entry (`Option+L` → "Open Warp Te
 
 Reverted TickTick shortcuts back to `Ctrl+Option` modifier:
 
-| App     | Action              | Before    | After               |
-| ------- | ------------------- | --------- | ------------------- |
-| TickTick | Quick Add          | `Option+A` | `Ctrl+Option+A`    |
-| TickTick | Start/Abandon Promo | `Option+P` | `Ctrl+Option+P`    |
+| App      | Action              | Before     | After           |
+| -------- | ------------------- | ---------- | --------------- |
+| TickTick | Quick Add           | `Option+A` | `Ctrl+Option+A` |
+| TickTick | Start/Abandon Promo | `Option+P` | `Ctrl+Option+P` |
 
 ---
 
 ### 6. KeyCastr Addition
 
-| App       | Action            | Shortcut        |
-| --------- | ----------------- | --------------- |
-| KeyCastr  | Toggle KeyCastr   | `Ctrl+Option+K` |
+| App      | Action          | Shortcut        |
+| -------- | --------------- | --------------- |
+| KeyCastr | Toggle KeyCastr | `Ctrl+Option+K` |
 
 **Visual Changes:**
+
 - KeyCastr uses the colorful Finder icon (`Finder.Colorful.png`)
 
 ---
 
 ### 7. Raycast Notes Addition
 
-| App          | Action     | Shortcut    |
-| ------------ | ---------- | ----------- |
+| App             | Action     | Shortcut   |
+| --------------- | ---------- | ---------- |
 | Raycast (Notes) | Quick Note | `Option+R` |
 
 **Visual Changes:**
+
 - Raycast Notes uses the colorful Finder icon (`Finder.Colorful.png`)
+
+---
+
+### 8. TickTick → Option Layer
+
+Moved TickTick shortcuts back to `Option` modifier:
+
+| App      | Action              | Before          | After      |
+| -------- | ------------------- | --------------- | ---------- |
+| TickTick | Quick Add           | `Ctrl+Option+A` | `Option+A` |
+| TickTick | Start/Abandon Promo | `Ctrl+Option+P` | `Option+P` |
+
+---
+
+### 9. Passing Through Addition
+
+| App             | Action              | Shortcut       |
+| --------------- | ------------------- | -------------- |
+| Passing Through | Open Space Switcher | `Cmd+Ctrl+Tab` |
+
+**Visual Changes:**
+
+- Passing Through uses the colorful Finder icon (`Finder.Colorful.png`)
+
+### Summary of Active Modifier Layers (Updated)
+
+| Layer       | Keys                                                          |
+| ----------- | ------------------------------------------------------------- |
+| Option      | `A B C D E F G I J K L M N O P R S T V W X Z , ; . ~`         |
+| Ctrl+Option | `B C E H I K N O Q S T X Z`                                   |
+| Cmd+Ctrl    | `1 2 3 4 H J K L M W Tab [ ] Space Enter Backspace . , / ; '` |
+| Cmd+Shift   | `7 8`                                                         |
+
+---
+
+### 10. Hammerspoon List Scripts
+
+Added a new Hammerspoon Raycast extension shortcut:
+
+| App                   | Action       | Shortcut   | Icon              |
+| --------------------- | ------------ | ---------- | ----------------- |
+| Raycast (Hammerspoon) | List Scripts | `Option+H` | `Finder.Colorful` |
+
+### 11. ChatGPT → Option+1, Add Claude & Cherry Studio
+
+Changed ChatGPT from `Ctrl+Option+Space` to `Option+1`. Added Claude (`Option+2`) and Cherry Studio (`Option+3`) as new apps.
+
+| App           | Action             | Before              | After      |
+| ------------- | ------------------ | ------------------- | ---------- |
+| ChatGPT       | Chat bar           | `Ctrl+Option+Space` | `Option+1` |
+| Claude        | Open Claude        | _(new)_             | `Option+2` |
+| Cherry Studio | Open Cherry Studio | _(new)_             | `Option+3` |
+
+**Visual Changes:**
+
+- Claude uses the colorful Finder icon (`Finder.Colorful.png`)
+- Cherry Studio uses the colorful Finder icon (`Finder.Colorful.png`)
+
+### Summary of Active Modifier Layers (Updated)
+
+| Layer       | Keys                                                          |
+| ----------- | ------------------------------------------------------------- |
+| Option      | `1 2 3 A B C D E F G H I J K L M N O P R S T V W X Z , ; . ~` |
+| Ctrl+Option | `B C E H I K N O Q S T X Z`                                   |
+| Cmd+Ctrl    | `1 2 3 4 H J K L M W Tab [ ] Space Enter Backspace . , / ; '` |
+| Cmd+Shift   | `7 8`                                                         |
+
+---
+
+### 12. Emoji & Symbols → Option+', Add Gitmoji
+
+Moved Emoji & Symbols from `Option+;` to `Option+'`. Added Gitmoji Raycast extension as new `Option+;` shortcut.
+
+| App                       | Action                 | Before     | After      |
+| ------------------------- | ---------------------- | ---------- | ---------- |
+| Raycast (Emoji & Symbols) | Search Emoji & Symbols | `Option+;` | `Option+'` |
+| Raycast (Gitmoji)         | Search Gitmoji         | _(new)_    | `Option+;` |
+
+**Visual Changes:**
+
+- Gitmoji uses the colorful Finder icon (`Finder.Colorful.png`)
+
+---
+
+### 13. 2FA Code Finder → Option+/, Add TickTick Raycast Extension
+
+Moved 2FA Code Finder from `Ctrl+Option+T` to `Option+/`. Added TickTick Raycast extension as new `Ctrl+Option+T` shortcut.
+
+| App                       | Action         | Before          | After           |
+| ------------------------- | -------------- | --------------- | --------------- |
+| Raycast (2FA Code Finder) | View 2FA Codes | `Ctrl+Option+T` | `Option+/`      |
+| Raycast (TickTick)        | Search Tasks   | _(new)_         | `Ctrl+Option+T` |
+
+**Visual Changes:**
+
+- 2FA Code Finder uses the colorful Finder icon (`Finder.Colorful.png`)
+- TickTick uses the colorful Finder icon (`Finder.Colorful.png`)
+
+### Summary of Active Modifier Layers (Updated)
+
+| Layer       | Keys                                                              |
+| ----------- | ----------------------------------------------------------------- |
+| Option      | `1 2 3 A B C D E F G H I J K L M N O P R S T V W X Z , ; . ~ / '` |
+| Ctrl+Option | `B C E H I K N O Q S T X Z`                                       |
+| Cmd+Ctrl    | `1 2 3 4 H J K L M W Tab [ ] Space Enter Backspace . , / ; '`     |
+| Cmd+Shift   | `7 8`                                                             |
+
+---
+
+### 14. T/O Key Swap Between Option and Ctrl+Option
+
+Swapped T and O keys between `Option` and `Ctrl+Option` modifier layers. Toothpick and Set Output Device moved to `Ctrl+Option` for easier two-handed access, while TickTick and Open With moved to `Option` for quicker single-hand access.
+
+| App                        | Action                       | Before          | After           |
+| -------------------------- | ---------------------------- | --------------- | --------------- |
+| Raycast (Toothpick)        | Manage Bluetooth Connections | `Option+T`      | `Ctrl+Option+T` |
+| Raycast (Set Audio Device) | Set Output Device            | `Option+O`      | `Ctrl+Option+O` |
+| Raycast (TickTick)         | Search Tasks                 | `Ctrl+Option+T` | `Option+T`      |
+| Raycast (Open With)        | Open Raycast                 | `Ctrl+Option+O` | `Option+O`      |
+
+### Summary of Active Modifier Layers (Updated)
+
+| Layer       | Keys                                                            |
+| ----------- | --------------------------------------------------------------- |
+| Option      | `1 2 3 A B C D E F G H I J K L M N P R S T V W X Z , ; . ~ / '` |
+| Ctrl+Option | `B C E H I K N O Q S T X Z`                                     |
+| Cmd+Ctrl    | `1 2 3 4 H J K L M W Tab [ ] Space Enter Backspace . , / ; '`   |
+| Cmd+Shift   | `7 8`                                                           |

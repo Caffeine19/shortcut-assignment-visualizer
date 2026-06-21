@@ -69,12 +69,18 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: RestartWithoutReopenIcon,
   },
   {
-    keys: [KeyCode.T, 'control', 'option'],
-    toolIcon: RaycastIcon,
+    keys: [KeyCode.SLASH, 'option'],
+    toolIcon: FinderColorfulIcon,
     tool,
     actionName: 'View 2FA Codes',
     raycastExtension: '2FA Code Finder',
-    raycastExtensionIcon: FinderColorfulIcon,
+  },
+  {
+    keys: [KeyCode.T, 'option'],
+    toolIcon: FinderColorfulIcon,
+    tool,
+    actionName: 'Search Tasks',
+    raycastExtension: 'TickTick',
   },
   {
     keys: [KeyCode.S, 'control', 'option'],
@@ -115,11 +121,18 @@ export const customExtensionShortcuts: Shortcut[] = [
     actionName: 'Quick Note',
     raycastExtension: 'Notes',
   },
+  {
+    keys: [KeyCode.H, 'option'],
+    toolIcon: FinderColorfulIcon,
+    tool,
+    actionName: 'List Scripts',
+    raycastExtension: 'Hammerspoon',
+  },
 ];
 
 export const raycastShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.T, 'option'],
+    keys: [KeyCode.T, 'control', 'option'],
     toolIcon: RaycastIcon,
     raycastExtension: 'Toothpick',
     raycastExtensionIcon: ToothpickIcon,
@@ -127,7 +140,7 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Manage Bluetooth Connections',
   },
   {
-    keys: [KeyCode.O, 'control', 'option'],
+    keys: [KeyCode.O, 'option'],
     toolIcon: RaycastIcon,
     raycastExtension: 'Open With',
     raycastExtensionIcon: OpenWithIcon,
@@ -141,11 +154,18 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Open Raycast',
   },
   {
-    keys: [KeyCode.SEMICOLON, 'option'],
+    keys: [KeyCode.QUOTE, 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Emoji & Symbols',
     raycastExtension: 'Emoji & Symbols',
+  },
+  {
+    keys: [KeyCode.SEMICOLON, 'option'],
+    toolIcon: FinderColorfulIcon,
+    tool,
+    actionName: 'Search Gitmoji',
+    raycastExtension: 'Gitmoji',
   },
   {
     keys: [KeyCode.B, 'control', 'option'],
@@ -179,7 +199,7 @@ export const raycastShortcutList: Shortcut[] = [
   //     raycastExtension: 'Search Recent Projects',
   //   },
   {
-    keys: [KeyCode.O, 'option'],
+    keys: [KeyCode.O, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Set Output Device',
@@ -289,11 +309,18 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'JetBrains Toolbox Recent Projects',
   },
   {
-    keys: [KeyCode.G, 'option'],
+    keys: [KeyCode.G, 'control', 'option'],
     toolIcon: GitlabIcon,
     tool,
     actionName: 'Search Projects',
     raycastExtension: 'GitLab',
+  },
+  {
+    keys: [KeyCode.G, 'option'],
+    toolIcon: FinderColorfulIcon,
+    tool,
+    actionName: 'List Repos',
+    raycastExtension: 'Git Repos',
   },
   {
     keys: [KeyCode.F, 'option'],
