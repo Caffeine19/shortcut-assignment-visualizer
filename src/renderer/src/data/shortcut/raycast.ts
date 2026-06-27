@@ -73,10 +73,11 @@ export const customExtensionShortcuts: Shortcut[] = [
   },
   {
     keys: [KeyCode.M, 'option'],
-    toolIcon: iMessageIcon,
+    toolIcon: RaycastIcon,
     tool,
     actionName: 'View 2FA Codes',
     raycastExtension: '2FA Code Finder',
+    raycastExtensionIcon: iMessageIcon,
   },
   {
     keys: [KeyCode.S, 'control', 'option'],
@@ -106,7 +107,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     keys: [KeyCode.R, 'option'],
     toolIcon: RaycastIcon,
     tool,
-    actionName: 'Quick Note',
+    actionName: 'Raycast Notes',
     raycastExtension: 'Notes',
   },
   {
@@ -150,10 +151,11 @@ export const raycastShortcutList: Shortcut[] = [
   },
   {
     keys: [KeyCode.SEMICOLON, 'option'],
-    toolIcon: GitmojiIcon,
+    toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Gitmoji',
     raycastExtension: 'Gitmoji',
+    raycastExtensionIcon: GitmojiIcon,
   },
   {
     keys: [KeyCode.B, 'control', 'option'],
@@ -305,10 +307,11 @@ export const raycastShortcutList: Shortcut[] = [
   },
   {
     keys: [KeyCode.G, 'option'],
-    toolIcon: GitReposIcon,
+    toolIcon: RaycastIcon,
     tool,
     actionName: 'List Repos',
     raycastExtension: 'Git Repos',
+    raycastExtensionIcon: GitReposIcon,
   },
   {
     keys: [KeyCode.F, 'option'],
