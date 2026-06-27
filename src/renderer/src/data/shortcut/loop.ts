@@ -53,4 +53,10 @@ export const loopShortcutList: Shortcut[] = [
     tool,
     actionName: 'Next Desktop',
   },
+  {
+    keys: [KeyCode.R, 'control', 'command'],
+    toolIcon: LoopIcon,
+    tool,
+    actionName: 'Reasonable',
+  },
 ];

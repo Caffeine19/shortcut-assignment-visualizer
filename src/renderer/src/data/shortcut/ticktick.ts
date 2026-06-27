@@ -4,7 +4,7 @@ import { KeyCode } from '@renderer/types/keyCode';
 import { Shortcut } from '@renderer/types/shortcut';
 
 const tool = 'Ticktick';
-const ticktickColors = { primary: '#4672FB', secondary: '#92acfa' };
+const ticktickColors = { primary: '#7496fb', secondary: '#92acfa' };
 
 export const ticktickShortcutList: Shortcut[] = [
   {
@@ -19,6 +19,14 @@ export const ticktickShortcutList: Shortcut[] = [
     toolIcon: TicktickIcon,
     tool,
     actionName: 'Start/Abandon Promo',
+    iconColors: ticktickColors,
+  },
+  {
+    keys: [KeyCode.T, 'option'],
+    toolIcon: TicktickIcon,
+    tool,
+    actionName: 'Search Tasks',
+    raycastExtension: 'TickTick',
     iconColors: ticktickColors,
   },
 ];

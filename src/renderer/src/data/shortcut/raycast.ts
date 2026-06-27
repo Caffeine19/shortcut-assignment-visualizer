@@ -1,12 +1,15 @@
 import FigmaIcon from '@renderer/assets/Figma.png';
-import FinderColorfulIcon from '@renderer/assets/Finder.Colorful.png';
+import GitReposIcon from '@renderer/assets/GitRepos.png';
 import GitlabIcon from '@renderer/assets/Gitlab.png';
+import GitmojiIcon from '@renderer/assets/Gitmoji.png';
+import HammerWMIcon from '@renderer/assets/HammerWM.png';
 import HammerspoonIcon from '@renderer/assets/Hammerspoon.png';
 import JetbrainsIcon from '@renderer/assets/JetBrains.png';
 import EdgeIcon from '@renderer/assets/MicrosoftEdge.png';
 import RaycastIcon from '@renderer/assets/Raycast.png';
 import SurgeIcon from '@renderer/assets/Surge.png';
 import WarpIcon from '@renderer/assets/Warp.png';
+import iMessageIcon from '@renderer/assets/iMessage.png';
 import BitwardenIcon from '@renderer/assets/raycast/Bitwarden.png';
 import ColorPickerIcon from '@renderer/assets/raycast/ColorPicker.png';
 import DateFormatConverterIcon from '@renderer/assets/raycast/DateFormatConverter.png';
@@ -69,18 +72,11 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: RestartWithoutReopenIcon,
   },
   {
-    keys: [KeyCode.SLASH, 'option'],
-    toolIcon: FinderColorfulIcon,
+    keys: [KeyCode.M, 'option'],
+    toolIcon: iMessageIcon,
     tool,
     actionName: 'View 2FA Codes',
     raycastExtension: '2FA Code Finder',
-  },
-  {
-    keys: [KeyCode.T, 'option'],
-    toolIcon: FinderColorfulIcon,
-    tool,
-    actionName: 'Search Tasks',
-    raycastExtension: 'TickTick',
   },
   {
     keys: [KeyCode.S, 'control', 'option'],
@@ -88,7 +84,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     tool,
     actionName: 'Search Snippet',
     raycastExtension: 'Search Snippet',
-    raycastExtensionIcon: FinderColorfulIcon,
+    raycastExtensionIcon: RaycastIcon,
   },
   {
     keys: [KeyCode.W, 'control', 'command'],
@@ -96,7 +92,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     tool,
     actionName: 'Switch Window',
     raycastExtension: 'HammerWM',
-    raycastExtensionIcon: FinderColorfulIcon,
+    raycastExtensionIcon: HammerWMIcon,
   },
   {
     keys: [KeyCode.E, 'control', 'option'],
@@ -104,26 +100,18 @@ export const customExtensionShortcuts: Shortcut[] = [
     tool,
     actionName: 'New Window',
     raycastExtension: 'Edge',
-    raycastExtensionIcon: FinderColorfulIcon,
-  },
-  {
-    keys: [KeyCode.M, 'option'],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Search Inbox',
-    raycastExtension: 'Spark',
-    raycastExtensionIcon: FinderColorfulIcon,
+    raycastExtensionIcon: EdgeIcon,
   },
   {
     keys: [KeyCode.R, 'option'],
-    toolIcon: FinderColorfulIcon,
+    toolIcon: RaycastIcon,
     tool,
     actionName: 'Quick Note',
     raycastExtension: 'Notes',
   },
   {
     keys: [KeyCode.H, 'option'],
-    toolIcon: FinderColorfulIcon,
+    toolIcon: HammerspoonIcon,
     tool,
     actionName: 'List Scripts',
     raycastExtension: 'Hammerspoon',
@@ -162,7 +150,7 @@ export const raycastShortcutList: Shortcut[] = [
   },
   {
     keys: [KeyCode.SEMICOLON, 'option'],
-    toolIcon: FinderColorfulIcon,
+    toolIcon: GitmojiIcon,
     tool,
     actionName: 'Search Gitmoji',
     raycastExtension: 'Gitmoji',
@@ -288,7 +276,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Surge',
   },
   {
-    keys: [KeyCode.H, 'control', 'option'],
+    keys: [KeyCode.R, 'control', 'option'],
     toolIcon: HammerspoonIcon,
     tool,
     actionName: 'Reload Configuration File',
@@ -317,7 +305,7 @@ export const raycastShortcutList: Shortcut[] = [
   },
   {
     keys: [KeyCode.G, 'option'],
-    toolIcon: FinderColorfulIcon,
+    toolIcon: GitReposIcon,
     tool,
     actionName: 'List Repos',
     raycastExtension: 'Git Repos',

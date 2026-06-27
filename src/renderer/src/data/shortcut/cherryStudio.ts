@@ -1,4 +1,4 @@
-import FinderColorfulIcon from '@renderer/assets/Finder.Colorful.png';
+import CherryStudioIcon from '@renderer/assets/CherryStudio.png';
 
 import { KeyCode } from '@renderer/types/keyCode';
 import { Shortcut } from '@renderer/types/shortcut';
@@ -6,7 +6,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 export const cherryStudioShortcutList: Shortcut[] = [
   {
     keys: [KeyCode.THREE, 'option'],
-    toolIcon: FinderColorfulIcon,
+    toolIcon: CherryStudioIcon,
     tool: 'Cherry Studio',
     actionName: 'Open Cherry Studio',
   },

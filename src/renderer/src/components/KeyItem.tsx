@@ -58,6 +58,7 @@ const KeyItem = (props: KeyProps) => {
   const keyClass = createMemo(() => {
     const isInteractive = props.isInteractive ?? true;
     const activatedModifiers = props.forcedModifiers || keyRowStore.activatedModifierList();
+    const isBuiltIn = shortcut()?.builtIn;
 
     return twMerge(
       'relative flex items-center justify-center border border-zinc-800 bg-zinc-900 text-center font-bold text-zinc-200 transition-all duration-150',
@@ -66,7 +67,7 @@ const KeyItem = (props: KeyProps) => {
         ? 'mx-1 rounded-sm first:ml-0 last:mr-0'
         : 'mx-2 rounded-md first:ml-0 last:mr-0',
 
-      isInteractive && 'hover:border-red-500/60 hover:bg-zinc-800 hover:text-red-400',
+      isInteractive && !isBuiltIn && 'hover:border-red-500/60 hover:bg-zinc-800 hover:text-red-400',
 
       isModifierKeyCode(props.key.keyCode)
         ? activatedModifiers.has(props.key.keyCode)
@@ -89,6 +90,12 @@ const KeyItem = (props: KeyProps) => {
   const [iconColorHoverStyle, setIconColorHoverStyle] = createSignal<JSX.CSSProperties>({});
   const updateIconColorStyles = async () => {
     const currentShortcut = shortcut();
+    if (!currentShortcut) {
+      setIconColorStyle({});
+      setIconColorHoverStyle({});
+      return;
+    }
+
     const src = currentShortcut?.raycastExtensionIcon || currentShortcut?.toolIcon;
     if (!src) {
       setIconColorStyle({});
@@ -109,10 +116,15 @@ const KeyItem = (props: KeyProps) => {
       secondary = palette.Vibrant?.hex || 'transparent';
     }
 
-    setIconColorStyle({
-      'border-color': tinycolor2(primary).setAlpha(0.2).toRgbString(),
-      background: `radial-gradient(circle, ${tinycolor2(primary).setAlpha(0.3).toRgbString()} 10%, ${tinycolor2(secondary).setAlpha(0.1).toRgbString()} 100%)`,
-    });
+    // Built-in shortcuts don't show color by default, only on hover
+    if (currentShortcut.builtIn) {
+      setIconColorStyle({});
+    } else {
+      setIconColorStyle({
+        'border-color': tinycolor2(primary).setAlpha(0.2).toRgbString(),
+        background: `radial-gradient(circle, ${tinycolor2(primary).setAlpha(0.3).toRgbString()} 10%, ${tinycolor2(secondary).setAlpha(0.1).toRgbString()} 100%)`,
+      });
+    }
     setIconColorHoverStyle({
       'border-color': tinycolor2(primary).setAlpha(0.7).toRgbString(),
       background: `radial-gradient(circle, ${tinycolor2(primary).setAlpha(0.6).toRgbString()} 10%, ${tinycolor2(secondary).setAlpha(0.3).toRgbString()} 100%)`,

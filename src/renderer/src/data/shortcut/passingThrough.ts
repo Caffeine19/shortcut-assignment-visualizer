@@ -1,4 +1,4 @@
-import FinderColorfulIcon from '@renderer/assets/Finder.Colorful.png';
+import PassingThroughIcon from '@renderer/assets/PassingThrough.png';
 
 import { KeyCode } from '@renderer/types/keyCode';
 import { Shortcut } from '@renderer/types/shortcut';
@@ -6,7 +6,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 export const passingThroughShortcutList: Shortcut[] = [
   {
     keys: [KeyCode.TAB, 'control', 'command'],
-    toolIcon: FinderColorfulIcon,
+    toolIcon: PassingThroughIcon,
     tool: 'Passing Through',
     actionName: 'Open Space Switcher',
   },
