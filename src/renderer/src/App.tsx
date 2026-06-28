@@ -79,13 +79,28 @@ const App: Component = () => {
       if (code) keyRowStore.releaseKey(code);
     };
 
+    const onViewModeToggle = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === 'Tab') {
+        e.preventDefault();
+        setViewMode((prev) => (prev === 'single' ? 'multi' : 'single'));
+      }
+
+      // Cmd+/ or Ctrl+/ to toggle search
+      if ((e.metaKey || e.ctrlKey) && e.key === '/') {
+        e.preventDefault();
+        searchStore.toggleSearch();
+      }
+    };
+
     window.addEventListener('keydown', onKeyDown);
     window.addEventListener('keyup', onKeyUp);
+    window.addEventListener('keydown', onViewModeToggle);
 
     onCleanup(() => {
       cleanup?.();
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);
+      window.removeEventListener('keydown', onViewModeToggle);
     });
   });
 
@@ -179,8 +194,8 @@ const App: Component = () => {
                   }
                 >
                   <span class="font-mono text-neutral-500">
-                    Use Command + K to start listening for modifier • Ctrl/Cmd + Shift + Space for
-                    search
+                    Use Command + K to start listening for modifier • Cmd/Ctrl + / for search • Ctrl
+                    + Tab to toggle view
                   </span>
                 </Show>
               </div>

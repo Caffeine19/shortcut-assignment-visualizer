@@ -95,6 +95,56 @@ export const customExtensionShortcuts: Shortcut[] = [
   },
 ];
 
+export const buildInExtensionShortcuts: Shortcut[] = (
+  [
+    {
+      keys: [KeyCode.R, 'option'],
+      tool,
+      actionName: 'Raycast Notes',
+      raycastExtension: 'Notes',
+    },
+    {
+      keys: [KeyCode.M, 'control', 'command'],
+      tool,
+      actionName: 'Search Menu Item',
+      raycastExtension: 'Search Menu Items',
+    },
+    {
+      keys: [KeyCode.SLASH, 'control', 'command'],
+      tool,
+      actionName: 'Toggle Stage Manager',
+      raycastExtension: 'Toggle Stage Manager',
+    },
+    {
+      keys: [KeyCode.QUOTE, 'option'],
+      tool,
+      actionName: 'Search Emoji & Symbols',
+      raycastExtension: 'Emoji & Symbols',
+    },
+    {
+      keys: [KeyCode.S, 'control', 'option'],
+      tool,
+      actionName: 'Search Snippet',
+      raycastExtension: 'Search Snippet',
+    },
+    {
+      keys: [KeyCode.PERIOD, 'control', 'command'],
+      tool,
+      actionName: 'Next Desktop',
+      raycastExtension: 'Next Desktop',
+    },
+    {
+      keys: [KeyCode.COMMA, 'control', 'command'],
+      tool,
+      actionName: 'Previous Desktop',
+      raycastExtension: 'Previous Desktop',
+    },
+  ] satisfies Omit<Shortcut, 'toolIcon'>[]
+).map((shortcut) => ({
+  ...shortcut,
+  toolIcon: RaycastIcon,
+}));
+
 export const raycastShortcutList: Shortcut[] = [
   {
     keys: [KeyCode.T, 'control', 'option'],
@@ -117,13 +167,6 @@ export const raycastShortcutList: Shortcut[] = [
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Open Raycast',
-  },
-  {
-    keys: [KeyCode.QUOTE, 'option'],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Search Emoji & Symbols',
-    raycastExtension: 'Emoji & Symbols',
   },
   {
     keys: [KeyCode.SEMICOLON, 'option'],
@@ -149,13 +192,6 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Shortcut Library',
     raycastExtensionIcon: ShortcutLibraryIcon,
   },
-  {
-    keys: [KeyCode.M, 'control', 'command'],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Search Menu Item',
-    raycastExtension: 'Search Menu Items',
-  },
   // defined in VSCode
   //   {
   //     keys: [KeyCode.V, 'control', 'option'],
@@ -180,20 +216,6 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Remove Window from Set',
     raycastExtensionIcon: RemoveWindowFromSetIcon,
   },
-  {
-    keys: [KeyCode.PERIOD, 'control', 'command'],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Next Desktop',
-    raycastExtension: 'Next Desktop',
-  },
-  {
-    keys: [KeyCode.COMMA, 'control', 'command'],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Previous Desktop',
-    raycastExtension: 'Previous Desktop',
-  },
   // {
   //   keys: [KeyCode.L, 'control', 'option'],
   //   toolIcon: RaycastIcon,
@@ -201,13 +223,6 @@ export const raycastShortcutList: Shortcut[] = [
   //   actionName: 'Open Launch Configuration',
   //   raycastExtension: 'Open Launch Configuration',
   // },
-  {
-    keys: [KeyCode.SLASH, 'control', 'command'],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Toggle Stage Manager',
-    raycastExtension: 'Toggle Stage Manager',
-  },
   {
     keys: [KeyCode.D, 'option'],
     toolIcon: RaycastIcon,
@@ -321,21 +336,6 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: iMessageIcon,
   },
   {
-    keys: [KeyCode.S, 'control', 'option'],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Search Snippet',
-    raycastExtension: 'Search Snippet',
-    raycastExtensionIcon: RaycastIcon,
-  },
-  {
-    keys: [KeyCode.R, 'option'],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Raycast Notes',
-    raycastExtension: 'Notes',
-  },
-  {
     keys: [KeyCode.H, 'option'],
     toolIcon: HammerspoonIcon,
     tool,
@@ -343,4 +343,5 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Hammerspoon',
   },
   ...customExtensionShortcuts,
+  ...buildInExtensionShortcuts,
 ];
