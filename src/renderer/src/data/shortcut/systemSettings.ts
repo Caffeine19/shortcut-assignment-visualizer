@@ -5,7 +5,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 
 export const systemSettingsShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.COMMA, 'option'],
+    keys: [KeyCode.COMMA, 'control', 'option'],
     toolIcon: SystemSettingsIcon,
     tool: 'System Settings',
     actionName: 'App System Settings',

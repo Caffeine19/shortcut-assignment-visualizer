@@ -6,7 +6,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Poe';
 export const poeShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.E, 'control', 'option'],
+    keys: [KeyCode.E, 'control', 'command'],
     toolIcon: PoeIcon,
     tool,
     actionName: 'Open Poe',

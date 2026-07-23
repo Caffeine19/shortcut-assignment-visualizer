@@ -5,7 +5,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 
 export const cherryStudioShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.THREE, 'option'],
+    keys: [KeyCode.SPACE, 'control', 'option'],
     toolIcon: CherryStudioIcon,
     tool: 'Cherry Studio',
     actionName: 'Open Cherry Studio',

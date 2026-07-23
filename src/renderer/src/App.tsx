@@ -106,10 +106,6 @@ const App: Component = () => {
 
   const multiViewConfigs = [
     {
-      title: 'Option View',
-      modifiers: [KeyCode.OPTION] satisfies ModifierKeyCode[],
-    },
-    {
       title: 'Control + Option View',
       modifiers: [KeyCode.CONTROL, KeyCode.OPTION] satisfies ModifierKeyCode[],
     },
@@ -118,8 +114,16 @@ const App: Component = () => {
       modifiers: [KeyCode.COMMAND, KeyCode.CONTROL] satisfies ModifierKeyCode[],
     },
     {
+      title: 'Command + Control + Shift View',
+      modifiers: [KeyCode.COMMAND, KeyCode.CONTROL, KeyCode.SHIFT] satisfies ModifierKeyCode[],
+    },
+    {
       title: 'Command + Shift View',
       modifiers: [KeyCode.COMMAND, KeyCode.SHIFT] satisfies ModifierKeyCode[],
+    },
+    {
+      title: 'Option View',
+      modifiers: [KeyCode.OPTION] satisfies ModifierKeyCode[],
     },
   ];
 

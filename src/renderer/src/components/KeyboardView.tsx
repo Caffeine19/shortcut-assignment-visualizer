@@ -22,7 +22,7 @@ const KeyboardView: Component<KeyboardViewProps> = (props) => {
   );
 
   return (
-    <div class="flex flex-col items-center justify-center gap-4">
+    <div class="mx-auto flex w-max flex-col items-center justify-center gap-4">
       <h3 class="font-mono text-sm text-neutral-300">
         {props.title} <span class="text-xs text-neutral-500">({count()})</span>
       </h3>

@@ -5,7 +5,7 @@ import { arcShortcutList } from './shortcut/arc';
 import { builtInShortcutList } from './shortcut/builtIn';
 import { chatGPTShortcutList } from './shortcut/chatgpt';
 import { cherryStudioShortcutList } from './shortcut/cherryStudio';
-import { claudeShortcutList } from './shortcut/claude';
+import { geminiShortcutList } from './shortcut/gemini';
 import { homerowShortcutList } from './shortcut/homerow';
 import { iceShortcutList } from './shortcut/ice';
 import { keycastrShortcutList } from './shortcut/keycastr';
@@ -44,7 +44,7 @@ export const shortcutListData: Shortcut[] = [
   ...arcShortcutList,
   ...iceShortcutList,
   ...chatGPTShortcutList,
-  ...claudeShortcutList,
+  ...geminiShortcutList,
   ...cherryStudioShortcutList,
   ...systemShortcutList,
   ...systemSettingsShortcutList,

@@ -5,13 +5,13 @@ import { Shortcut } from '@renderer/types/shortcut';
 
 export const arcShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.A, 'control', 'option'],
+    keys: [KeyCode.A, 'control', 'command'],
     toolIcon: ArcIcon,
     tool: 'Arc',
     actionName: 'Search Spaces',
     iconColors: {
-      primary: '#3756F5',
-      secondary: '#002aff',
+      primary: '#5772fd',
+      secondary: '#3e5ae5',
     },
   },
 ];

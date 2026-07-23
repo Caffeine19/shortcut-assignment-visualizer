@@ -40,7 +40,7 @@ const tool = 'Raycast';
 
 export const customExtensionShortcuts: Shortcut[] = [
   {
-    keys: [KeyCode.M, 'control', 'option'],
+    keys: [KeyCode.M, 'control', 'shift', 'command'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Mirror Screen',
@@ -48,7 +48,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: MirrorScreenIcon,
   },
   {
-    keys: [KeyCode.Z, 'option'],
+    keys: [KeyCode.Z, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search My Tasks',
@@ -56,7 +56,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: ZentaoIcon,
   },
   {
-    keys: [KeyCode.Z, 'control', 'option'],
+    keys: [KeyCode.Z, 'control', 'command'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search My Bugs',
@@ -80,14 +80,14 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: HammerWMIcon,
   },
   {
-    keys: [KeyCode.E, 'control', 'option'],
+    keys: [KeyCode.E, 'control', 'command'],
     toolIcon: EdgeIcon,
     tool,
     actionName: 'New Window',
     raycastExtension: 'Edge',
   },
   {
-    keys: [KeyCode.E, 'option'],
+    keys: [KeyCode.E, 'control', 'option'],
     toolIcon: EdgeIcon,
     tool,
     actionName: 'Search Workspaces',
@@ -98,7 +98,7 @@ export const customExtensionShortcuts: Shortcut[] = [
 export const buildInExtensionShortcuts: Shortcut[] = (
   [
     {
-      keys: [KeyCode.R, 'option'],
+      keys: [KeyCode.N, 'control', 'option'],
       tool,
       actionName: 'Raycast Notes',
       raycastExtension: 'Notes',
@@ -116,13 +116,13 @@ export const buildInExtensionShortcuts: Shortcut[] = (
       raycastExtension: 'Toggle Stage Manager',
     },
     {
-      keys: [KeyCode.QUOTE, 'option'],
+      keys: [KeyCode.QUOTE, 'control', 'option'],
       tool,
       actionName: 'Search Emoji & Symbols',
       raycastExtension: 'Emoji & Symbols',
     },
     {
-      keys: [KeyCode.S, 'control', 'option'],
+      keys: [KeyCode.S, 'control', 'command'],
       tool,
       actionName: 'Search Snippet',
       raycastExtension: 'Search Snippet',
@@ -147,7 +147,7 @@ export const buildInExtensionShortcuts: Shortcut[] = (
 
 export const raycastShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.T, 'control', 'option'],
+    keys: [KeyCode.T, 'control', 'command'],
     toolIcon: RaycastIcon,
     raycastExtension: 'Toothpick',
     raycastExtensionIcon: ToothpickIcon,
@@ -155,7 +155,7 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Manage Bluetooth Connections',
   },
   {
-    keys: [KeyCode.O, 'option'],
+    keys: [KeyCode.O, 'control', 'command'],
     toolIcon: RaycastIcon,
     raycastExtension: 'Open With',
     raycastExtensionIcon: OpenWithIcon,
@@ -169,7 +169,7 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Open Raycast',
   },
   {
-    keys: [KeyCode.SEMICOLON, 'option'],
+    keys: [KeyCode.SEMICOLON, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Gitmoji',
@@ -185,7 +185,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: ToggleKeyboardBrightnessIcon,
   },
   {
-    keys: [KeyCode.PERIOD, 'option'],
+    keys: [KeyCode.PERIOD, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Shortcut Library',
@@ -209,6 +209,14 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: SetAudioDeviceIcon,
   },
   {
+    keys: [KeyCode.I, 'control', 'option'],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Set Input Device',
+    raycastExtension: 'Set Audio Device',
+    raycastExtensionIcon: SetAudioDeviceIcon,
+  },
+  {
     keys: [KeyCode.BACKSPACE, 'control', 'command'],
     toolIcon: RaycastIcon,
     tool,
@@ -224,7 +232,7 @@ export const raycastShortcutList: Shortcut[] = [
   //   raycastExtension: 'Open Launch Configuration',
   // },
   {
-    keys: [KeyCode.D, 'option'],
+    keys: [KeyCode.D, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Insert Natural Language Date',
@@ -239,7 +247,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Search Files',
   },
   {
-    keys: [KeyCode.K, 'option'],
+    keys: [KeyCode.K, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Kill Process',
@@ -247,7 +255,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: KillProcessIcon,
   },
   {
-    keys: [KeyCode.W, 'option'],
+    keys: [KeyCode.W, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Contacts and Chat',
@@ -255,14 +263,14 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: WeChatIcon,
   },
   {
-    keys: [KeyCode.X, 'option'],
+    keys: [KeyCode.X, 'control', 'option'],
     toolIcon: SurgeIcon,
     tool,
     actionName: 'Toggle Proxy',
     raycastExtension: 'Surge',
   },
   {
-    keys: [KeyCode.X, 'control', 'option'],
+    keys: [KeyCode.X, 'control', 'command'],
     toolIcon: SurgeIcon,
     tool,
     actionName: 'Switch Proxy',
@@ -276,28 +284,28 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Hammerspoon',
   },
   {
-    keys: [KeyCode.L, 'option'],
+    keys: [KeyCode.L, 'control', 'option'],
     toolIcon: WarpIcon,
     tool,
     actionName: 'Open Tab Config',
     raycastExtension: 'Warp',
   },
   {
-    keys: [KeyCode.J, 'option'],
+    keys: [KeyCode.J, 'control', 'option'],
     toolIcon: JetbrainsIcon,
     tool,
     actionName: 'Search Recent Projects',
     raycastExtension: 'JetBrains Toolbox Recent Projects',
   },
   {
-    keys: [KeyCode.G, 'control', 'option'],
+    keys: [KeyCode.G, 'control', 'command'],
     toolIcon: GitlabIcon,
     tool,
     actionName: 'Search Projects',
     raycastExtension: 'GitLab',
   },
   {
-    keys: [KeyCode.G, 'option'],
+    keys: [KeyCode.G, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'List Repos',
@@ -305,14 +313,14 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: GitReposIcon,
   },
   {
-    keys: [KeyCode.F, 'option'],
+    keys: [KeyCode.F, 'control', 'option'],
     toolIcon: FigmaIcon,
     tool,
     actionName: 'Search Files',
     raycastExtension: 'Figma',
   },
   {
-    keys: [KeyCode.C, 'control', 'option'],
+    keys: [KeyCode.C, 'control', 'command'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Pick Color',
@@ -320,7 +328,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: ColorPickerIcon,
   },
   {
-    keys: [KeyCode.B, 'option'],
+    keys: [KeyCode.B, 'control', 'command'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Vault',
@@ -328,7 +336,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: BitwardenIcon,
   },
   {
-    keys: [KeyCode.M, 'option'],
+    keys: [KeyCode.M, 'control', 'option'],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'View 2FA Codes',
@@ -336,7 +344,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: iMessageIcon,
   },
   {
-    keys: [KeyCode.H, 'option'],
+    keys: [KeyCode.H, 'control', 'option'],
     toolIcon: HammerspoonIcon,
     tool,
     actionName: 'List Scripts',
