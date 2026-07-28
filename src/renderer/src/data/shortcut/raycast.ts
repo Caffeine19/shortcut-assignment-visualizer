@@ -21,7 +21,9 @@ import ShortcutLibraryIcon from '@renderer/assets/raycast/ShortcutLibrary.png';
 import ToggleKeyboardBrightnessIcon from '@renderer/assets/raycast/ToggleKeyboardBrightness.png';
 import ToothpickIcon from '@renderer/assets/raycast/Toothpick.png';
 import WeChatIcon from '@renderer/assets/raycast/WeChat.png';
+import CopilotIcon from '@renderer/assets/raycast/custom/Copilot.png';
 import MirrorScreenIcon from '@renderer/assets/raycast/custom/MirrorScreen.png';
+import ObsidianIcon from '@renderer/assets/raycast/custom/Obsidian.png';
 import RestartWithoutReopenIcon from '@renderer/assets/raycast/custom/RestartWithoutReopen.png';
 import ZentaoIcon from '@renderer/assets/raycast/custom/Zentao.png';
 
@@ -78,6 +80,22 @@ export const customExtensionShortcuts: Shortcut[] = [
     actionName: 'Switch Window',
     raycastExtension: 'HammerWM',
     raycastExtensionIcon: HammerWMIcon,
+  },
+  {
+    keys: [KeyCode.S, 'control', 'shift', 'command'],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'List Chat Sessions',
+    raycastExtension: 'Copilot',
+    raycastExtensionIcon: CopilotIcon,
+  },
+  {
+    keys: [KeyCode.O, 'control', 'shift', 'command'],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Search Note',
+    raycastExtension: 'Obsidian',
+    raycastExtensionIcon: ObsidianIcon,
   },
   {
     keys: [KeyCode.E, 'control', 'command'],
