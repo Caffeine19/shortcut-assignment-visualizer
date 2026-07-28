@@ -6,9 +6,9 @@ import icon from '../../resources/icon.png?asset';
 
 /** Shared browser window options for vibrancy and title bar styling. */
 const vibrancyOptions: Electron.BrowserWindowConstructorOptions = {
-  vibrancy: 'under-window',
+  vibrancy: 'sidebar',
   backgroundColor: '#00000080',
-  visualEffectState: 'followWindow',
+  visualEffectState: 'active',
 };
 
 const customTitleBarOptions: Electron.BrowserWindowConstructorOptions = {
