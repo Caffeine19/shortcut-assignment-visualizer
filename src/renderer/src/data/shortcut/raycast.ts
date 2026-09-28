@@ -129,7 +129,7 @@ export const buildInExtensionShortcuts: Shortcut[] = (
     },
     {
       keys: [
-        [KeyCode.M, 'control', 'command'],
+        // [KeyCode.M, 'control', 'command'],
         ['left_shift', 'left_shift'],
       ],
       tool,
@@ -138,7 +138,7 @@ export const buildInExtensionShortcuts: Shortcut[] = (
     },
     {
       keys: [
-        [KeyCode.SLASH, 'control', 'command'],
+        // [KeyCode.SLASH, 'control', 'command'],
         ['right_shift', 'right_shift'],
       ],
       tool,
