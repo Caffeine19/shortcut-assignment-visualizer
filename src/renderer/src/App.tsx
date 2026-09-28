@@ -104,7 +104,14 @@ const App: Component = () => {
     });
   });
 
-  const multiViewConfigs = [
+  /** Multi View board: a modifier-combo keyboard or the Double View keyboard */
+  type MultiViewConfig = {
+    title: string;
+    modifiers?: ModifierKeyCode[];
+    double?: boolean;
+  };
+
+  const multiViewConfigs: MultiViewConfig[] = [
     {
       title: 'Control + Option View',
       modifiers: [KeyCode.CONTROL, KeyCode.OPTION] satisfies ModifierKeyCode[],
@@ -124,6 +131,10 @@ const App: Component = () => {
     {
       title: 'Option View',
       modifiers: [KeyCode.OPTION] satisfies ModifierKeyCode[],
+    },
+    {
+      title: 'Double View',
+      double: true,
     },
   ];
 
@@ -221,6 +232,7 @@ const App: Component = () => {
                       size={containerQuery.when('10xl') && multiViewCols() === 2 ? 'sm' : 'md'}
                       title={config.title}
                       modifiers={config.modifiers}
+                      double={config.double}
                     />
                   )}
                 </For>

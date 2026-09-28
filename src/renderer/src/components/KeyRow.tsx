@@ -11,6 +11,7 @@ interface KeyRowProps {
   forcedModifiers?: Set<ModifierKeyCode>;
   isInteractive?: boolean;
   keySize?: KeyProps['size'];
+  doubleMode?: boolean;
   last: boolean;
 }
 
@@ -28,6 +29,7 @@ const KeyRow = (props: KeyRowProps) => (
           forcedModifiers={props.forcedModifiers}
           isInteractive={props.isInteractive ?? true}
           size={props.keySize}
+          doubleMode={props.doubleMode}
         />
       )}
     </For>

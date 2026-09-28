@@ -1,11 +1,26 @@
 import { Search, X } from 'lucide-solid';
 import { type Component, For, Show, createEffect, createMemo, onCleanup, onMount } from 'solid-js';
 
-import { type Shortcut, normalizeShortcut } from '@renderer/types/shortcut';
+import { type ModifierKey, type Shortcut, normalizeShortcut } from '@renderer/types/shortcut';
 
 import { shortcutListData } from '@renderer/data/shortcut';
 
 import { useSearchStore } from '@renderer/stores/search';
+
+/** Searchable aliases per plain modifier, shared by combo and double-press bindings */
+const modifierSearchAliases: Record<ModifierKey, string[]> = {
+  command: ['cmd', 'command'],
+  control: ['ctrl', 'control'],
+  option: ['opt', 'option', 'alt'],
+  shift: ['shift'],
+};
+
+/** Human-readable label for a double-press binding, e.g. `Left Shift` */
+const doubleBindingLabel = (binding: { key: ModifierKey; side?: 'left' | 'right' }): string => {
+  const side = binding.side ? (binding.side === 'left' ? 'Left' : 'Right') : '';
+  const key = binding.key.charAt(0).toUpperCase() + binding.key.slice(1);
+  return `${side} ${key}`.trim();
+};
 
 /**
  * Search modal component for finding shortcuts globally
@@ -31,14 +46,24 @@ const SearchModal: Component = () => {
     return shortcutListData
       .filter((shortcut) => {
         const normalized = normalizeShortcut(shortcut);
-        // Build searchable key combination string
-        const modifiers: string[] = [];
-        if (normalized.command) modifiers.push('cmd', 'command');
-        if (normalized.control) modifiers.push('ctrl', 'control');
-        if (normalized.option) modifiers.push('opt', 'option', 'alt');
-        if (normalized.shift) modifiers.push('shift');
+        // Build searchable key combination string across all bindings
+        const keyCombo = normalized.bindings
+          .map((binding) => {
+            if (binding.kind === 'double') {
+              const aliases = modifierSearchAliases[binding.key];
+              return ['double', binding.side ?? '', ...aliases].join(' ');
+            }
 
-        const keyCombo = [...modifiers, normalized.keyCode].join(' ').toLowerCase();
+            const modifiers: string[] = [];
+            if (binding.command) modifiers.push(...modifierSearchAliases.command);
+            if (binding.control) modifiers.push(...modifierSearchAliases.control);
+            if (binding.option) modifiers.push(...modifierSearchAliases.option);
+            if (binding.shift) modifiers.push(...modifierSearchAliases.shift);
+
+            return [...modifiers, binding.keyCode].join(' ');
+          })
+          .join(' ')
+          .toLowerCase();
 
         return (
           shortcut.actionName.toLowerCase().includes(term) ||
@@ -53,13 +78,21 @@ const SearchModal: Component = () => {
   /** Generate human-readable key combination string for display */
   const formatKeyCombo = (shortcut: Shortcut) => {
     const normalized = normalizeShortcut(shortcut);
-    const parts: string[] = [];
-    if (normalized.command) parts.push('⌘');
-    if (normalized.control) parts.push('⌃');
-    if (normalized.option) parts.push('⌥');
-    if (normalized.shift) parts.push('⇧');
-    parts.push(normalized.keyCode.toUpperCase());
-    return parts.join(' + ');
+    return normalized.bindings
+      .map((binding) => {
+        if (binding.kind === 'double') {
+          return `Double ${doubleBindingLabel(binding)}`;
+        }
+
+        const parts: string[] = [];
+        if (binding.command) parts.push('⌘');
+        if (binding.control) parts.push('⌃');
+        if (binding.option) parts.push('⌥');
+        if (binding.shift) parts.push('⇧');
+        parts.push(binding.keyCode.toUpperCase());
+        return parts.join(' + ');
+      })
+      .join(' / ');
   };
 
   onMount(() => {

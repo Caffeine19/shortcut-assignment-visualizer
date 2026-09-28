@@ -9,7 +9,7 @@ const builtIn = true;
 export const builtInShortcutList: Shortcut[] = [
   // Command-Tab: Switch to the next most recently used app
   {
-    keys: [KeyCode.TAB, 'command'],
+    keys: [[KeyCode.TAB, 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch Apps',
@@ -17,7 +17,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Grave accent (`): Switch between windows of the current app
   {
-    keys: [KeyCode.TILDE, 'command'],
+    keys: [[KeyCode.TILDE, 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch Windows',
@@ -25,7 +25,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Control-F: Use or stop using the app in full screen
   {
-    keys: [KeyCode.F, 'control', 'command'],
+    keys: [[KeyCode.F, 'control', 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Toggle Full Screen',
@@ -33,7 +33,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Option-Esc: Force quit an app
   {
-    keys: [KeyCode.ESC, 'option', 'command'],
+    keys: [[KeyCode.ESC, 'option', 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Force Quit',
@@ -41,7 +41,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Space bar: Show or hide Spotlight search field
   {
-    keys: [KeyCode.SPACE, 'command'],
+    keys: [[KeyCode.SPACE, 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Spotlight Search',
@@ -49,7 +49,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Control-Space bar: Show the Character Viewer
   {
-    keys: [KeyCode.SPACE, 'control', 'command'],
+    keys: [[KeyCode.SPACE, 'control', 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Character Viewer',
@@ -57,7 +57,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Control-Q: Lock your screen
   {
-    keys: [KeyCode.Q, 'control', 'command'],
+    keys: [[KeyCode.Q, 'control', 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Lock Screen',
@@ -65,7 +65,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Option-D: Show or hide the Dock
   {
-    keys: [KeyCode.D, 'option', 'command'],
+    keys: [[KeyCode.D, 'option', 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Toggle Dock',
@@ -74,7 +74,7 @@ export const builtInShortcutList: Shortcut[] = [
 
   // Command-Shift-3: Take a screenshot of the entire screen
   {
-    keys: [KeyCode.THREE, 'shift', 'command'],
+    keys: [[KeyCode.THREE, 'shift', 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Screenshot Entire Screen',
@@ -82,7 +82,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Shift-4: Take a screenshot of a selected area
   {
-    keys: [KeyCode.FOUR, 'shift', 'command'],
+    keys: [[KeyCode.FOUR, 'shift', 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Screenshot Selected Area',
@@ -90,7 +90,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Shift-5: Take a screenshot or make a screen recording (macOS Mojave+)
   {
-    keys: [KeyCode.FIVE, 'shift', 'command'],
+    keys: [[KeyCode.FIVE, 'shift', 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Screenshot & Recording',
@@ -98,7 +98,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Command-Shift-6: Capture the Touch Bar
   {
-    keys: [KeyCode.SIX, 'shift', 'command'],
+    keys: [[KeyCode.SIX, 'shift', 'command']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Capture Touch Bar',
@@ -108,7 +108,7 @@ export const builtInShortcutList: Shortcut[] = [
   // ── Mission Control ──────────────────────────────────────────────────
   // Control-Up Arrow: Open Mission Control
   {
-    keys: [KeyCode.ARROW_UP, 'control'],
+    keys: [[KeyCode.ARROW_UP, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Mission Control',
@@ -116,7 +116,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Control-Down Arrow: App Exposé (show windows of current app)
   {
-    keys: [KeyCode.ARROW_DOWN, 'control'],
+    keys: [[KeyCode.ARROW_DOWN, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'App Exposé',
@@ -124,7 +124,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Control-Left Arrow: Move left a space
   {
-    keys: [KeyCode.ARROW_LEFT, 'control'],
+    keys: [[KeyCode.ARROW_LEFT, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Move Left a Space',
@@ -132,7 +132,7 @@ export const builtInShortcutList: Shortcut[] = [
   },
   // Control-Right Arrow: Move right a space
   {
-    keys: [KeyCode.ARROW_RIGHT, 'control'],
+    keys: [[KeyCode.ARROW_RIGHT, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Move Right a Space',
@@ -141,70 +141,70 @@ export const builtInShortcutList: Shortcut[] = [
 
   // ── Switch to Desktop N (⌃+1 ~ ⌃+0) ────────────────────────────────
   {
-    keys: [KeyCode.ONE, 'control'],
+    keys: [[KeyCode.ONE, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 1',
     builtIn,
   },
   {
-    keys: [KeyCode.TWO, 'control'],
+    keys: [[KeyCode.TWO, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 2',
     builtIn,
   },
   {
-    keys: [KeyCode.THREE, 'control'],
+    keys: [[KeyCode.THREE, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 3',
     builtIn,
   },
   {
-    keys: [KeyCode.FOUR, 'control'],
+    keys: [[KeyCode.FOUR, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 4',
     builtIn,
   },
   {
-    keys: [KeyCode.FIVE, 'control'],
+    keys: [[KeyCode.FIVE, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 5',
     builtIn,
   },
   {
-    keys: [KeyCode.SIX, 'control'],
+    keys: [[KeyCode.SIX, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 6',
     builtIn,
   },
   {
-    keys: [KeyCode.SEVEN, 'control'],
+    keys: [[KeyCode.SEVEN, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 7',
     builtIn,
   },
   {
-    keys: [KeyCode.EIGHT, 'control'],
+    keys: [[KeyCode.EIGHT, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 8',
     builtIn,
   },
   {
-    keys: [KeyCode.NINE, 'control'],
+    keys: [[KeyCode.NINE, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 9',
     builtIn,
   },
   {
-    keys: [KeyCode.ZERO, 'control'],
+    keys: [[KeyCode.ZERO, 'control']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 10',
@@ -213,42 +213,42 @@ export const builtInShortcutList: Shortcut[] = [
 
   // ── Switch to Desktop 11-16 (⌃⌥+1 ~ ⌃⌥+6) ─────────────────────────
   {
-    keys: [KeyCode.ONE, 'control', 'option'],
+    keys: [[KeyCode.ONE, 'control', 'option']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 11',
     builtIn,
   },
   {
-    keys: [KeyCode.TWO, 'control', 'option'],
+    keys: [[KeyCode.TWO, 'control', 'option']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 12',
     builtIn,
   },
   {
-    keys: [KeyCode.THREE, 'control', 'option'],
+    keys: [[KeyCode.THREE, 'control', 'option']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 13',
     builtIn,
   },
   {
-    keys: [KeyCode.FOUR, 'control', 'option'],
+    keys: [[KeyCode.FOUR, 'control', 'option']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 14',
     builtIn,
   },
   {
-    keys: [KeyCode.FIVE, 'control', 'option'],
+    keys: [[KeyCode.FIVE, 'control', 'option']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 15',
     builtIn,
   },
   {
-    keys: [KeyCode.SIX, 'control', 'option'],
+    keys: [[KeyCode.SIX, 'control', 'option']],
     toolIcon: FinderPaleIcon,
     tool,
     actionName: 'Switch to Desktop 16',

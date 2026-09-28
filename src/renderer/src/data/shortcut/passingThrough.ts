@@ -5,7 +5,10 @@ import { Shortcut } from '@renderer/types/shortcut';
 
 export const passingThroughShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.TAB, 'control', 'command'],
+    keys: [
+      [KeyCode.TAB, 'control', 'command'],
+      ['ctrl', 'ctrl'],
+    ],
     toolIcon: PassingThroughIcon,
     tool: 'Passing Through',
     actionName: 'Open Space Switcher',

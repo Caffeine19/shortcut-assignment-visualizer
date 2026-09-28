@@ -60,7 +60,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 
 export const <camelCaseName>ShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.<KEY>, '<modifier1>', '<modifier2>'],
+    keys: [[KeyCode.<KEY>, '<modifier1>', '<modifier2>']],
     toolIcon: <Name>Icon,
     tool: '<Extension Title>',
     actionName: '<Action Description>',
@@ -94,7 +94,7 @@ If the shortcut is a **Raycast extension** (not a standalone app), add it to `sr
 
 ```typescript
   {
-    keys: [KeyCode.<KEY>, '<modifier1>', '<modifier2>'],
+    keys: [[KeyCode.<KEY>, '<modifier1>', '<modifier2>']],
     toolIcon: RaycastIcon,
     tool: 'Raycast',
     actionName: '<Action Description>',

@@ -20,6 +20,8 @@ export interface KeyProps {
   forcedModifiers?: Set<ModifierKeyCode>;
   isInteractive?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  /** Double View mode: look up double-press bindings instead of combo bindings */
+  doubleMode?: boolean;
 }
 
 const KeyItem = (props: KeyProps) => {
@@ -44,9 +46,11 @@ const KeyItem = (props: KeyProps) => {
   };
 
   const shortcut = createMemo(() => {
-    const shortcuts = props.forcedModifiers
-      ? shortcutStore.getShortcutByKeyWithModifiers(props.key, props.forcedModifiers)
-      : shortcutStore.getRelativeShortcutByKey(props.key);
+    const shortcuts = props.doubleMode
+      ? shortcutStore.getDoubleShortcutsForKey(props.key)
+      : props.forcedModifiers
+        ? shortcutStore.getShortcutByKeyWithModifiers(props.key, props.forcedModifiers)
+        : shortcutStore.getRelativeShortcutByKey(props.key);
 
     if (shortcuts.length === 0) return undefined;
 
@@ -60,6 +64,11 @@ const KeyItem = (props: KeyProps) => {
     const activatedModifiers = props.forcedModifiers || keyRowStore.activatedModifierList();
     const isBuiltIn = shortcut()?.builtIn;
 
+    // Double View highlights keys that have double-press bindings
+    const isActive = props.doubleMode
+      ? !!shortcut()
+      : isModifierKeyCode(props.key.keyCode) && activatedModifiers.has(props.key.keyCode);
+
     return twMerge(
       'relative flex items-center justify-center border border-zinc-800 bg-zinc-900 text-center font-bold text-zinc-200 transition-all duration-150',
 
@@ -70,7 +79,7 @@ const KeyItem = (props: KeyProps) => {
       isInteractive && !isBuiltIn && 'hover:border-red-500/60 hover:bg-zinc-800 hover:text-red-400',
 
       isModifierKeyCode(props.key.keyCode)
-        ? activatedModifiers.has(props.key.keyCode)
+        ? isActive
           ? 'border-red-500 bg-red-500/20'
           : isInteractive && 'cursor-pointer'
         : '',

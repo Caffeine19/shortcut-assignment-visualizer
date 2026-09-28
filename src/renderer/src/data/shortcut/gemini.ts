@@ -5,7 +5,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 
 export const geminiShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.EIGHT, 'control', 'option'],
+    keys: [[KeyCode.EIGHT, 'control', 'option']],
     toolIcon: GeminiIcon,
     tool: 'Gemini',
     actionName: 'Open Gemini',

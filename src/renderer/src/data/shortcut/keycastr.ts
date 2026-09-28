@@ -5,7 +5,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 
 export const keycastrShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.Y, 'control', 'option'],
+    keys: [[KeyCode.Y, 'control', 'option']],
     toolIcon: KeyCastrIcon,
     tool: 'KeyCastr',
     actionName: 'Toggle KeyCastr',

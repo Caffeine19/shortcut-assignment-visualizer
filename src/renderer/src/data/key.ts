@@ -35,7 +35,7 @@ export const keyRowListData: Key[][] = [
     { keyCode: KeyCode.BACKSLASH, span: 1.25, label: '\\' },
   ],
   [
-    { keyCode: KeyCode.CONTROL, span: 1.75, label: '⌃' },
+    { keyCode: KeyCode.CONTROL, span: 1.75, label: '⌃', side: 'left' },
     { keyCode: KeyCode.A, span: 1, label: 'A' },
     { keyCode: KeyCode.S, span: 1, label: 'S' },
     { keyCode: KeyCode.D, span: 1, label: 'D' },
@@ -50,7 +50,7 @@ export const keyRowListData: Key[][] = [
     { keyCode: KeyCode.ENTER, span: 2, label: '⏎' },
   ],
   [
-    { keyCode: KeyCode.SHIFT, span: 2.25, label: '⇧' },
+    { keyCode: KeyCode.SHIFT, span: 2.25, label: '⇧', side: 'left' },
     { keyCode: KeyCode.Z, span: 1, label: 'Z' },
     { keyCode: KeyCode.X, span: 1, label: 'X' },
     { keyCode: KeyCode.C, span: 1, label: 'C' },
@@ -62,14 +62,14 @@ export const keyRowListData: Key[][] = [
     { keyCode: KeyCode.PERIOD, span: 1, label: '.' },
     { keyCode: KeyCode.SLASH, span: 1, label: '/' },
     { keyCode: KeyCode.ARROW_UP, span: 1, label: '↑' },
-    { keyCode: KeyCode.SHIFT, span: 1.75, label: '⇧' },
+    { keyCode: KeyCode.SHIFT, span: 1.75, label: '⇧', side: 'right' },
   ],
   [
     { keyCode: KeyCode.EMPTY, span: 1.75, label: '' },
-    { keyCode: KeyCode.OPTION, span: 1.25, label: '⌥' },
-    { keyCode: KeyCode.COMMAND, span: 1.25, label: '⌘' },
+    { keyCode: KeyCode.OPTION, span: 1.25, label: '⌥', side: 'left' },
+    { keyCode: KeyCode.COMMAND, span: 1.25, label: '⌘', side: 'left' },
     { keyCode: KeyCode.SPACE, span: 6, label: 'space' },
-    { keyCode: KeyCode.COMMAND, span: 1.25, label: '⌘' },
+    { keyCode: KeyCode.COMMAND, span: 1.25, label: '⌘', side: 'right' },
     // { keyCode: KeyCode.OPTION, span: 1.25, label: '⌥' },
 
     { keyCode: KeyCode.EMPTY, span: 1, label: '' },

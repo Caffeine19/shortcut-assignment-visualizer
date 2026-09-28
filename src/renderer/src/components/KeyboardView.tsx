@@ -9,7 +9,10 @@ import { useShortcutStore } from '@renderer/stores/shortcut';
 
 interface KeyboardViewProps {
   title: string;
-  modifiers: ModifierKeyCode[];
+  /** Modifier combo shown by this view; ignored in double mode */
+  modifiers?: ModifierKeyCode[];
+  /** Double View mode: show double-press bindings instead of a modifier combo */
+  double?: boolean;
   size?: 'sm' | 'md' | 'lg';
 }
 
@@ -18,7 +21,9 @@ const KeyboardView: Component<KeyboardViewProps> = (props) => {
   const shortcutStore = useShortcutStore();
 
   const count = createMemo(() =>
-    shortcutStore.getShortcutCountByModifiers(new Set(props.modifiers)),
+    props.double
+      ? shortcutStore.getDoubleShortcutCount()
+      : shortcutStore.getShortcutCountByModifiers(new Set(props.modifiers ?? [])),
   );
 
   return (
@@ -33,7 +38,8 @@ const KeyboardView: Component<KeyboardViewProps> = (props) => {
               <KeyRow
                 last={row === keyRowStore.keyRowList()[keyRowStore.keyRowList().length - 1]}
                 row={row}
-                forcedModifiers={new Set(props.modifiers)}
+                forcedModifiers={props.double ? undefined : new Set(props.modifiers ?? [])}
+                doubleMode={props.double}
                 isInteractive={false}
                 keySize={props.size ?? 'sm'}
               />

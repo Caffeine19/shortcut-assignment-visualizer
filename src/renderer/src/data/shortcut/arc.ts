@@ -5,7 +5,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 
 export const arcShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.A, 'control', 'command'],
+    keys: [[KeyCode.A, 'control', 'command']],
     toolIcon: ArcIcon,
     tool: 'Arc',
     actionName: 'Search Spaces',

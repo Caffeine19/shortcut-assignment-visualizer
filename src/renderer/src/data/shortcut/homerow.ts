@@ -6,19 +6,19 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Homerow';
 export const homerowShortcutList: Shortcut[] = [
   {
-    keys: [KeyCode.SPACE, 'shift', 'command'],
+    keys: [[KeyCode.SPACE, 'shift', 'command']],
     toolIcon: HomerowIcon,
     tool,
     actionName: 'Homerow Clicking',
   },
   {
-    keys: [KeyCode.J, 'shift', 'command'],
+    keys: [[KeyCode.J, 'shift', 'command']],
     toolIcon: HomerowIcon,
     tool,
     actionName: 'Homerow Scrolling',
   },
   {
-    keys: [KeyCode.SLASH, 'shift', 'command'],
+    keys: [[KeyCode.SLASH, 'shift', 'command']],
     toolIcon: HomerowIcon,
     tool,
     actionName: 'Homerow Search',

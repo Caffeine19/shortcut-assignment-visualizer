@@ -8,7 +8,7 @@ import { useKeyRowStore } from '@renderer/stores/key';
 export const useListeningForModifierKeyDown = () => {
   const keyRowStore = useKeyRowStore();
 
-  const [isListening, setIsListening] = createSignal(true);
+  const [isListening, setIsListening] = createSignal(false);
 
   const [keydownList, setKeydownList] = createSignal<KeyboardEvent[]>([]);
   const pushKeydownList = throttle(
