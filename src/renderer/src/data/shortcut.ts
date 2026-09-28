@@ -4,7 +4,6 @@ import { altTabShortcutList } from './shortcut/altTab';
 import { arcShortcutList } from './shortcut/arc';
 import { builtInShortcutList } from './shortcut/builtIn';
 import { chatGPTShortcutList } from './shortcut/chatgpt';
-import { cherryStudioShortcutList } from './shortcut/cherryStudio';
 import { geminiShortcutList } from './shortcut/gemini';
 import { homerowShortcutList } from './shortcut/homerow';
 import { iceShortcutList } from './shortcut/ice';
@@ -45,7 +44,6 @@ export const shortcutListData: Shortcut[] = [
   ...iceShortcutList,
   ...chatGPTShortcutList,
   ...geminiShortcutList,
-  ...cherryStudioShortcutList,
   ...systemShortcutList,
   ...systemSettingsShortcutList,
   ...keycastrShortcutList,

@@ -116,6 +116,12 @@ export const customExtensionShortcuts: Shortcut[] = [
 export const buildInExtensionShortcuts: Shortcut[] = (
   [
     {
+      keys: [KeyCode.SPACE, 'control', 'option'],
+      tool,
+      actionName: 'Open AI Chat',
+      raycastExtension: 'AI Chat',
+    },
+    {
       keys: [KeyCode.N, 'control', 'option'],
       tool,
       actionName: 'Raycast Notes',
