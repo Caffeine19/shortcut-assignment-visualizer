@@ -1,5 +1,6 @@
 import { Shortcut } from '@renderer/types/shortcut';
 
+import { airBuddyShortcutList } from './shortcut/airbuddy';
 import { altTabShortcutList } from './shortcut/altTab';
 import { arcShortcutList } from './shortcut/arc';
 import { builtInShortcutList } from './shortcut/builtIn';
@@ -26,6 +27,7 @@ import { warpShortcutList } from './shortcut/warp';
 
 export const shortcutListData: Shortcut[] = [
   ...builtInShortcutList,
+  ...airBuddyShortcutList,
   ...pasteNowShortcutList,
   ...raycastShortcutList,
   ...shortcutsShortcutList,

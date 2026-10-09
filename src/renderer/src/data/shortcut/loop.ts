@@ -32,7 +32,7 @@ export const loopShortcutList: Shortcut[] = [
   {
     keys: [
       [KeyCode.SPACE, 'control', 'command'],
-      ['cmd', 'cmd'],
+      ['left_command', 'left_command'],
     ],
     toolIcon: LoopIcon,
     tool,

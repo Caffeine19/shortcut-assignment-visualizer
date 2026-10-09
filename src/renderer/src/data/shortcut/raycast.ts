@@ -42,7 +42,7 @@ const tool = 'Raycast';
 
 export const customExtensionShortcuts: Shortcut[] = [
   {
-    keys: [[KeyCode.M, 'control', 'shift', 'command']],
+    keys: [[KeyCode.M, 'control', 'command']],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Mirror Screen',
@@ -139,6 +139,7 @@ export const buildInExtensionShortcuts: Shortcut[] = (
     {
       keys: [
         // [KeyCode.SLASH, 'control', 'command'],
+        [KeyCode.SLASH, 'control', 'shift', 'command'],
         ['right_shift', 'right_shift'],
       ],
       tool,
