@@ -6,19 +6,13 @@ import { Shortcut } from '@renderer/types/shortcut';
 const tool = 'Notion';
 export const notionShortcutList: Shortcut[] = [
   {
-    keys: [[KeyCode.N, 'option', 'shift']],
-    toolIcon: NotionIcon,
-    tool,
-    actionName: 'Notion AI Shortcut',
-  },
-  {
     keys: [[KeyCode.N, 'control', 'command']],
     toolIcon: NotionIcon,
     tool,
     actionName: 'Open Notion',
   },
   {
-    keys: [[KeyCode.N, 'control', 'shift', 'command']],
+    keys: [[KeyCode.N, 'control', 'option', 'command']],
     toolIcon: NotionIcon,
     tool: 'Raycast',
     actionName: 'Add Text to Page',

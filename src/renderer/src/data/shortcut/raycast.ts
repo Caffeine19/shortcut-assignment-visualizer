@@ -7,6 +7,7 @@ import HammerspoonIcon from '@renderer/assets/Hammerspoon.png';
 import JetbrainsIcon from '@renderer/assets/JetBrains.png';
 import EdgeIcon from '@renderer/assets/MicrosoftEdge.png';
 import RaycastIcon from '@renderer/assets/Raycast.png';
+import RestartForemostAppIcon from '@renderer/assets/RestartForemostApp.png';
 import SurgeIcon from '@renderer/assets/Surge.png';
 import WarpIcon from '@renderer/assets/Warp.png';
 import iMessageIcon from '@renderer/assets/iMessage.png';
@@ -82,7 +83,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: HammerWMIcon,
   },
   {
-    keys: [[KeyCode.S, 'control', 'shift', 'command']],
+    keys: [[KeyCode.S, 'control', 'option', 'command']],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'List Chat Sessions',
@@ -90,7 +91,7 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtensionIcon: CopilotIcon,
   },
   {
-    keys: [[KeyCode.O, 'control', 'shift', 'command']],
+    keys: [[KeyCode.O, 'control', 'option', 'command']],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Search Note',
@@ -139,7 +140,7 @@ export const buildInExtensionShortcuts: Shortcut[] = (
     {
       keys: [
         // [KeyCode.SLASH, 'control', 'command'],
-        [KeyCode.SLASH, 'control', 'shift', 'command'],
+        [KeyCode.SLASH, 'control', 'option', 'command'],
         ['right_shift', 'right_shift'],
       ],
       tool,
@@ -294,6 +295,32 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: WeChatIcon,
   },
   {
+    keys: [[KeyCode.X, 'control', 'option', 'command']],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Store',
+  },
+  {
+    keys: [[KeyCode.R, 'control', 'option', 'command']],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Restart Foremost App',
+    raycastExtension: 'Restart Foremost App',
+    raycastExtensionIcon: RestartForemostAppIcon,
+  },
+  {
+    keys: [[KeyCode.C, 'control', 'option', 'command']],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Confetti',
+  },
+  {
+    keys: [[KeyCode.T, 'control', 'option', 'command']],
+    toolIcon: RaycastIcon,
+    tool,
+    actionName: 'Toggle System Appearance',
+  },
+  {
     keys: [[KeyCode.X, 'control', 'option']],
     toolIcon: SurgeIcon,
     tool,
@@ -325,7 +352,7 @@ export const raycastShortcutList: Shortcut[] = [
     keys: [[KeyCode.J, 'control', 'option']],
     toolIcon: JetbrainsIcon,
     tool,
-    actionName: 'Search Recent Projects',
+    actionName: 'Open Recent Project',
     raycastExtension: 'JetBrains Toolbox Recent Projects',
   },
   {

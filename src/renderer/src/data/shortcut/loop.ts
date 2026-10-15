@@ -36,7 +36,7 @@ export const loopShortcutList: Shortcut[] = [
     ],
     toolIcon: LoopIcon,
     tool,
-    actionName: 'Cycle Windows',
+    actionName: 'Maximize',
   },
   {
     keys: [[KeyCode.ENTER, 'control', 'command']],

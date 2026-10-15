@@ -9,7 +9,7 @@ export const vscodeShortcutList: Shortcut[] = [
     keys: [[KeyCode.C, 'control', 'option']],
     toolIcon: VSCodeIcon,
     tool,
-    actionName: 'Paste in VSCode',
+    actionName: 'Search Recent Projects',
     raycastExtension: 'Visual Studio Code',
   },
 ];

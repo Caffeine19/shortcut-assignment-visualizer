@@ -6,7 +6,7 @@ import { Shortcut } from '@renderer/types/shortcut';
 export const airBuddyShortcutList: Shortcut[] = [
   {
     keys: [
-      [KeyCode.BACKSLASH, 'control', 'shift', 'command'],
+      [KeyCode.BACKSLASH, 'control', 'option', 'command'],
       ['right_command', 'right_command'],
     ],
     toolIcon: AirBuddyIcon,

@@ -121,8 +121,8 @@ const App: Component = () => {
       modifiers: [KeyCode.COMMAND, KeyCode.CONTROL] satisfies ModifierKeyCode[],
     },
     {
-      title: 'Command + Control + Shift View',
-      modifiers: [KeyCode.COMMAND, KeyCode.CONTROL, KeyCode.SHIFT] satisfies ModifierKeyCode[],
+      title: 'Control + Option + Command View',
+      modifiers: [KeyCode.CONTROL, KeyCode.OPTION, KeyCode.COMMAND] satisfies ModifierKeyCode[],
     },
     {
       title: 'Command + Shift View',
