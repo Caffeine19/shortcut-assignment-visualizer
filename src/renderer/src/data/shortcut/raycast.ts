@@ -22,6 +22,17 @@ import ShortcutLibraryIcon from '@renderer/assets/raycast/ShortcutLibrary.png';
 import ToggleKeyboardBrightnessIcon from '@renderer/assets/raycast/ToggleKeyboardBrightness.png';
 import ToothpickIcon from '@renderer/assets/raycast/Toothpick.png';
 import WeChatIcon from '@renderer/assets/raycast/WeChat.png';
+import AiChatIcon from '@renderer/assets/raycast/builtIn/AiChat.png';
+import NextDesktopIcon from '@renderer/assets/raycast/builtIn/NextDesktop.png';
+import PreviousDesktopIcon from '@renderer/assets/raycast/builtIn/PreviousDesktop.png';
+import RaycastNotesIcon from '@renderer/assets/raycast/builtIn/RaycastNotes.png';
+import SearchEmojiIcon from '@renderer/assets/raycast/builtIn/SearchEmoji.png';
+import SearchFilesCommandIcon from '@renderer/assets/raycast/builtIn/SearchFiles.png';
+import SearchMenuItemsIcon from '@renderer/assets/raycast/builtIn/SearchMenuItems.png';
+import SearchSnippetsIcon from '@renderer/assets/raycast/builtIn/SearchSnippets.png';
+import StoreIcon from '@renderer/assets/raycast/builtIn/Store.png';
+import ToggleStageManagerIcon from '@renderer/assets/raycast/builtIn/ToggleStageManager.png';
+import ToggleSystemAppearanceIcon from '@renderer/assets/raycast/builtIn/ToggleSystemAppearance.png';
 import CopilotIcon from '@renderer/assets/raycast/custom/Copilot.png';
 import MirrorScreenIcon from '@renderer/assets/raycast/custom/MirrorScreen.png';
 import ObsidianIcon from '@renderer/assets/raycast/custom/Obsidian.png';
@@ -40,6 +51,102 @@ import { Shortcut } from '@renderer/types/shortcut';
  */
 
 const tool = 'Raycast';
+
+/** Raycast builtin extensions */
+export const buildInExtensionShortcuts: Shortcut[] = (
+  [
+    {
+      keys: [[KeyCode.SPACE, 'control', 'option']],
+      tool,
+      actionName: 'Open AI Chat',
+      raycastExtension: 'AI Chat',
+      raycastExtensionIcon: AiChatIcon,
+    },
+    {
+      keys: [[KeyCode.N, 'control', 'option']],
+      tool,
+      actionName: 'Raycast Notes',
+      raycastExtension: 'Notes',
+      raycastExtensionIcon: RaycastNotesIcon,
+    },
+    {
+      keys: [
+        [KeyCode.M, 'control', 'option', 'command'],
+        ['left_shift', 'left_shift'],
+      ],
+      tool,
+      actionName: 'Search Menu Item',
+      raycastExtension: 'Search Menu Items',
+      raycastExtensionIcon: SearchMenuItemsIcon,
+    },
+    {
+      keys: [
+        // [KeyCode.SLASH, 'control', 'command'],
+        [KeyCode.SLASH, 'control', 'option', 'command'],
+        ['right_shift', 'right_shift'],
+      ],
+      tool,
+      actionName: 'Toggle Stage Manager',
+      raycastExtension: 'Toggle Stage Manager',
+      raycastExtensionIcon: ToggleStageManagerIcon,
+    },
+    {
+      keys: [[KeyCode.QUOTE, 'control', 'option']],
+      tool,
+      actionName: 'Search Emoji & Symbols',
+      raycastExtension: 'Emoji & Symbols',
+      raycastExtensionIcon: SearchEmojiIcon,
+    },
+    {
+      keys: [[KeyCode.S, 'control', 'command']],
+      tool,
+      actionName: 'Search Snippet',
+      raycastExtension: 'Search Snippet',
+      raycastExtensionIcon: SearchSnippetsIcon,
+    },
+    {
+      keys: [[KeyCode.PERIOD, 'control', 'command']],
+      tool,
+      actionName: 'Next Desktop',
+      raycastExtension: 'Next Desktop',
+      raycastExtensionIcon: NextDesktopIcon,
+    },
+    {
+      keys: [[KeyCode.COMMA, 'control', 'command']],
+      tool,
+      actionName: 'Previous Desktop',
+      raycastExtension: 'Previous Desktop',
+      raycastExtensionIcon: PreviousDesktopIcon,
+    },
+    {
+      keys: [[KeyCode.C, 'control', 'option', 'command']],
+      tool,
+      actionName: 'Confetti',
+    },
+    {
+      keys: [[KeyCode.T, 'control', 'option', 'command']],
+      tool,
+      actionName: 'Toggle System Appearance',
+      raycastExtensionIcon: ToggleSystemAppearanceIcon,
+    },
+    {
+      keys: [[KeyCode.X, 'control', 'option', 'command']],
+      tool,
+      actionName: 'Store',
+      raycastExtensionIcon: StoreIcon,
+    },
+    {
+      keys: [[KeyCode.SPACE, 'option', 'command']],
+      tool,
+      actionName: 'Search Files',
+      raycastExtension: 'Search Files',
+      raycastExtensionIcon: SearchFilesCommandIcon,
+    },
+  ] satisfies Omit<Shortcut, 'toolIcon'>[]
+).map((shortcut) => ({
+  ...shortcut,
+  toolIcon: RaycastIcon,
+}));
 
 export const customExtensionShortcuts: Shortcut[] = [
   {
@@ -90,6 +197,9 @@ export const customExtensionShortcuts: Shortcut[] = [
     raycastExtension: 'Copilot',
     raycastExtensionIcon: CopilotIcon,
   },
+];
+
+export const raycastShortcutList: Shortcut[] = [
   {
     keys: [[KeyCode.O, 'control', 'option', 'command']],
     toolIcon: RaycastIcon,
@@ -112,72 +222,6 @@ export const customExtensionShortcuts: Shortcut[] = [
     actionName: 'Search Workspaces',
     raycastExtension: 'Microsoft Edge',
   },
-];
-
-export const buildInExtensionShortcuts: Shortcut[] = (
-  [
-    {
-      keys: [[KeyCode.SPACE, 'control', 'option']],
-      tool,
-      actionName: 'Open AI Chat',
-      raycastExtension: 'AI Chat',
-    },
-    {
-      keys: [[KeyCode.N, 'control', 'option']],
-      tool,
-      actionName: 'Raycast Notes',
-      raycastExtension: 'Notes',
-    },
-    {
-      keys: [
-        [KeyCode.M, 'control', 'option', 'command'],
-        ['left_shift', 'left_shift'],
-      ],
-      tool,
-      actionName: 'Search Menu Item',
-      raycastExtension: 'Search Menu Items',
-    },
-    {
-      keys: [
-        // [KeyCode.SLASH, 'control', 'command'],
-        [KeyCode.SLASH, 'control', 'option', 'command'],
-        ['right_shift', 'right_shift'],
-      ],
-      tool,
-      actionName: 'Toggle Stage Manager',
-      raycastExtension: 'Toggle Stage Manager',
-    },
-    {
-      keys: [[KeyCode.QUOTE, 'control', 'option']],
-      tool,
-      actionName: 'Search Emoji & Symbols',
-      raycastExtension: 'Emoji & Symbols',
-    },
-    {
-      keys: [[KeyCode.S, 'control', 'command']],
-      tool,
-      actionName: 'Search Snippet',
-      raycastExtension: 'Search Snippet',
-    },
-    {
-      keys: [[KeyCode.PERIOD, 'control', 'command']],
-      tool,
-      actionName: 'Next Desktop',
-      raycastExtension: 'Next Desktop',
-    },
-    {
-      keys: [[KeyCode.COMMA, 'control', 'command']],
-      tool,
-      actionName: 'Previous Desktop',
-      raycastExtension: 'Previous Desktop',
-    },
-  ] satisfies Omit<Shortcut, 'toolIcon'>[]
-).map((shortcut) => ({
-  ...shortcut,
-  toolIcon: RaycastIcon,
-}));
-
-export const raycastShortcutList: Shortcut[] = [
   {
     keys: [[KeyCode.T, 'control', 'command']],
     toolIcon: RaycastIcon,
@@ -256,6 +300,7 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtension: 'Remove Window from Set',
     raycastExtensionIcon: RemoveWindowFromSetIcon,
   },
+  // defined in warp
   // {
   //   keys: [[KeyCode.L, 'control', 'option']],
   //   toolIcon: RaycastIcon,
@@ -270,13 +315,6 @@ export const raycastShortcutList: Shortcut[] = [
     actionName: 'Insert Natural Language Date',
     raycastExtension: 'Date Format Converter',
     raycastExtensionIcon: DateFormatConverterIcon,
-  },
-  {
-    keys: [[KeyCode.SPACE, 'option', 'command']],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Search Files',
-    raycastExtension: 'Search Files',
   },
   {
     keys: [[KeyCode.K, 'control', 'option']],
@@ -295,30 +333,12 @@ export const raycastShortcutList: Shortcut[] = [
     raycastExtensionIcon: WeChatIcon,
   },
   {
-    keys: [[KeyCode.X, 'control', 'option', 'command']],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Store',
-  },
-  {
     keys: [[KeyCode.R, 'control', 'option', 'command']],
     toolIcon: RaycastIcon,
     tool,
     actionName: 'Restart Foremost App',
     raycastExtension: 'Restart Foremost App',
     raycastExtensionIcon: RestartForemostAppIcon,
-  },
-  {
-    keys: [[KeyCode.C, 'control', 'option', 'command']],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Confetti',
-  },
-  {
-    keys: [[KeyCode.T, 'control', 'option', 'command']],
-    toolIcon: RaycastIcon,
-    tool,
-    actionName: 'Toggle System Appearance',
   },
   {
     keys: [[KeyCode.X, 'control', 'option']],

@@ -12,7 +12,7 @@ const RaycastExtensionMark: Component<RaycastExtensionMarkProps> = (props) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       class={twJoin(
-        'absolute right-1 bottom-1 fill-zinc-200',
+        'absolute right-1 bottom-1 fill-zinc-200/80',
         props.size === 'sm' ? 'h-2 w-2' : 'h-4 w-4',
       )}
     >
