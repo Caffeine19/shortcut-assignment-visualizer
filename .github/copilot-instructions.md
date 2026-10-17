@@ -1,9 +1,11 @@
 # GitHub Copilot Instructions
 
 ## Project Overview
+
 This is a **Shortcut Assignment Visualizer** - an Electron desktop app that displays keyboard shortcuts as an interactive visual keyboard layout. Users can press modifier keys (Command/Option/Control/Shift) to see which applications have shortcuts bound to specific keys.
 
 ## Architecture & Tech Stack
+
 - **Electron + Vite**: Main process (`src/main/`), renderer process (`src/renderer/`), preload scripts (`src/preload/`)
 - **SolidJS**: Reactive UI framework (not React) - uses `createSignal()`, `createMemo()`, `createEffect()`
 - **TypeScript**: Strict typing with path aliases (`@renderer/*` → `src/renderer/src/*`)
@@ -11,36 +13,44 @@ This is a **Shortcut Assignment Visualizer** - an Electron desktop app that disp
 - **PNPM**: Package manager (not npm/yarn)
 
 ## Core Data Model
+
 ### Keyboard Layout (`src/renderer/src/data/key.ts`)
+
 - `keyRowListData`: 2D array representing physical keyboard layout
 - Each key has `keyCode`, `span` (width multiplier), and `label`
 - Spans control visual width: 1 = standard key, 1.5 = Tab, 2.25 = Shift, etc.
 
 ### Shortcuts (`src/renderer/src/data/shortcut/`)
+
 - Modular files per application (raycast.ts, vscode.ts, notion.ts, etc.)
 - Each shortcut maps `keyCode` + modifier combination to specific actions
 - Special support for **Raycast extensions** with separate icons and metadata
 - Icons use dynamic color extraction via `node-vibrant` for visual theming
 
 ### State Management (SolidJS Stores)
+
 - `useKeyRowStore()`: Tracks activated modifier keys, keyboard layout
 - `useShortcutStore()`: Maps shortcuts to keys based on current modifier state
 - **No Redux/Zustand** - uses SolidJS reactive primitives
 
 ## Key Interaction Patterns
+
 ### Modifier Key Listening (`src/renderer/src/hooks/useListeningForModifierKeyDown.ts`)
+
 - **Cmd+K**: Start listening mode (red indicator)
 - **Escape**: Stop listening
 - Hold modifiers to highlight matching shortcuts on keyboard
 - Uses throttled event handling (1000ms interval) for performance
 
 ### Visual Feedback (`src/renderer/src/components/KeyItem.tsx`)
+
 - Dynamic border colors from app icon color palettes
 - Hover tooltips showing full shortcut details
 - Press animations (translate + shadow effects)
 - Raycast extensions get special visual badges
 
 ## Development Workflow
+
 ```bash
 # Development with hot reload
 pnpm dev
@@ -57,43 +67,56 @@ pnpm build:linux        # Linux
 ```
 
 ## Platform-Specific Features
+
 ### macOS Integration
+
 - **Vibrancy effects**: `under-window` vibrancy with transparent background
 - **Custom title bar**: Hidden with overlay controls
 - **App region dragging**: Title area is draggable, keyboard area is not
 
 ### Icon Assets (`src/renderer/src/assets/`)
+
 - App icons in `/assets/` root
-- Raycast extension icons in `/assets/raycast/` subdirectory
+- Raycast extension icons in `/assets/raycast/` subdirectory (custom ones in `/assets/raycast/custom/`, built-in command icons in `/assets/raycast/builtIn/`)
 - Uses Vite's `?asset` suffix for proper bundling
 
+## Extracting Raycast Built-in Command Icons
+
+```
+sh ./scripts/extract-raycast-icons.sh
+```
+
 ## Code Conventions
+
 ### JSDoc Documentation Standards
+
 Always use proper JSDoc comments for exported functions, types, and constants:
 
-```typescript
+````typescript
 /**
  * Hook that provides reactive container query functionality
+ *
+ * @example
+ *   ```typescript
+ *   const [container, setContainer] = createSignal<HTMLElement>();
+ *   const query = useContainerQuery(container);
+ *
+ *   return (
+ *     <div ref={setContainer}>
+ *       <div class={query.md() ? "grid-cols-3" : "grid-cols-1"}>
+ *         Content adapts to container size
+ *       </div>
+ *     </div>
+ *   );
+ *   ```;
+ *
  * @param element - Accessor that returns the HTML element to observe
  * @returns Object with boolean accessors for each breakpoint
- * 
- * @example
- * ```typescript
- * const [container, setContainer] = createSignal<HTMLElement>();
- * const query = useContainerQuery(container);
- * 
- * return (
- *   <div ref={setContainer}>
- *     <div class={query.md() ? "grid-cols-3" : "grid-cols-1"}>
- *       Content adapts to container size
- *     </div>
- *   </div>
- * );
- * ```
  */
 export function useContainerQuery(element: Accessor<HTMLElement | undefined>) {
   /**
    * Regular comments for internal implementation details
+   *
    * @param width - Container width in pixels
    */
   const updateBreakpoints = (width: number) => {
@@ -103,51 +126,59 @@ export function useContainerQuery(element: Accessor<HTMLElement | undefined>) {
 
 /**
  * Tailwind container query breakpoints
- * 
+ *
  * These breakpoints match Tailwind's @container query system:
- * - sm: 24rem (384px) - Small containers
- * - md: 28rem (448px) - Medium containers  
- * - lg: 32rem (512px) - Large containers
+ *
+ * - Sm: 24rem (384px) - Small containers
+ * - Md: 28rem (448px) - Medium containers
+ * - Lg: 32rem (512px) - Large containers
  */
 export const containerBreakpoints = {
   sm: '24rem',
-  md: '28rem', 
+  md: '28rem',
   lg: '32rem',
 } as const;
-```
+````
 
 **JSDoc Usage Rules:**
-- **Use JSDoc (`/** */`)** for: exported functions, classes, types, constants, public APIs
+
+- **Use JSDoc (`/** \*/`)\*\* for: exported functions, classes, types, constants, public APIs
 - **Use regular comments (`//`)** for: implementation details, code logic, temporary notes
 - **Always include** `@param` and `@returns` for functions
 - **Add `@example`** blocks for complex APIs with real usage patterns
 - **Document type parameters** with generic functions using `@template`
 
 ### File Organization
+
 - **Components**: Single-purpose, use PascalCase filenames
 - **Data**: Separate files per application in `data/shortcut/`
 - **Types**: Co-located with related functionality
 - **Stores**: Simple reactive state, avoid complex derived state
 
 ### SolidJS Patterns
+
 ```typescript
 // Reactive state
-const [signal, setSignal] = createSignal(initialValue)
+const [signal, setSignal] = createSignal(initialValue);
 
 // Computed values
-const computed = createMemo(() => transform(signal()))
+const computed = createMemo(() => transform(signal()));
 
 // Side effects
-createEffect(() => { /* runs when dependencies change */ })
+createEffect(() => {
+  /* runs when dependencies change */
+});
 ```
 
 ### Styling Approach
+
 - **TailwindCSS utilities** for most styling
 - **Inline styles** for dynamic values (colors, dimensions)
 - **`twMerge()`** for conditional class combinations
 - **CSS custom properties** for dynamic color theming
 
 ## Adding New Shortcuts
+
 1. Create new file in `src/renderer/src/data/shortcut/{app}.ts`
 2. Export array following `Shortcut` type interface
 3. Add icon asset to `src/renderer/src/assets/`
@@ -155,6 +186,7 @@ createEffect(() => { /* runs when dependencies change */ })
 5. For Raycast extensions, include `raycastExtension` and `raycastExtensionIcon` properties
 
 ## Performance Notes
+
 - **Image optimization**: Icons are bundled as assets, use appropriate sizes
 - **Color extraction**: `node-vibrant` runs async, cache results when possible
 - **Event throttling**: Keyboard events are throttled to prevent excessive re-renders
